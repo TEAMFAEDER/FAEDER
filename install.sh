@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd DEVFAEDER
+cd FAEDER
 red() {
   printf '\e[1;31m%s\n\e[0;39;49m' "$@"
 }
@@ -18,7 +18,7 @@ Dev() {
 aa() {
  sudo apt-get install
 }
-function logo1_DEVFAEDER() {
+function logo1_FAEDER() {
 green "       "
 green "       "
 yellow ""
@@ -32,7 +32,7 @@ yellow "      "
 yellow "                                          "
 yellow ""
 }
-function logo2_DEVFAEDER() {
+function logo2_FAEDER() {
 yellow ""
 yellow ""
 yellow ""
@@ -56,29 +56,20 @@ green "     "
 green "      "
 red   "       "
 }
-function install_DEVFAEDER() {
+function install_FAEDER() {
 sudo apt-get update
-
 sudo apt-get upgrade -y
-
 sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev lua-socket lua-sec lua-expat libevent-dev make unzip git redis-server autoconf g++ libjansson-dev libpython-dev expat libexpat1-dev  -y
-
 sudo apt-get install lua-lgi -y
-
 sudo apt-get install software-properties-common -y
-
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-
 sudo apt-get install libstdc++6 -y
-
 sudo apt-get update -y
-
 sudo apt-get upgrade -y
-
 sudo apt-get dist-upgrade -y
 
 }
-function DEVFAEDER() {
+function FAEDER() {
 wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz
  tar zxpf luarocks-2.2.2.tar.gz
  rm luarocks-2.2.2.tar.gz
@@ -106,21 +97,21 @@ wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz
  sudo pip install redis
  cd ..
 }
-function DEVFAEDER() {
- cd DEVFAEDER
+function FAEDER() {
+ cd FAEDER
  rm -rf "luarocks-2.2.2"
  wget "https://valtman.name/files/telegram-cli-1222"
  mv telegram-cli-1222 tg
 }
-function chmod_DEVFAEDER() {
+function chmod_FAEDER() {
  chmod +x tg
- chmod +x Faeder.sh
- chmod +x Faeder.sh
+ chmod +x RUNFA.sh
+ chmod +x RUNFA.sh
 }
 
-logo1_DEVFAEDER
-install_DEVFAEDER
-DEVFAEDER
-DEVFAEDER
-chmod_DEVFAEDER
-logo2_DEVFAEDER
+logo1_FAEDER
+install_FAEDER
+FAEDER
+FAEDER
+chmod_FAEDER
+logo2_FAEDER
