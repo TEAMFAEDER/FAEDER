@@ -1,0 +1,3 @@
+killall screen
+screen ./RUNFA.sh
+echo -e "FAEDER IS RUN BOT"
