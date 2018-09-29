@@ -6446,9 +6446,9 @@ local pin_id = database:get('pinnedmsg'..msg.chat_id_)
               end
             else
               if database:get('lang:gp:'..msg.chat_id_) then
-                send(msg.chat_id_, msg.id_, 1, '*✅|| تم تفعيل المجموعه✔️\n📨||اسم المجموعه :- [ '..chat.title_..' ]\n🎟|| ايديها :- [ "..msg.chat_id_.." ]*', 1, 'md')
+                send(msg.chat_id_, msg.id_, 1, '*✅|| تم تفعيل المجموعه✔️', 1, 'md')
               else
-                send(msg.chat_id_, msg.id_, 1, '*✅|| تم تفعيل المجموعه✔️\n📨||اسم المجموعه :- [ '..chat.title_..' ]\n🎟|| ايديها :- [ '..msg.chat_id_..' ]*', 1, 'md')
+                send(msg.chat_id_, msg.id_, 1, '*✅|| تم تفعيل المجموعه✔️', 1, 'md')
               end
               send(bot_owner, 0, 1, '🛡|| تم تفعيل مجموعه جديده\n\n🀄️|| معلومات المطور :\n🔸|| ايدي المطور : '..msg.sender_user_id_..'\n♦️|| اسم المطور : '..result.first_name_..'\n\n🔘|| معلومات الكروب :\n🔸|| ايدي الكروب : '..msg.chat_id_..'\n🔸|| اسم الكروب : '..chat.title_..'\n' , 1, 'html')
               database:set("bot:enable:"..msg.chat_id_,true)
@@ -6469,9 +6469,9 @@ local pin_id = database:get('pinnedmsg'..msg.chat_id_)
             end
           else
             if database:get('lang:gp:'..msg.chat_id_) then
-              send(msg.chat_id_, msg.id_, 1, '*✅|| تم تعطيل المجموعه✔️\n📨||اسم المجموعه :- [ '..chat.title_..' ]\n🎟|| ايديها :- [ '..msg.chat_id_..' ]*', 1, 'md')
+              send(msg.chat_id_, msg.id_, 1, '*✅|| تم تعطيل المجموعه✔️', 1, 'md')
             else
-              send(msg.chat_id_, msg.id_, 1, '*✅|| تم تعطيل المجموعه✔️\n📨||اسم المجموعه :- [ '..chat.title_..' ]\n🎟|| ايديها :- [ '..msg.chat_id_..' ]*', 1, 'md')
+              send(msg.chat_id_, msg.id_, 1, '*✅|| تم تعطيل المجموعه✔️', 1, 'md')
             end
             database:del("bot:charge:"..msg.chat_id_)
             database:del("bot:enable:"..msg.chat_id_)
