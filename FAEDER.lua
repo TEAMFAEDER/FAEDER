@@ -2333,7 +2333,7 @@ end
           end
         end
         --------------faeder
-        if text:match("^موقعي$") or text:match("^[Mm]e$") then
+        if text:match("^موقعي$") or text:match("^[Mm]e$") or text:match("^رتبتي$") then
           function get_me(extra,result,success)
             if is_leaderid(result.id_) then
               ten = 'Chief'
@@ -2371,7 +2371,7 @@ end
             if database:get('lang:gp:'..msg.chat_id_) then
               faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Your name • '..result.first_name_..' '..lastname..' •\n🎖⁞ Your user • '..username..' •\n🚦⁞ Your ID • '..result.id_..' •\n📚⁞ Your Rank • '..ten, 1, 'html')
             else
-              faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ اسمك • '..result.first_name_..' '..lastname..' •\n🎖⁞ معرفك • '..username..' •\n📖⁞ ايديك • '..result.id_..' •\n📚⁞ موقعك • '..tar, 1, 'html')
+              faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ اسمك • '..result.first_name_..' '..lastname..' •\n🎖⁞ معرفك • '..username..' •\n🚦⁞ ايديك • '..result.id_..' •\n📚⁞ موقعك • '..tar, 1, 'html')
             end
           end
           getUser(msg.sender_user_id_,get_me)
@@ -2420,6 +2420,13 @@ end
           getUser(msg.sender_user_id_,get_me)
         end
         -----------------------faeder
+        if text:match("^(time)$") or text:match("^(الوقت)$") then
+  local url , res = https.request('https://sajad.gq/api/date/')
+  if res ~= 200 then return end
+  local jd = json:decode(url)
+  faeder = "📅 ⁞ التاريخ • "..jd.EnDate.WordOne.."\n🕐 ⁞ الساعه • "..jd.EnTime.Number..""
+  faederdx(msg.chat_id_, msg.id_, 1, faeder, 1, 'md')
+ end
         if text:match("^(زخرفه) (.*)$") then
 		MatchesEN = {text:match("^(زخرفه) (.*)$")}; 
 		TextToBeauty = MatchesEN[2] 
@@ -3427,7 +3434,7 @@ end
             local hash = 'bot:gban:'
               database:srem(hash, ap[2])
               if database:get('lang:gp:'..msg.chat_id_) then
-                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..ap[2]..' ، 🚷\n??|| has been unbanned (Gban) ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..ap[2]..' ، 🚷\n🚦|| has been unbanned (Gban) ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
               else
                 faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..ap[2]..' ، 🚷\n🎈|| تم الغاء حظره عام بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
               end
@@ -3485,7 +3492,7 @@ end
             else
               database:sadd('bot:muted:'..msg.chat_id_, ap[2])
               if database:get('lang:gp:'..msg.chat_id_) then
-                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..ap[2]..' ، 🚷\n🎈|| has been muted ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..ap[2]..' ، 🚷\n??|| has been muted ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
               else
                 faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..ap[2]..' ، 🚷\n🎈|| تم كتمه من المجموعه بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
               end
@@ -4357,10 +4364,10 @@ elseif is_admin(msg.sender_user_id_) then
 t = 'مطور فالرتبه الثالثه 🚩'
 elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
 t = 'مدير البوت 💷'
-elseif is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-t = 'عضو مميز 💷'
 elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
 t = 'ادمن البوت 💷'
+elseif is_vipmem(msg.sender_user_id_, msg.chat_id_) then
+t = 'عضو مميز 💷'
 else
 t = 'عضو متخلف 🗳'
 end
@@ -4427,7 +4434,7 @@ end
           end
         end
         ------------------------------------------faeder-----------------------------------------------------
-        if text:match("^[Gg]etpro (%d+)$") then
+        if text:match("^صورتي (%d+)$") then
           local pronumb = {string.match(text, "^([Gg]etpro) (%d+)$")}
           local function gproen(extra, result, success)
             if not is_momod(msg.sender_user_id_, msg.chat_id_) and database:get('getpro:'..msg.chat_id_) == "Deactive" then
@@ -4793,7 +4800,7 @@ end
               if database:get('lang:gp:'..msg.chat_id_) then
                 faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Select a number greater than 2 ', 1, 'md')
               else
-                faederdx(msg.chat_id_, msg.id_, 1, '??⁞ قم بتحديد تكرار اكبر من 2 •', 1, 'md')
+                faederdx(msg.chat_id_, msg.id_, 1, '🎖⁞ قم بتحديد تكرار اكبر من 2 •', 1, 'md')
               end
             else
               if database:get('lang:gp:'..msg.chat_id_) then
@@ -6288,8 +6295,9 @@ end
         local botslist = function(extra, result)
          local list = result.members_
           for i = 0, #list do
-          chat_kick(msg.chat_id_, list[i].user_id_)
+          if tonumber(list[i].user_id_) ~= tonumber(bot_id) then chat_kick(msg.chat_id_,list[i].user_id_)
            end 
+           end
            end
             local faeder = '🚦⁞ تم مسح البوتات • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
             faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 34, string.len(msg.sender_user_id_))
@@ -6501,7 +6509,7 @@ end
             if database:get('bot:location:mute'..msg.chat_id_) then
               lock_location = 'مفعل 🚩'
             else
-              lock_location = 'معطل ??'
+              lock_location = 'معطل 🎈'
             end
             ------------faeder
             if database:get('bot:contact:mute'..msg.chat_id_) then
@@ -7030,6 +7038,7 @@ end
    local text =  [[
 🚦*⁞* اوامر الخدمه  ✓
 ┓ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┏
+  🗳*⁞* الوقت •
   🗳*⁞* الرابط •
   🗳*⁞* موقعي •
   🗳*⁞* رسائلي •
@@ -7058,7 +7067,7 @@ end
   📚*⁞* الحساب + الايدي •
   📚*⁞* طقس    + اسم المدينه •
   📚*⁞* زخرفه   + النص {انكلش فقط} •
-┛ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┗┗
+┛ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┗
 ]]
                 faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'md')
   end
@@ -7129,12 +7138,13 @@ end
   📱*⁞* مسح قائمه المنع العام •
   📱*⁞* مسح مطورين الرتبه الثالثه •
 
-  💷*⁞* اذاعه              + المنشور •
-  💷*⁞* فلتر عام         + الكلمه •
-  💷*⁞* الغاء فلتر عام  + الكليشه •
-  💷*⁞* ضع ملاحظه    + الملاحظه •
-  💷*⁞* نشر بالخاص    + المنشور •
-  💷*⁞* ضع رد الخاص + الكليشه •
+  💷*⁞* اذاعه                    + المنشور •
+  💷*⁞* فلتر عام               + الكلمه •
+  💷*⁞* الغاء فلتر عام        + الكليشه •
+  💷*⁞* ضع ملاحظه         + الملاحظه •
+  💷*⁞* نشر بالخاص         + المنشور •
+  💷*⁞* ضع رد الخاص      + الكليشه •
+  💷*⁞* ضع كليشه المطور + الكليشه •
 
 ┛ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┗
 ]]
