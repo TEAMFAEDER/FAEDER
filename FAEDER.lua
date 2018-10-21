@@ -1168,26 +1168,6 @@ end
 ------------
     -- end functions faeder --
     -----------------------------------------------------------------------------------------------
-    if not is_momod(msg.sender_user_id_, msg.chat_id_) then
-local list = msg.content_.members_
-for i = 0, #list do
-if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and database:get("bot:bots:mute" .. msg.chat_id_) then
-chat_kick(msg.chat_id_, list[i].id_)
-end
-if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and database:get("bot:bots:ban" .. msg.chat_id_) then
-chat_kick(msg.chat_id_, list[i].id_)
-chat_kick(msg.chat_id_, msg.sender_user_id_)
-faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ ممنوع اضافه البوتات •\n📚⁞ تم طرد البوت مع العضو •", 1, "md")
-end
-if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and database:get("keed_bots"..msg.chat_id_) then
-chat_kick(msg.chat_id_, list[i].id_)
-database:sadd('bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-database:sadd('bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ ممنوع اضافه البوتات •\n📚⁞ تم طرد البوت وتقييد العضو •", 1, "md")
-end
-end
-end
     -----------------------------------------------------------------------------------------------
     ----------------------------------------Anti FLood---------------------------------------------
     --------------Flood Max --------------faeder
@@ -1329,6 +1309,7 @@ end
     -- -----------------Photo
     --Photo
     --Photo
+    
     if msg_type == 'MSG:Photo' then
       if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
         if database:get('anti-flood:'..msg.chat_id_) then
@@ -1599,6 +1580,26 @@ end
         print("Deleted [Lock] [Tgservice] [NewUserAdd]")
         return
       end
+      if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
+local list = msg.content_.members_
+ for i = 0, #list do
+if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and database:get("bot:bots:mute" .. msg.chat_id_) then
+chat_kick(msg.chat_id_, list[i].id_)
+end
+if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and database:get("bot:bots:ban" .. msg.chat_id_) then
+chat_kick(msg.chat_id_, list[i].id_)
+chat_kick(msg.chat_id_, msg.sender_user_id_)
+faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ ممنوع اضافه البوتات •\n📚⁞ تم طرد البوت مع العضو •", 1, "md")
+end
+if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and database:get("keed_bots"..msg.chat_id_) then
+chat_kick(msg.chat_id_, list[i].id_)
+database:sadd('bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+database:sadd('bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ ممنوع اضافه البوتات •\n📚⁞ تم طرد البوت وتقييد العضو •", 1, "md")
+end
+end
+end
       if msg.content_.members_[0].username_ and msg.content_.members_[0].username_:match("[Bb][Oo][Tt]$") then
         if not is_momod(msg.content_.members_[0].id_, msg.chat_id_) then
           if database:get('bot:bots:gkgk'..msg.chat_id_) then
@@ -8138,7 +8139,7 @@ end
             if msg.chat_id_:match("^-100") then
               if tonumber(matches[2]) > 100 or tonumber(matches[2]) < 1 then
                 if database:get('lang:gp:'..msg.chat_id_) then
-                  pm = '🚦⁞ Please use a number greater than 1 and less than 100 •'
+                  pm = '??⁞ Please use a number greater than 1 and less than 100 •'
                 else
                   pm = '📯|| اختر رقم اكبر من 1 واقل من 100 🎈'
                 end
