@@ -961,23 +961,23 @@ end
 function formsgg(msgs) 
 local faeder = ''  
 if msgs < 100 then 
-faeder = 'كلش ضعيف 😫' 
+faeder = "ضعيف جدا"
 elseif msgs < 250 then 
-faeder = 'ضعيف 😨' 
+faeder = "ضعيف"
 elseif msgs < 500 then 
-faeder = 'غير متفاعل 😒' 
+faeder = "غير متفاعل"
 elseif msgs < 750 then 
-faeder = 'متوسط 😎' 
+faeder = "متوسط"
 elseif msgs < 1000 then 
-faeder = 'متفاعل 😘' 
+faeder = "متفاعل"
 elseif msgs < 2000 then 
-faeder = 'قمة التفاعل 😍' 
+faeder = "قمه التفاعل"
 elseif msgs < 3000 then 
-faeder = 'ملك التفاعل 😻'  
+faeder = "ملك التفاعل"
 elseif msgs < 4000 then 
-faeder = 'اسطورة التفاعل 🍃' 
+faeder = "اسطوره التفاعل"
 elseif msgs < 5000 then 
-faeder = 'متفاعل نار كلش 🔥' 
+faeder = "نار وشرار" 
 end 
 return faeder
 end
@@ -1014,6 +1014,22 @@ function faedrmoned(chat_id, user_id, msg_id, text, offset, length) local tt = f
 ---------------------------------faeder-------------------------------------------------------------------
 function tdcli_update_callback(data)
 -------------------------------------------faeder
+function faeder11(msg)
+local var = true 
+if faederdx1:get(FAEDER.."faeder2") then
+local channel = ''..faederdx1:get(FAEDER..'faeder3')..''
+local url , res = https.request('https://api.telegram.org/bot'..tokenbot..'/getchatmember?chat_id='..channel..'&user_id='..msg.sender_user_id_)
+local data = json:decode(url)
+if res ~= 200 or data.result.status == "left" or data.result.status == "kicked" then
+var = false
+faederdx(msg.chat_id_,msg.id_, 1, "*🌿╿❯ لا تستطيع استخدام البوت •\n🍄┊❯ لانك لم تشترك في قناة البوت •\n💥┊❯ اشترك بالقناة لتتمكن من استخدامه •\n\n☑️╽❯ { قناة البوت* :- ["..channel.."] }\n", 1 , "md")
+elseif data.ok then
+return var
+end
+else
+return var
+end
+end
 function tdcli_update_callback(data)
 local our_id = faederdx1:get(FAEDER.."Our_ID") or 0
 local api_id = faederdx1:get(FAEDER.."Bot:Api_ID") or 0
@@ -1061,6 +1077,82 @@ disable_notification_ = disable_notification,
 from_background_ = 1
 }, dl_cb, nil)
 end
+function getUser(user_id, cb)
+    tdcli_function ({
+  ID = "GetUser",
+  user_id_ = user_id
+    }, cb, nil)
+  end
+local msg = data.message_
+text = msg.content_.text_
+if text then 
+function faeder(extra,result,success)
+if result.id_ then 
+local dx = faederdx1:get("faeder:Userr"..result.id_)
+if not result.username_ then 
+if dx then 
+faederdx(msg.chat_id_, msg.id_, 1, "حذف معرفه خمطو بساع بساع  \n هاذه معرفه : @"..dx, 1, 'html')
+faederdx1:del("faeder:Userr"..result.id_) 
+end
+end
+if result.username_ then 
+if dx and dx ~= result.username_ then 
+local faeder_text = {
+  'كمشتك ليش غيرت معرفك ولك 😹',
+  "ليش غيرت معرف طشوك بقنات انحراف ؟ ⛷😹",
+  "حلو معرفك الجديد منين خمطته 😹",
+  "لحكو غير معرفه خمطو \n هذا معرفه القديم 🌚😹 @"..result.username_.."",
+}
+dxx = math.random(#faeder_text)
+faederdx(msg.chat_id_, msg.id_, 1, faeder_text[dxx], 1, 'html')
+end  
+faederdx1:set("faeder:Userr"..result.id_, result.username_) 
+end
+end
+end
+getUser(msg.sender_user_id_, faeder)
+end
+local msg = data.message_
+text = msg.content_.text_
+if text then 
+function dx(extra,result,success)
+if result.id_ then 
+local dx2 = faederdx1:get("dx:photo"..result.id_)
+if not result.profile_photo_ then 
+if dx2 then 
+faederdx(msg.chat_id_, msg.id_, 1, "حذف كل صوره الحلو 😂👌🏻", 1, 'html')
+faederdx1:del("dx:photo"..result.id_) 
+end
+end
+if result.profile_photo_ then 
+if dx2 and dx2 ~= result.profile_photo_.big_.persistent_id_ then 
+local dx_text = {
+  "طالع صاك بالصوره الجديده ممكن نرتبط",
+  "صوره فيطي الجديده غيرها",
+  "صورتك الجديده فد شي 😑😹",
+  "حطيت صورتي شوفوني اني صاك بنات 🙄😹",
+}
+dx3 = math.random(#dx_text)
+faederdx(msg.chat_id_, msg.id_, 1, dx_text[dx3], 1, 'html')
+end  
+faederdx1:set("dx:photo"..result.id_, result.profile_photo_.big_.persistent_id_) 
+end
+end
+end
+getUser(msg.sender_user_id_, dx)
+end
+local function openChat(chat_id,dl_cb)
+tdcli_function ({
+ID = "GetChat",
+chat_id_ = chat_id
+}, dl_cb, nil) 
+end
+function resolve_username(username,cb)
+tdcli_function ({
+ID = "SearchPublicChat",
+username_ = username
+}, cb, nil)
+end
 ----------------faeder
 function string:split(sep)
 local sep, fields = sep or ":", {}
@@ -1093,7 +1185,7 @@ faederdx1:set(FAEDER.."bot:enable:"..msg.chat_id_,true)
 faederdx1:setex(FAEDER.."bot:charge:"..msg.chat_id_,86400,true)
 faederdx1:sadd(FAEDER..'sudo:data:'..msg.sender_user_id_, msg.chat_id_)
 end end
-getUser(msg.sender_user_id_,adding)
+getUser(msg.sender_user_id_,adding) 
 end end
 -------------------------------------faeder
 if (data.ID == "UpdateNewMessage") then
@@ -1196,6 +1288,23 @@ if msg.content_.ID == "MessageSticker" then
 faederdx1:incr(FAEDER.."sticker:"..msg.sender_user_id_..":"..msg.chat_id_.."")
 end
 -------------------------faeder
+if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(bot_id) then 
+faederdx1:srem(FAEDER.."bot:groups", msg.chat_id_)
+faederdx1:del(FAEDER.."bot:charge:"..msg.chat_id_)
+function faeder(extra,result,success) 
+function  reslit(f1,f2)
+function dl_cb222(t1,t2)
+faederdx(tostring((faederdx1:get(FAEDER.."bot:leader:gr") or bot_owner)), 0, 1, "🌿╿❯ تم طرد البوت من مجموعه • \n🍄┊❯ ايدي العضو ~ {"..msg.sender_user_id_.."}\n💥┊❯ معرف العضو ~ @"..(result.username_ or "لا يوجد").."\n✨┊❯ معلومات المجموعه • \n\n📂┊❯ ايدي المجموعه ~ {"..msg.chat_id_.."}\n📍┊❯ اسم المجموعه • {"..f2.title_.."}\n☑️╽❯ { تم مسح جميع بياناتها }" , 1, 'html')
+end
+tdcli_function ({
+ID = "GetChannelFull",
+channel_id_ = getChatId(msg.chat_id_).ID
+}, dl_cb222, nil)
+end
+openChat(msg.chat_id_, reslit) 
+end
+getUser(msg.sender_user_id_, faeder)
+end
 if msg.content_.ID == "MessagePhoto" then
 print("This is [ Photo ]")
 msg_type = 'MSG:Photo'
@@ -1787,14 +1896,12 @@ end
 if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and faederdx1:get(FAEDER.."bot:bots:ban" .. msg.chat_id_) then
 chat_kick(msg.chat_id_, list[i].id_)
 chat_kick(msg.chat_id_, msg.sender_user_id_)
-faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ ممنوع اضافه البوتات •\n📚⁞ تم طرد البوت مع العضو •", 1, "md")
 end
 if list[i].type_.ID == "UserTypeBot" and not is_vipmem(list[i].id_, msg.chat_id_) and faederdx1:get(FAEDER.."keed_bots"..msg.chat_id_) then
 chat_kick(msg.chat_id_, list[i].id_)
 faederdx1:sadd(FAEDER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
 faederdx1:sadd(FAEDER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ ممنوع اضافه البوتات •\n📚⁞ تم طرد البوت وتقييد العضو •", 1, "md")
 end
 end
 end
@@ -2436,6 +2543,9 @@ end
 end
 end
 ----------------faeder----------
+if is_owner(msg.sender_user_id_, msg.chat_id_) and not faeder11(msg) or is_monsh(msg.sender_user_id_, msg.chat_id_) and not faeder11(msg) or is_sudo(msg) and not faeder11(msg) or is_momod(msg.sender_user_id_, msg.chat_id_) and not faeder11(msg) or is_vipmem(msg.sender_user_id_, msg.chat_id_) and not faeder11(msg) then
+return false
+end
 if text:match("كس") or text:match("طيز") or text:match("ديس") or text:match("انيجمك") or text:match("انيج") or text:match("نيج") or text:match("ديوس") or text:match("عير") or text:match("كسختك") or text:match("كسمك") or text:match("كسربك") or text:match("بلاع") or text:match("ابو العيوره") or text:match("منيوج") or text:match("كحبه") or text:match("اخ الكحبه") or text:match("اخو الكحبه") or text:match("الكحبه") or text:match("كسك") or text:match("طيزك") or text:match("عير بطيزك") or text:match("كس امك") or text:match("امك الكحبه") or text:match("صرم") or text:match("عيرك") or text:match("عير بيك") or text:match("صرمك") and is_owner(msg.sender_user_id_, msg.chat_id_) then
 if not faederdx1:get(FAEDER.."fshar"..msg.chat_id_) and not is_owner(msg.sender_user_id_, msg.chat_id_) then
 local id = msg.id_
@@ -2479,6 +2589,215 @@ end
 faederdx1:del(FAEDER.."bot:support:link" .. msg.sender_user_id_)
 end
 end
+if faederdx1:get(FAEDER..'faeder4'..msg.sender_user_id_) then
+faederdx1:del(FAEDER..'faeder4'..msg.sender_user_id_)
+local url , res = https.request('https://api.telegram.org/bot'..tokenbot..'/getChatAdministrators?chat_id='..msg.content_.text_..'')
+local data = json:decode(url)
+if res == 400 then
+if data.description == "Bad Request: supergroup members are unavailable" then 
+faederdx(msg.chat_id_,msg.id_, 1, "*🌿╿❯ لم ترفعني ادمن في قناتك ارفعني اولا •*\n", 1 , "md")
+return false 
+elseif data.description == "Bad Request: chat not found" then 
+faederdx(msg.chat_id_,msg.id_, 1, "*🌿╿❯ هذا المعرف ليس تابع لقناة •*\n", 1 , "md")
+return false
+end end 
+if not msg.content_.text_ then
+faederdx(msg.chat_id_,msg.id_, 1, "*🌿╿❯ هذا المعرف ليس تابع لقناة •*\n", 1 , "md")
+return false
+end
+local CH_BOT = msg.content_.text_:match("(.*)")
+faederdx1:set(FAEDER..'faeder3',CH_BOT)
+faederdx(msg.chat_id_,msg.id_, 1, "🌿╿❯ تم حفظ القناة •\n☑️╽❯ قم بتفعيل الاشتراك الاجباري الان •\n", 1 , "html")
+return false
+end
+if faederdx1:get(FAEDER.."zr:wordd" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
+local zakrf = text:match("(.*)")  
+faederdx1:del(FAEDER.."zr:wordd" .. msg.chat_id_ .. "" .. msg.sender_user_id_)     
+if not text:find('[ASDFGHJKLQWERTYUIOPZXCVBNMasdfghjklqwertyuiopzxcvbnm]') then 
+faeder = zakrf 
+local font_base = "ض,ص,ق,ف,غ,ع,ه,خ,ح,ج,ش,س,ی,ب,ل,ا,ن,ت,م,چ,ظ,ط,ز,ر,د,پ,و,ک,گ,ث,ژ,ذ,آ,ئ,.,_"  
+local font_hash = "ض,ص,ق,ف,غ,ع,ه,خ,ح,ج,ش,س,ی,ب,ل,ا,ن,ت,م,چ,ظ,ط,ز,ر,د,پ,و,ک,گ,ث,ژ,ذ,آ,ئ,.,_"  
+local fonts = {      "ضـٍہًہ,صًـٍـًہ,ـᓆـ,ف͒ہٰٰ,غہٰٰ,؏ۤـہٰٰ,ھہ,ـפֿـ,ـפـ,ج,ش,ـωـ,ی,بہٰٰ,لྀ̲ہٰٰ,آ,نہٰٰ,ྀ̲تہٰٰ,םـۂ,چ,ظٍـً,طہـۛ,ز,ر,ـב,پ,ـפּـ,ڪٰྀہٰٰٖـ,گـ,ثِْْہٰٰہٰٰہٰٰـ,ژ,ذَِِِْ,آ,ئ,.,_",      
+"ضۜۜہٰٰ,صۛہُُِِٰٰۛہٰٰۛہٰٰ,قྀ̲ہٍٍٰٰٰٰٰྀ̲ہٰٰٰྀ̲ہٰٰٰ,ف͒ہِِٰٰٰٰ͒ہٰٰ͒ہٰٰ,غہِِِِٰٰٰٰہٰٰہٰٰ,؏ۤـہ,ٰ̲ھہ,خٰ̐ہّّٰٰٰ̐ہٰ̐ہ,حہٌٌٰٰٰٰہٰٰہٰٰ,جًًِِّّْْْۧۧۧ,شِٰہََُُِٰٰٰہِٰٰٰہٰٰ,سٌٌٍٍٰٰٰٰٰٰٓٓٓ,ی,بّہٌٌِِّٰٰہّہ,لْْٰٰ,آ,نَِٰہٍٍَِٰٰٰہَِٰہ,تَہََّّٰٰٰہََٰہَٰ,مٰ̲ہٍٍٰٰٰ̲ہٰ̲ہ,چ,ظۗہََِِْْٰٰۗہٰٰۗہٰٰ,طۨہََُُِِٰٰۨہٰٰۨہٰٰ,زًًَََََ,رِِٰٰ,دِِٰٰ,پ,وٍٍِِِّّ,ڪٰྀہٰٰٖ,گ,ثہِِْْْْٰٰہٰٰہٰٰ,ژ,ذََِِِْْ,ئ,آ,.,_",      
+"ضــ,صــ,قــ,فــ,غــ,عــ,ـهــ,خــ,حــ,جــ,شــ, سـ,یــ,بــ,لــ,ﺂ,نــ,تــ,مــ,چــ,ظــ,طــ,ـز,ـر,ـد,پــ,ـو,کــ,گــ,ـثــ,ـژ,ـذ,ﺂ,ئ,.,_",        
+"ضۜہٰٰ,صۛہٰٰ,قྀ̲ہٰٰٰ,ف͒ہٰٰ,غہٰٰ,؏ۤـہ,ٰ̲ھہ,خٰ̐ہ,حہٰٰ,جْۧ,شِٰہٰٰ,سٰٰٓ,ی,بّہ,ل,آ,نَِٰہ,تَہَٰ,مٰ̲ہ,چ,ظۗہٰٰ,طۨہٰٰ,زَ,ر,د,پ,وِ,ک,گ,ثہٰٰ,ژ,ذِ,ئ,آ,.,_",      
+"ضًً,صــَ,ق,ف,غً,عـًً,هہـ,خِہ,ـحّ,جــٌ,ڜ,سُُُُُ,ی,بــِ,لـ,أ,نــہٰ⇣ـ,ِِتً,مہـً,چ,ظـَ,ط,ز,ر,د,پ,وُ,ﮏ,گ,ثـ͜͡ہــِ,ژ,ذ,ئ,أ  ,.,_",      
+"ضًـٍـًہًـٍـًہ,صًـٍـًہ,ق,ف,غً,عً,هہـ,خِہ,ב,,جـﮩ๋͜ﮧـ͜ާْ,ڜـ͜ާ,سـّــً,ی,بہ,لـﮩﮨہٰٰہٰ,أ,טּ,تہٍِۣـّ̐ہٰ,مہ,چ,ظٍـًہ,ط,ز,ر,د,پ,وُ,ڪـ,گ,ثہـٰ̲ہٰٰ,ژ,ذ,ئ,أ  ,.,_",      
+"ض,ص,ق,ف,غـ͜ﮩ͞ـ,عـ͜ﮩ͞ـ,هہـۛ,خہـۛ,ﺣہـۛ,جہـۛ,شۖہـۛ,سۜہـۛ,ی,بـ,ل,اآ,نہـۛ,تـ͜ﮩ͞ـ,مہـۛ,چ,ظـ͜ـ,طہـۛ,ز,ر,د,پ,ؤ,كـ͜ﮩ,گ,ثۨہـۛ,ژ,ذ,ئ,اآ  ,.,_",      
+"ضـ͜,صـ,ق,فـ͜ـ,غہۛـۛ,عۛـۛ,ه๋͜‏ـ,خ,ح,ج,شـ͜ﮩ͞ـ,سـ͜ﮩ͞ـ,ی,ﯧـۛ,لـۛ,اآ,نـ͜ـ,ت,م͜͞ـ,چ,ظـۛ,ط๋͜‏ـ,ز,ر,د,پ,وُ,كـهـۛ,گ,ث,ژ,ذ,ئ,اآ  ,.,_",      
+"ض๋͜‏ـۣۛ,صـ๋͜‏ـۣۛ,قـ,فـ๋͜‏ـۣۛ,غـ๋͜‏ـۣۛـ,عـ๋͜‏ـ,ه,خـ๋͜‏ـۣ,حـ๋͜‏ـ,,جـ๋͜‏ـ,شـ๋͜‏ـ,سـ๋͜‏ـ,ی,بہ,ل,أ,ن,تـ๋͜‏ـ,م,چ,ظـ๋͜‏ـ,ط,ز,ر,د,پ,و,كـ๋͜‏ـ,گ,ثہ,ژ,ذ,ئ,أ  ,.,_",      
+"ض,ص,ق,ف,غ,ع,هـ͜ﮩ͞ـ,خ,ح,ج,ش,س,ی,ب,لـّﮩ๋͜‏ـ,آ,نہٰٰ,ྀ̲تہٰٰ,مـّﮩ๋͜‏ـ,چ,طـྀ̲͜ہٰٰ,طـ͜ﮩ͞ـ,ڒ,ـﺭْ,دۛ,پ,ﯢ,ڪ,گ,ثྀ̲ہٰٰ,ژ,ﺫ,ئ,آ  ,.,_",      
+"ض,صۛہٰٰ,قྀ̲ہٰٰ,ف͒ہٰٰ,غہٰٰ,؏ۤـہٰٰ,ھہ,خٰ̐ہ,حہٰٰ,جْہ,شِٰہٰٰ,سٰٓہ,ی,بہٰٰ,لྀ̲ہٰٰ,آ,نہٰٰ,ྀ̲تہٰٰ,םـۂ,چ,ظہٰٰྀ̲,طہٰٰ,ڒ,ـﺭْ,دۛ,پ,ﯢ,ڪ,گ,ثྀ̲ہٰٰ,ژ,ﺫ,ئ,آ  ,.,_",      
+"ض,صـﮩ๋͜‏ـ,قـﮩ๋͜‏ـ,فـﮩ๋͜‏ـ,غـﮩ๋͜‏ـ,؏ـﮩ๋͜‏ـ,هـﮩ๋͜‏ـ,خـﮩ๋͜‏ـ,حـﮩ๋͜‏ـ,جـﮩ๋͜‏ـ,شـﮩ๋͜‏ـ,سـﮩ๋͜‏ـ,ی,بـﮩ๋͜‏ـ,لّۣۗ,آِ,نْۛ,تٌۙ,ﻡِۙـ,چ,ظـﮩ๋͜‏ـۖۜ,طٌۗ,ﺯۖ,ږۙ,ڊْ,پ,ﯠۚ,ڪٌۘ,گ,ثٌّۜ,ژ,ﺫۗ,ئ,آِ  ,.,_",      
+"ض,صـ᷈͟ـ,قـ᷈͟ـ,فـ᷈͟ـ,غـ᷈͟ـ,عـ᷈͟ـ,هـ᷈͟ـ,خـ᷈͟ـ,حـ᷈͟ـ,جـ᷈͟ـ,شـ᷈͟ـ,سـ᷈͟ـ,ی,بـ᷈͟ـ,لـ᷈͟ـ,ٲآٲ,نـ᷈͟ـ,تـ᷈͟ـ,مـ᷈͟ـ,چ,ظـ᷈͟ــ᷈͟ـ,طـ᷈͟ـ,ز,ر,د,پ,ﯠ,كـ᷈͟ـ,گ,ثـ᷈͟ـ,ژ,ذ,ئ,ٲآٲ  ,.,_",      
+"ض,صـﮩ⃑ﮩ,قـﮩ⃑ﮩ,فـﮩ⃑ﮩ,غـﮩ⃑ﮩ,عـﮩ⃑ﮩ,هـﮩ⃑ﮩ,خـﮩ⃑ﮩ,حـﮩ⃑ﮩ,جـﮩ⃑ﮩ,شـﮩ⃑ﮩ,سـﮩ⃑ﮩ,ی,بـﮩ⃑ﮩ,لـﮩ⃑ﮩ,آ,نـﮩ⃑ﮩ,تـﮩ⃑ﮩ,مـﮩ⃑ﮩ,چ,ظـﮩ⃑ﮩـﮩ⃑ﮩ,طـﮩ⃑ﮩ,ڒ,ر,ډ,پ,ﯛ,كـﮩ⃑ﮩ,گ,ثـﮩ⃑ﮩ,ژ,ﮈ,ئ,آ  ,.,_",      
+"ضًـٍـًہ,صًـ,ـقـ,ف,غً,عًـ,هہ,خِہ,حـ,جْـ,ڜـ,ڛً,ی,بہ,ل,آ,ہن,تہ,م,چ,ظٍـً,طٍـًہ,ز,ڑ,دٍ,پ,وُ,ـڪـ,گ,ثـ,ژ,ذٍ,ئ,آ  ,.,_",      
+"ضہۣۗ,صہۣۗ,قَہۣۗـ,فُہۣۗ,غّہۣۗ,عَہۣۗ,هہۣۗ,خٌہۣۗ,حًہۣۗ,جَہۣۗ,شّہۣۗ,سہۣۗـ,ی,بّہۣۗـ,لًً,أ,نٌہۣۗـ,تُہۣۗ,مہۣۗ,چ,ظٌہۣۗ,طٌہۣۗـ,زُ,رُ,دُ,پ,وِ,كہۣۗ,گ,ثًہۣۗ,ژ,ذٌ,ئ,أ  ,.,_",      
+"ض,صۭۣۣۖـ,قۭۣۣۖـ,فۭۣۣۖـ,غۭۣۣۖـ,غۭۣۣۖـ,هۭۣۣۖـ,خۭۣۣۖـ,حۭۣۣۖـ,جۭۣۣۖـ,شۭۣۣۖـ,سۭۣۣۖـ,ی,بۭۣۣۖـ,لۭۣۣۖـ,آ,نۭۣۣۖـ,تۭۣۣۖـ,مۭۣۣۖـ,چ,ظۭۣۣۖـۭۣۣۖـ,طۭۣۣۖـ,ز,ر,د,پ,ﯠ,كۭۣۣۖـ,گ,ثۭۣۣۖـ,ژ,ذ,ئ,آ  ,.,_",      
+"ض,صـﮩـ,قـﮩـ,فـﮩـ,غـﮩـ,عـﮩـ,هـﮩـ,خـﮩـ,حـﮩـ,جـﮩـ,شـﮩـ,سـﮩـ,ی,بـﮩـ,لـﮩـ,ٲ,نـﮩـ,تـﮩـ,مـﮩـ,چ,ظـﮩــﮩـ,طـﮩـ,ز,ر,د,پ,و,ګ,گ,ثـﮩـ,ژ,ذ,ئ,ٲ,.,_",      
+"ض,صـٰٰـۛۛۛ,قـٰٰـۛۛۛ,فـٰٰـۛۛۛ,غـٰٰـۛۛۛ,عـٰٰـۛۛۛ,هـٰٰـۛۛۛ,خـٰٰـۛۛۛ,حـٰٰـۛۛۛ,جـٰٰـۛۛۛ,شـٰٰـۛۛۛ,سـٰٰـۛۛۛ,ی,بـٰٰـۛۛۛ,لـٰٰـۛۛۛ,أ,نـٰٰـۛۛۛ,تـٰٰـۛۛۛ,مـٰٰـۛۛۛ,چ,ظـٰٰـۛۛۛـٰٰـۛۛۛ,طـٰٰـۛۛۛ,ز,ر,د,پ,و,ک,گ,ثـٰٰـۛۛۛ,ژ,ذ,ئ,أ  ,.,_",      
+"ض,صـٰ۫ﹻ,قـٰ۫ﹻ,فـٰ۫ﹻ,غـٰ۫ﹻ,عـٰ۫ﹻ,هـٰ۫ﹻ,خـٰ۫ﹻ,حـٰ۫ﹻ,جـٰ۫ﹻ,شـٰ۫ﹻ,سـٰ۫ﹻ,ی,بـٰ۫ﹻ,لـٰ۫ﹻ,ٱ,نَـٰ۫ﹻ,تْـٰ۫ﹻ,مٌـٰ۫ﹻ,چ,ظٌـٰ۫ﹻـٰ۫ﹻ,طِـٰ۫ﹻ,زُ,رَ,دِ,پ,وَ,كِـٰ۫ﹻ,گ,ثُـٰ۫ﹻ,ژ,ذَ,ئ,ٱℓ  ,.,_",      
+"ض,صہٰـ͢͡,قہٰـ͢͡,فہٰـ͢͡,غہٰـ͢͡,عہٰـ͢͡,هہٰـ͢͡,خہٰـ͢͡,حہٰـ͢͡,جہٰـ͢͡,شہٰـ͢͡,سہٰـ͢͡,ی,بہٰـ͢͡,لہٰـ͢͡,ا,نہٰـ͢͡,تہٰـ͢͡,مہٰـ͢͡,چ,ظہٰـ͢͡ہٰـ͢͡,طہٰـ͢͡,ز,ر,د,پ,و,كہٰـ͢͡,گ,ثہٰـ͢͡,ژ,ذ,ئ,ا  ,.,_",       }  
+local result = {}   
+i=0  
+for k=1,#fonts do   
+i=i+1   
+local tar_font = fonts[i]:split(",")   
+local text = faeder   
+local text = text:gsub("ض",tar_font[1])     
+local text = text:gsub("ص",tar_font[2])     
+local text = text:gsub("ق",tar_font[3])     
+local text = text:gsub("ف",tar_font[4])     
+local text = text:gsub("غ",tar_font[5])     
+local text = text:gsub("ع",tar_font[6])     
+local text = text:gsub("ه",tar_font[7])     
+local text = text:gsub("خ",tar_font[8])     
+local text = text:gsub("ح",tar_font[9])     
+local text = text:gsub("ج",tar_font[10])     
+local text = text:gsub("ش",tar_font[11])     
+local text = text:gsub("س",tar_font[12])     
+local text = text:gsub("ی",tar_font[13])     
+local text = text:gsub("ب",tar_font[14])     
+local text = text:gsub("ل",tar_font[15])     
+local text = text:gsub("ا",tar_font[16])     
+local text = text:gsub("ن",tar_font[17])     
+local text = text:gsub("ت",tar_font[18])     
+local text = text:gsub("م",tar_font[19])     
+local text = text:gsub("چ",tar_font[20])     
+local text = text:gsub("ظ",tar_font[21])     
+local text = text:gsub("ط",tar_font[22])     
+local text = text:gsub("ز",tar_font[23])     
+local text = text:gsub("ر",tar_font[24])     
+local text = text:gsub("د",tar_font[25])    
+local text = text:gsub("پ",tar_font[26])     
+local text = text:gsub("و",tar_font[27])     
+local text = text:gsub("ک",tar_font[28])     
+local text = text:gsub("گ",tar_font[29])     
+local text = text:gsub("ث",tar_font[30])     
+local text = text:gsub("ژ",tar_font[31])     
+local text = text:gsub("ذ",tar_font[32])     
+local text = text:gsub("ئ",tar_font[33])     
+local text = text:gsub("آ",tar_font[34])      
+table.insert(result, text)   
+end   
+local faeder22 = "🌿⁞ الكلمه "..faeder.." •\n🍄⁞ تم زخرفتها {"..tostring(#fonts).."} نوع •\n✨⁞ اضغط على الكلمه لنسخها •\n\n"
+number=0   
+for v=1,#result do  
+number=number+1   
+local faeder = { ' •🔥✨ ', '🔅🔥﴿', '•  ❥˓  ', '💝﴿ֆ', ' • 🐼🌿', ' •🙊💙', '-🐥✨ ', ' 〄😻‘',' ⚡️', '- ⁽🌷', '🔥“', '💭', '', '🎩🍿','“̯ 🐼💗 ', '🐝🍷','❥̚͢₎ 🐣', '👄‘', ' 💭ۦ', ' 💛💭ۦ', ' ⚡️ۦ','℡ᴖ̈', '💋☄️₎ۦ˛', '♩',' ☻🔥“ٰۦ', '℡ ̇ ✨🐯⇣✦', '⁞♩⁽💎🌩₎⇣✿','ۦٰ‏┋❥ ͢˓🦁💛ۦ‏', '⚡️♛ֆ₎', '♛⇣🐰☄️₎✦', '⁾⇣✿💖┊❥', ' ₎✿🎃 ⁞“❥', '😴✿⇣', '❥┊⁽ ℡🦁' }   
+faeder22 = faeder22..''..number.." • `"..result[number]..''..faeder[math.random(#faeder)].."`\n\n"    
+end  
+faederdx(msg.chat_id_, 0, 1, faeder22, 1, 'md') 
+end 
+end 
+if faederdx1:get(FAEDER.."zr:word" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then       
+local zakrf = text:match("(.*)")       
+faederdx1:del(FAEDER.."zr:word" .. msg.chat_id_ .. "" .. msg.sender_user_id_)         
+if not text:find("[\216-\219][\128-\191]") then      
+faeder = zakrf     
+local font_base = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,9,8,7,6,5,4,3,2,1,.,_"     
+local font_hash = "z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,Z,Y,X,W,V,U,T,S,R,Q,P,O,N,M,L,K,J,I,H,G,F,E,D,C,B,A,0,1,2,3,4,5,6,7,8,9,.,_"     
+local fonts = {            "Ꭿ,Ᏸ,Ꮸ,Ꭰ,Ꭼ,Ꮀ,Ꮆ,Ꮋ,Ꭵ,Ꭻ,Ꮶ,Ꮮ,Ꮇ,Ꮑ,Ꮻ,Ꮲ,Ꮕ,Ꭱ,Ꮪ,Ꮏ,Ꮜ,Ꮙ,Ꮤ,Ꮉ,Ꮍ,Ꮓ,Ꭿ,Ᏸ,Ꮸ,Ꭰ,Ꭼ,Ꮀ,Ꮆ,Ꮋ,Ꭵ,Ꭻ,Ꮶ,Ꮮ,Ꮇ,Ꮑ,Ꮻ,Ꮲ,Ꮕ,Ꭱ,Ꮪ,Ꮏ,Ꮜ,Ꮙ,Ꮤ,Ꮉ,Ꮍ,Ꮓ,0,9,8,7,6,5,4,3,2,1  ,.,_",     
+"Ǻ,฿,₡,Đ,Є,ƒ,Ģ,Ħ,Ĩ,j,k,ℓ,₥,ŋ,Ǿ,ṕ,գ,Г,Ŝ,Ṫ,ษ,Ṽ,ฟ,Ẍ,ץ,Ẕ,Ǻ,฿,₡,Đ,Є,ƒ,Ģ,Ħ,Ĩ,j,k,ℓ,₥,ŋ,Ǿ,ṕ,գ,Г,Ŝ,Ṫ,ษ,Ṽ,ฟ,Ẍ,ץ,Ẕ,0,9,8,7,6,5,4,3,2,1  ,.,_",     
+"Ꭺ,b,Ꮯ,Ꭰ,Ꭼ,f,Ꮆ,h,Ꭵ,j,Ꮶ,Ꮮ,m,Ꮑ,Ꮎ,Ꮲ,q,Ꮢ,s,Ꮖ,u,Ꮙ,Ꮃ,x,Ꮍ,Ꮓ,Ꭺ,b,Ꮯ,Ꭰ,Ꭼ,f,Ꮆ,h,Ꭵ,j,Ꮶ,Ꮮ,m,Ꮑ,Ꮎ,Ꮲ,q,Ꮢ,s,Ꮖ,u,Ꮙ,Ꮃ,x,Ꮍ,Ꮓ,0,9,8,7,6,5,4,3,2,1,.,_",     
+"п̵̐,в̷̐,ċ̷̐,d̷̐,є̷̐,г̵̵,j̵̐,н̷̐,ɪ̇̐,j̵̐,к̷̐,ℓ̷̐,м̷̐,л̷̐,σ̷̐,ρ̷̐,q̷̐,я̷̐,ѕ̷̐,τ̷̐,υ̷̐,ν̷̐,ω̷̐,x̷̐,у̷̐,z̷̐,п̵̐,в̷̐,ċ̷̐,d̷̐,є̷̐,г̵̵,j̵̐,н̷̐,ɪ̇̐,j̵̐к̷̐,ℓ̷̐,м̷̐,л̷̐,σ̷̐,ρ̷̐,q̷̐,я̷̐,ѕ̷̐,τ̷̐,υ̷̐,ν̷̐,ω̷̐,x̷̐,у̷̐,z̷̐,0,9,8,7,6,5,4,3,2,1,.,_",     
+"ᴬ,ᴮ,ᶜ,ᴰ,ᴱ,ᶠ,ᴳ,ᴴ,ᴵ,ᴶ,ᴷ,ᴸ,ᴹ,ᴺ,ᴼ,ᴾ,ᵟ,ᴿ,ˢ,ᵀ,ᵁ,ᵛ,ᵂ,ˣ,ᵞ,ᶻ,ᴬ,ᴮ,ᶜ,ᴰ,ᴱ,ᶠ,ᴳ,ᴴ,ᴵ,ᴶ,ᴷ,ᴸ,ᴹ,ᴺ,ᴼ,ᴾ,ᵟ,ᴿ,ˢ,ᵀ,ᵁ,ᵛ,ᵂ,ˣ,ᵞ,ᶻ,0,9,8,7,6,5,4,3,2,1,.,_",     
+"Ꮧ,Ᏸ,ፈ,Ꮄ,Ꮛ,Ꭶ,Ꮆ,Ꮒ,Ꭵ,Ꮰ,Ꮶ,Ꮭ,Ꮇ,Ꮑ,Ꭷ,Ꭾ,Ꭴ,Ꮢ,Ꮥ,Ꮦ,Ꮼ,Ꮙ,Ꮗ,ጀ,Ꭹ,ፚ,Ꮧ,Ᏸ,ፈ,Ꮄ,Ꮛ,Ꭶ,Ꮆ,Ꮒ,Ꭵ,Ꮰ,Ꮶ,Ꮭ,Ꮇ,Ꮑ,Ꭷ,Ꭾ,Ꭴ,Ꮢ,Ꮥ,Ꮦ,Ꮼ,Ꮙ,Ꮗ,ጀ,Ꭹ,ፚ,0,9,8,7,6,5,4,3,2,1,.,_",     
+"卂۪۪,乃۪۪,匚۪۪,ᗪ۪۪,乇۪۪,千۪۪,Ꮆ۪۪,卄۪۪,丨۪۪,ﾌ۪۪,Ҝ۪۪,ㄥ۪۪,爪۪۪,几۪۪,ㄖ۪۪,卩۪۪,Ɋ۪۪,尺۪۪,丂۪۪,ㄒ۪۪,ㄩ۪۪,ᐯ۪۪,山۪۪,乂۪۪,ㄚ۪۪,乙۪۪,卂۪۪,乃۪۪,匚۪۪,ᗪ۪۪,乇۪۪,千۪۪,Ꮆ۪۪,卄۪۪,丨۪۪,ﾌ۪۪,Ҝ۪۪,ㄥ۪۪,爪۪۪,几۪۪,ㄖ۪۪,卩۪۪,Ɋ۪۪,尺۪۪,丂۪۪,ㄒ۪۪,ㄩ۪۪,ᐯ۪۪,山۪۪,乂۪۪,ㄚ۪۪,乙,0,9,8,7,6,5,4,3,2,1,.,_",     
+"ؔ͜α,ؔ͜в,ؔ͜c,ؔ͜d,ؔ͜є,ؔ͜f,ؔ͜g,ؔ͜h,ؔ͜í,ؔ͜j,ؔ͜k,ؔ͜l,ؔ͜m,ؔ͜n,ؔ͜o,ؔ͜p,ؔ͜q,ؔ͜r,ؔ͜s,ؔ͜t,ؔ͜u,ؔ͜v,ؔ͜w,ؔ͜x,ؔ͜y,ؔ͜z,ؔ͜α,ؔ͜в,ؔ͜c,ؔ͜d,ؔ͜є,ؔ͜f,ؔ͜g,ؔ͜h,ؔ͜í,ؔ͜j,ؔ͜k,ؔ͜l,ؔ͜m,ؔ͜n,ؔ͜o,ؔ͜p,ؔ͜q,ؔ͜r,ؔ͜s,ؔ͜t,ؔ͜u,ؔ͜v,ؔ͜w,ؔ͜x,ؔ͜y,ؔ͜z,0,9,8,7,6,5,4,3,2,1,.,_",     
+"Ꭺ,b,Ꮯ,Ꭰ,Ꭼ,f,Ꮆ,h,Ꭵ,j,Ꮶ, Ꮮ,m,Ꮑ,Ꮎ,Ꮲ,q,Ꮢ,s,Ꮖ, u,Ꮙ,Ꮃ,x,Ꮍ,Ꮓ,Ꭺ,b,Ꮯ,Ꭰ,Ꭼ,f,Ꮆ,h,Ꭵ,j,Ꮶ, Ꮮ,m,Ꮑ,Ꮎ,Ꮲ,q,Ꮢ,s,Ꮖ, u,Ꮙ,Ꮃ,x,Ꮍ,Ꮓ,0,Գ,Ց,Դ,6,5,Վ,Յ,Զ,1,.,_",     
+"a̷,b̷,c̷,d̷,e̷,f̷,g̷,h̷,i̷,j̷,k,l̷,m̷,n̷,o̷,p̷,q̷,r̷,s̷,t̷,u̷,v̷,w̷,x̷,y̷,z̷,a̷,b̷,c̷,d̷,e̷,f̷,g̷,h̷,i̷,j̷,k̷,l̷,m̷,n̷,o̷,p̷,q̷,r̷,s̷,t̷,u̷,v̷,w̷,x̷,y̷,z̷,0,9,8,7,6,5,4,3,2,1,.,_",     
+"A̲,̲B̲,̲C̲,̲D̲,̲E̲,̲F̲,̲G̲,̲H̲,̲I̲,̲J̲,̲K̲,̲L̲,̲M̲,̲N̲,̲O̲,̲P̲,̲Q̲,̲R̲,̲S̲,̲T̲,̲U̲,̲V̲,̲W̲,̲X̲,̲Y̲,̲Z̲,̲a̲,̲b̲,̲c̲,̲d̲,̲e̲,̲f̲,̲g̲,̲h̲,̲i̲,̲j̲,̲k̲,̲l̲,̲m̲,̲n̲,̲o̲,̲p̲,̲q̲,̲r̲,̲s̲,̲t̲,̲u̲,̲v̲,̲w̲,̲x̲,̲y̲,̲z̲,̲0̲,̲9̲,̲8̲,̲7̲,̲6̲,̲5̲,̲4̲,̲3̲,̲2̲,̲1̲,̲.̲,̲_̲",     
+"Λ,ß,Ƈ,D,Ɛ,F,Ɠ,Ĥ,Ī,Ĵ,Ҡ,Ŀ,M,И,σ,Ṗ,Ҩ,Ŕ,S,Ƭ,Ʊ,Ѵ,Ѡ,Ӿ,Y,Z,Λ,ß,Ƈ,D,Ɛ,F,Ɠ,Ĥ,Ī,Ĵ,Ҡ,Ŀ,M,И,σ,Ṗ,Ҩ,Ŕ,S,Ƭ,Ʊ,Ѵ,Ѡ,Ӿ,Y,Z,0,9,8,7,6,5,4,3,2,1,.,_",     
+"A̺͆,B̺͆,C̺͆,D̺͆,E̺͆,F̺͆,J̺͆,H̺͆,I̺͆,J̺͆,K̺͆,L̺͆,M̺͆,N̺͆,O̺͆,P̺͆,Q̺͆,R̺͆,S̺͆,T̺͆,U̺͆,V̺͆,W̺͆,X̺͆,Y̺͆,Z̺͆,A̺͆,B̺͆,C̺͆,D̺͆,E̺͆,F̺͆,J̺͆,H̺͆,I̺͆,J̺͆K̺͆,L̺͆,M̺͆,N̺͆,O̺͆,P̺͆,Q̺͆,R̺͆,S̺͆,T̺͆,U̺͆,V̺͆,W̺͆,X̺͆,Y̺͆,Z̺͆,0,9,8,7,6,5,4,3,2,1,.,_",     
+"۪۫a۪۪۪۫۫۫,۪۫b۪۪۪۫۫۫,۪۫c۪۪۪۫۫۫,۪۫d۪۪۪۫۫۫,۪۫e۪۪۪۫۫۫,۪۫f۪۪۪۫۫۫,۪۫g۪۪۪۫۫۫,۪۫h۪۪۪۫۫۫,۪۫i۪۪۪۫۫۫,۪۫j۪۪۪۫۫۫,۪۫k۪۪۪۫۫۫,۪۫l۪۪۪۫۫۫,۪۫m۪۪۪۫۫۫,۪۫n۪۪۪۫۫۫,۪۫o۪۪۪۫۫۫,۪۫p۪۪۪۫۫۫,۪۫q۪۪۪۫۫۫,۪۫r۪۪۪۫۫۫,۪۫s۪۪۪۫۫۫,۪۫t۪۪۪۫۫۫,۪۫u۪۪۪۫۫۫,۪۫v۪۪۪۫۫۫,۪۫w۪۪۪۫۫۫,۪۫x۪۪۪۫۫۫,۪۫y۪۪۪۫۫۫,۪۫z۪۪۪۫۫۫,a۪۪۪۫۫۫,۪۫b۪۪۪۫۫۫,۪۫c۪۪۪۫۫۫,۪۫d۪۪۪۫۫۫,۪۫e۪۪۪۫۫۫,۪۫f۪۪۪۫۫۫,۪۫g۪۪۪۫۫۫,۪۫h۪۪۪۫۫۫,۪۫i۪۪۪۫۫۫,۪۫j۪۪۪۫۫۫,۪۫k۪۪۪۫۫۫,۪۫l۪۪۪۫۫۫,۪۫m۪۪۪۫۫۫,۪۫n۪۪۪۫۫۫,۪۫o۪۪۪۫۫۫,۪۫p۪۪۪۫۫۫,۪۫q۪۪۪۫۫۫,۪۫r۪۪۪۫۫۫,۪۫s۪۪۪۫۫۫,۪۫t۪۪۪۫۫۫,۪۫u۪۪۪۫۫۫,۪۫v۪۪۪۫۫۫,۪۫w۪۪۪۫۫۫,۪۫x۪۪۪۫۫۫,y۪۪۪۫۫۫,۪۫z۪۪۪۫۫۫,۪۪۫۫,0۪۪۫۫,9۪۪۫۫,8۪۪۫۫,7۪۪۫۫,6۪۪۫۫,5۪۪۫۫,4۪۪۫۫,3۪۪۫۫,2۪۪۫۫,1۪۪۫۫,.۪۪۫۫,_",     
+"͜͡Ꮧ,͜͡Ᏸ,͜͡ፈ,͜͡Ꮄ,͜͡Ꮛ,͜͡Ꭶ,͜͡Ꮆ,͜͡Ꮒ,͜͡Ꭵ,͜͡Ꮰ,͜͡Ꮶ,͜͡Ꮭ,͜͡Ꮇ,͜͡Ꮑ,͜͡Ꭷ,͜͡Ꭾ,͜͡Ꭴ,͜͡Ꮢ,͜͡Ꮥ,͜͡Ꮦ,͜͡Ꮼ,͜͡Ꮙ,͜͡Ꮗ,͜͡ጀ,͜͡Ꭹ,͜͡ፚ,ؔؔ͜͜Ꮧ,͜͡Ᏸ,͜͡ፈ,͜͡Ꮄ,͜͡Ꮛ,͜͡Ꭶ,͜͡Ꮆ,͜͡Ꮒ,͜͡Ꭵ,͜͡Ꮰ,͜͡Ꮶ,͜͡Ꮭ,͜͡Ꮇ,͜͡Ꮑ,͜͡Ꭷ,͜͡Ꭾ,͜͡Ꭴ,͜͡Ꮢ,͜͡Ꮥ,͜͡Ꮦ,͜͡Ꮼ,͜͡Ꮙ,͜͡Ꮗ,͜͡ጀ,͜͡Ꭹ,͜͡ፚ,͜͡0,9,8,7,6,5,4,3,2,1,.,_",     
+"A̶̶,B̶̶,C̶̶,D̶̶,E̶̶,F̶̶,G̶̶,H̶̶,I̶̶,J̶̶,K̶̶,L̶̶,M̶̶,N̶̶,O̶̶,P̶̶,Q̶̶,R̶̶,S̶̶,T̶̶,U̶̶,V̶̶,W̶̶,X̶̶,Y̶̶,Z̶̶,̶̶A̶̶,B̶̶,C̶̶,D̶̶,E̶̶,F̶̶,G̶̶,H̶̶,I̶̶,J̶̶,K̶̶,L̶̶,M̶̶,N̶̶,O̶̶,P̶̶,Q̶̶,R̶̶,S̶̶,T̶̶,U̶̶,V̶̶,W̶̶,X̶̶,Y̶̶,Z̶̶,0,9,8,7,6,5,4,3,2,1,.,_",     
+"ᗩ,ᙖ,ᑕ,ᗪ,ᕮ,ℱ,ᘐ,ᕼ,Ꭵ,ᒎ,Ḱ,ᒪ,ᙢ,ᘉ,〇,ᖘ,Ⴓ,ᖇ,ᔕ,ͳ,ᘮ,ᐯ,ᗯ,‏χ,ϒ,Ꙃ,ᗩ,ᙖ,ᑕ,ᗪ,ᕮ,ℱ,ᘐ,ᕼ,Ꭵ,ᒎ,Ḱ,ᒪ,ᙢ,ᘉ,〇,ᖘ,Ⴓ,ᖇ,ᔕ,ͳ,ᘮ,ᐯ,ᗯ,‏χ,ϒ,Ꙃ,0,9,8,7,6,5,4,3,2,1,.,_",     
+"ᵃ,ᵇ,ᶜ,ᵈ,ᵉ,ᶠ,ᵍ,ʰ,ᶤ,ʲ,ᵏ,ˡ,ᵐ,ᶰ,ᵒ,ᵖ,ᵠ,ʳ,ˢ,ᵗ,ᵘ,ᵛ,ʷ,ˣ,ʸ,ᶻ,ᵃ,ᵇ,ᶜ,ᵈ,ᵉ,ᶠ,ᵍ,ʰ,ᶤ,ʲ,ᵏ,ˡ,ᵐ,ᶰ,ᵒ,ᵖ,ᵠ,ʳ,ˢ,ᵗ,ᵘ,ᵛ,ʷ,ˣ,ʸ,ᶻ,0,9,8,7,6,5,4,3,2,1,.,_",     
+"ᴀ,ʙ,ᴄ,ᴅ,ᴇ,ғ,ɢ,ʜ,ɪ,ᴊ,ᴋ,ʟ,ᴍ,ɴ,ᴏ,ᴘ,ǫ,ʀ,ѕ,ᴛ,ᴜ,ᴠ,ᴡ,х,ʏ,ᴢ,ᴀ,ʙ,ᴄ,ᴅ,ᴇ,ғ,ɢ,ʜ,ɪ,ᴊ,ᴋ,ʟ,ᴍ,ɴ,ᴏ,ᴘ,ǫ,ʀ,ѕ,ᴛ,ᴜ,ᴠ,ᴡ,х,ʏ,ᴢ,0,9,8,7,6,5,4,3,2,1,.,_",     
+"Ａ,Ｂ,С,Ｄ,Ｅ,Բ,Ｇ,Ｈ,Ｉ,Ｊ,Ｋ,Ｌ,Ⅿ,Ｎ,Ｏ,Ｐ,Ｑ,Ｒ,Ｓ,Ｔ,Ｕ,Ｖ,Ｗ,Ｘ,Ｙ,Ｚ,Ａ,Ｂ,С,Ｄ,Ｅ,Բ,Ｇ,Ｈ,Ｉ,Ｊ,Ｋ,Ｌ,Ⅿ,Ｎ,Ｏ,Ｐ,Ｑ,Ｒ,Ｓ,Ｔ,Ｕ,Ｖ,Ｗ,Ｘ,Ｙ,Ｚ,0,9,8,7,6,5,4,3,2,1,.,_",     
+"Λ,Б,Ͼ,Ð,Ξ,Ŧ,₲,Ḧ,ł,J,К,Ł,Ɱ,Л,Ф,Ꝓ,Ǫ,Я,Ŝ,₮,Ǚ,Ṽ,Ш,Ж,Ẏ,Ꙃ,Λ,Б,Ͼ,Ð,Ξ,Ŧ,₲,Ḧ,ł,J,К,Ł,Ɱ,Л,Ф,Ꝓ,Ǫ,Я,Ŝ,₮,Ǚ,Ṽ,Ш,Ж,Ẏ,Ꙃ,0,9,8,7,6,5,4,3,2,1,.,_",     }         
+local result = {}     
+i=0     
+for k=1,#fonts do     
+i=i+1     
+local tar_font = fonts[i]:split(",")     
+local text = faeder    
+local text = text:gsub("A",tar_font[1])     
+local text = text:gsub("B",tar_font[2])     
+local text = text:gsub("C",tar_font[3])     
+local text = text:gsub("D",tar_font[4])     
+local text = text:gsub("E",tar_font[5])     
+local text = text:gsub("F",tar_font[6])  
+local text = text:gsub("G",tar_font[7])    
+local text = text:gsub("H",tar_font[8])    
+local text = text:gsub("I",tar_font[9])     
+local text = text:gsub("J",tar_font[10])     
+local text = text:gsub("K",tar_font[11])     
+local text = text:gsub("L",tar_font[12])     
+local text = text:gsub("M",tar_font[13])     
+local text = text:gsub("N",tar_font[14])     
+local text = text:gsub("O",tar_font[15])     
+local text = text:gsub("P",tar_font[16])     
+local text = text:gsub("Q",tar_font[17])     
+local text = text:gsub("R",tar_font[18])     
+local text = text:gsub("S",tar_font[19])     
+local text = text:gsub("T",tar_font[20])     
+local text = text:gsub("U",tar_font[21])     
+local text = text:gsub("V",tar_font[22])     
+local text = text:gsub("W",tar_font[23])     
+local text = text:gsub("X",tar_font[24])     
+local text = text:gsub("Y",tar_font[25])     
+local text = text:gsub("Z",tar_font[26])     
+local text = text:gsub("a",tar_font[27])     
+local text = text:gsub("b",tar_font[28])     
+local text = text:gsub("c",tar_font[29])     
+local text = text:gsub("d",tar_font[30])     
+local text = text:gsub("e",tar_font[31])     
+local text = text:gsub("f",tar_font[32])     
+local text = text:gsub("g",tar_font[33])     
+local text = text:gsub("h",tar_font[34])     
+local text = text:gsub("i",tar_font[35])     
+local text = text:gsub("j",tar_font[36])     
+local text = text:gsub("k",tar_font[37])     
+local text = text:gsub("l",tar_font[38])     
+local text = text:gsub("m",tar_font[39])     
+local text = text:gsub("n",tar_font[40])     
+local text = text:gsub("o",tar_font[41])     
+local text = text:gsub("p",tar_font[42])     
+local text = text:gsub("q",tar_font[43])     
+local text = text:gsub("r",tar_font[44])     
+local text = text:gsub("s",tar_font[45])     
+local text = text:gsub("t",tar_font[46])     
+local text = text:gsub("u",tar_font[47])     
+local text = text:gsub("v",tar_font[48])     
+local text = text:gsub("w",tar_font[49])     
+local text = text:gsub("x",tar_font[50])     
+local text = text:gsub("y",tar_font[51])     
+local text = text:gsub("z",tar_font[52])     
+local text = text:gsub("0",tar_font[53])     
+local text = text:gsub("9",tar_font[54])     
+local text = text:gsub("8",tar_font[55])     
+local text = text:gsub("7",tar_font[56])     
+local text = text:gsub("6",tar_font[57])     
+local text = text:gsub("5",tar_font[58])     
+local text = text:gsub("4",tar_font[59])     
+local text = text:gsub("3",tar_font[60])     
+local text = text:gsub("2",tar_font[61])     
+local text = text:gsub("1",tar_font[62])            
+table.insert(result, text)     
+end     
+local faeder22 = "🌿⁞ الكلمه "..faeder.." •\n🍄⁞ تم زخرفتها {"..tostring(#fonts).."} نوع •\n✨⁞ اضغط على الكلمه لنسخها •\n\n"
+number=0     
+for v=1,#result do     
+number=number+1     
+local faeder = { '🔥', '🔅﴿', '❥˓ ', '💝﴿', '🐼🌿', '🙊💙', '🐥✨', '😻‘','⚡️', '⁽🌷', '🔥“', '💭', '🍿','🐼💗 ', '🐝🍷','❥̚͢₎🐣', '👄‘', ' 💭ۦ',' 🎉ۦ', ' ⚡️ۦ','℡̈', '💋☄️₎ۦ˛', '♩',' ☻🔥“ٰۦ', '℡ ̇ ✨🐯⇣✦', '⁞♩⁽💎🌩₎⇣✿','ٰ❥ ͢ۦ‏', '⚡️ֆ₎', '🐰☄️', '⁾❥', '✿🎃❥', '✿⇣', '❥℡🦁' }     
+faeder22 = faeder22..''..number.." • `"..result[number]..''..faeder[math.random(#faeder)].."`\n\n"    
+end     
+faederdx(msg.chat_id_, 0, 1, faeder22, 1, 'md')     
+end     
+end 
 ---------------------------------------------faeder----------------------------------------------------------
 if faederdx1:get(FAEDER.."bot:nerkh" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
 faederdx1:del(FAEDER.."bot:nerkh" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
@@ -2489,7 +2808,7 @@ faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ Bot *sudo* has been *Setted* •", 1
 else
 faederdx(msg.chat_id_, msg.id_, 1, "🎖 ⁞ تم حفظ كليشه المطور •", 1, "md")
 end
-end
+end 
 ----------------------------------------faeder---------------------------------------------------------------
 if faederdx1:get(FAEDER..'bot:cmds'..msg.chat_id_) and not is_momod(msg.sender_user_id_, msg.chat_id_) then
 print("Return False [Lock] [Cmd]")
@@ -2805,6 +3124,45 @@ faederdx1:incrby(FAEDER..'bot:add:num'..msg.chat_id_..msg.sender_user_id_, 1)
 end
 faederdx1:set(FAEDER..'bot:l:id'..msg.chat_id_,true)
 end
+
+
+if text == "تعيين قناة الاشتراك" or text == "تغيير قناة الاشتراك" then
+if not is_leader(msg) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ للمطور الاساسي فقط •', 1, 'md')
+else
+faederdx1:setex(FAEDER..'faeder4'..msg.sender_user_id_,300,true)
+faederdx(msg.chat_id_,msg.id_, 1, "*🌿╿❯ ارسل لي معرف قناة الاشتراك •*\n", 1 , "md")
+end end
+if text == 'تفعيل الاشتراك الاجباري' then
+if not is_leader(msg) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ للمطور الاساسي فقط •', 1, 'md')
+else
+if not faederdx1:get(FAEDER..'faeder3') then
+faederdx(msg.chat_id_,msg.id_, 1, "*🌿╿❯ لم يتم تعيين القناة •\n🍄╽❯ ارسل تعيين قناة الاشتراك •*", 1 , "md")
+return false 
+end
+if faederdx1:get(FAEDER..'faeder3') then
+faederdx(msg.chat_id_,msg.id_, 1, "*🌿╿❯ تم تفعيل الاشتراك الاجباري •\n☑️╽❯ قم برفعي ادمن في قناتك •*", 1 , "md")
+faederdx1:set(FAEDER.."faeder2", true)
+return false end end end
+if text == 'تعطيل الاشتراك الاجباري' then
+if not is_leader(msg) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ للمطور الاساسي فقط •', 1, 'md')
+else
+faederdx(msg.chat_id_,msg.id_, 1, "*🌿╿❯ تم تعطيل الاشتراك الاجباري •*\n", 1 , "md")
+faederdx1:del(FAEDER.."faeder2")
+return false 
+end end
+if text == 'جلب قناة الاشتراك' or text == 'قناة الاشتراك' then
+if not is_leader(msg) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ للمطور الاساسي فقط •', 1, 'md')
+else
+local faeder5 = faederdx1:get(FAEDER.."faeder3")
+if faeder5 then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ *قناة الاشتراك* : ['..faeder5..']', 1, 'md')
+else
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ لم يتم تعيين القناة •', 1, 'md')
+end end end
 ------------------------------------ With Pattern faeder-------------------------------------------
 if text:match("^[Ll]ink$") or text:match("^الرابط$") then
 local link = faederdx1:get(FAEDER.."bot:group:link"..msg.chat_id_)
@@ -2866,7 +3224,7 @@ faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ طبكم مرض راح اغادر ب
 end
 end
 --------------faeder
-if text:match("^موقعي$") or text:match("^[Mm]e$") or text:match("^رتبتي$") then
+if (text:match("^موقعي$") or text:match("^رتبتي$")) and faeder11(msg) then
 function get_me(extra,result,success)
 local msguser = tonumber(faederdx1:get(FAEDER..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_))
 local user_msgs = faederdx1:get(FAEDER..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
@@ -3014,196 +3372,13 @@ if res ~= 200 then return end
 local jd = json:decode(url)
 faeder = "📅 ⁞ التاريخ • "..jd.EnDate.WordOne.."\n🕐 ⁞ الساعه • "..jd.EnTime.Number..""
 faederdx(msg.chat_id_, msg.id_, 1, faeder, 1, 'md')
- end
-if text:match("^(زخرفه) (.*)$") then
-MatchesEN = {text:match("^(زخرفه) (.*)$")}; 
-TextToBeauty = MatchesEN[2] 
-if #TextToBeauty > 20 then
-faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ لا يمكنني زخرفه كلمه تحتوي اكثر من 20 حرف •", 1, 'md')
-return
 end
-local font_base = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,9,8,7,6,5,4,3,2,1,.,_"local font_base = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,9,8,7,6,5,4,3,2,1,.,_"
-local font_hash = "z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,Z,Y,X,W,V,U,T,S,R,Q,P,O,N,M,L,K,J,I,H,G,F,E,D,C,B,A,0,1,2,3,4,5,6,7,8,9,.,_"
-local fonts = {
-"ⓐ,ⓑ,ⓒ,ⓓ,ⓔ,ⓕ,ⓖ,ⓗ,ⓘ,ⓙ,ⓚ,ⓛ,ⓜ,ⓝ,ⓞ,ⓟ,ⓠ,ⓡ,ⓢ,ⓣ,ⓤ,ⓥ,ⓦ,ⓧ,ⓨ,ⓩ,ⓐ,ⓑ,ⓒ,ⓓ,ⓔ,ⓕ,ⓖ,ⓗ,ⓘ,ⓙ,ⓚ,ⓛ,ⓜ,ⓝ,ⓞ,ⓟ,ⓠ,ⓡ,ⓢ,ⓣ,ⓤ,ⓥ,ⓦ,ⓧ,ⓨ,ⓩ,⓪,➈,➇,➆,➅,➄,➃,➂,➁,➀,●,_",
-"⒜,⒝,⒞,⒟,⒠,⒡,⒢,⒣,⒤,⒥,⒦,⒧,⒨,⒩,⒪,⒫,⒬,⒭,⒮,⒯,⒰,⒱,⒲,⒳,⒴,⒵,⒜,⒝,⒞,⒟,⒠,⒡,⒢,⒣,⒤,⒥,⒦,⒧,⒨,⒩,⒪,⒫,⒬,⒭,⒮,⒯,⒰,⒱,⒲,⒳,⒴,⒵,⓪,⑼,⑻,⑺,⑹,⑸,⑷,⑶,⑵,⑴,.,_",
-"α,в,c,∂,є,ƒ,g,н,ι,נ,к,ℓ,м,η,σ,ρ,q,я,ѕ,т,υ,ν,ω,χ,у,z,α,в,c,∂,є,ƒ,g,н,ι,נ,к,ℓ,м,η,σ,ρ,q,я,ѕ,т,υ,ν,ω,χ,у,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,в,c,d,e,ғ,ɢ,н,ι,j,ĸ,l,м,ɴ,o,p,q,r,ѕ,т,υ,v,w,х,y,z,α,в,c,d,e,ғ,ɢ,н,ι,j,ĸ,l,м,ɴ,o,p,q,r,ѕ,т,υ,v,w,х,y,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,в,¢,đ,e,f,g,ħ,ı,נ,κ,ł,м,и,ø,ρ,q,я,š,т,υ,ν,ω,χ,ч,z,α,в,¢,đ,e,f,g,ħ,ı,נ,κ,ł,м,и,ø,ρ,q,я,š,т,υ,ν,ω,χ,ч,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ą,ҍ,ç,ժ,ҽ,ƒ,ց,հ,ì,ʝ,ҟ,Ӏ,ʍ,ղ,օ,ք,զ,ɾ,ʂ,է,մ,ѵ,ա,×,վ,Հ,ą,ҍ,ç,ժ,ҽ,ƒ,ց,հ,ì,ʝ,ҟ,Ӏ,ʍ,ղ,օ,ք,զ,ɾ,ʂ,է,մ,ѵ,ա,×,վ,Հ,⊘,९,??,7,Ϭ,Ƽ,५,Ӡ,ϩ,𝟙,.,_",		"ค,ც,८,ძ,૯,Բ,૭,Һ,ɿ,ʆ,қ,Ն,ɱ,Ո,૦,ƿ,ҩ,Ր,ς,੮,υ,౮,ω,૪,ע,ઽ,ค,ც,८,ძ,૯,Բ,૭,Һ,ɿ,ʆ,қ,Ն,ɱ,Ո,૦,ƿ,ҩ,Ր,ς,੮,υ,౮,ω,૪,ע,ઽ,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,ß,ς,d,ε,ƒ,g,h,ï,յ,κ,ﾚ,m,η,⊕,p,Ω,r,š,†,u,∀,ω,x,ψ,z,α,ß,ς,d,ε,ƒ,g,h,ï,յ,κ,ﾚ,m,η,⊕,p,Ω,r,š,†,u,∀,ω,x,ψ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ค,๒,ς,๔,є,Ŧ,ɠ,ђ,เ,ן,к,l,๓,ภ,๏,թ,ợ,г,ร,t,ย,v,ฬ,x,ץ,z,ค,๒,ς,๔,є,Ŧ,ɠ,ђ,เ,ן,к,l,๓,ภ,๏,թ,ợ,г,ร,t,ย,v,ฬ,x,ץ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ﾑ,乃,ζ,Ð,乇,ｷ,Ǥ,ん,ﾉ,ﾌ,ズ,ﾚ,ᄊ,刀,Ծ,ｱ,Q,尺,ㄎ,ｲ,Ц,Џ,Щ,ﾒ,ﾘ,乙,ﾑ,乃,ζ,Ð,乇,ｷ,Ǥ,ん,ﾉ,ﾌ,ズ,ﾚ,ᄊ,刀,Ծ,ｱ,q,尺,ㄎ,ｲ,Ц,Џ,Щ,ﾒ,ﾘ,乙,ᅙ,9,8,ᆨ,6,5,4,3,ᆯ,1,.,_",
-"α,β,c,δ,ε,Ŧ,ĝ,h,ι,j,κ,l,ʍ,π,ø,ρ,φ,Ʀ,$,†,u,υ,ω,χ,ψ,z,α,β,c,δ,ε,Ŧ,ĝ,h,ι,j,κ,l,ʍ,π,ø,ρ,φ,Ʀ,$,†,u,υ,ω,χ,ψ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ձ,ъ,ƈ,ժ,ε,բ,ց,հ,ﻨ,յ,ĸ,l,ო,ռ,օ,թ,զ,г,ร,է,ս,ν,ա,×,ყ,২,ձ,ъ,ƈ,ժ,ε,բ,ց,հ,ﻨ,յ,ĸ,l,ო,ռ,օ,թ,զ,г,ร,է,ս,ν,ա,×,ყ,২,0,9,8,7,6,5,4,3,2,1,.,_",
-"Λ,ɓ,¢,Ɗ,£,ƒ,ɢ,ɦ,ĩ,ʝ,Қ,Ł,ɱ,ה,ø,Ṗ,Ҩ,Ŕ,Ş,Ŧ,Ū,Ɣ,ω,Ж,¥,Ẑ,Λ,ɓ,¢,Ɗ,£,ƒ,ɢ,ɦ,ĩ,ʝ,Қ,Ł,ɱ,ה,ø,Ṗ,Ҩ,Ŕ,Ş,Ŧ,Ū,Ɣ,ω,Ж,¥,Ẑ,0,9,8,7,6,5,4,3,2,1,.,_",
-"Λ,Б,Ͼ,Ð,Ξ,Ŧ,G,H,ł,J,К,Ł,M,Л,Ф,P,Ǫ,Я,S,T,U,V,Ш,Ж,Џ,Z,Λ,Б,Ͼ,Ð,Ξ,Ŧ,g,h,ł,j,К,Ł,m,Л,Ф,p,Ǫ,Я,s,t,u,v,Ш,Ж,Џ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ɐ,q,ɔ,p,ǝ,ɟ,ɓ,ɥ,ı,ſ,ʞ,ๅ,ɯ,u,o,d,b,ɹ,s,ʇ,n,ʌ,ʍ,x,ʎ,z,ɐ,q,ɔ,p,ǝ,ɟ,ɓ,ɥ,ı,ſ,ʞ,ๅ,ɯ,u,o,d,b,ɹ,s,ʇ,n,ʌ,ʍ,x,ʎ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ɒ,d,ɔ,b,ɘ,ʇ,ϱ,н,i,į,ʞ,l,м,и,o,q,p,я,ƨ,т,υ,v,w,x,γ,z,ɒ,d,ɔ,b,ɘ,ʇ,ϱ,н,i,į,ʞ,l,м,и,o,q,p,я,ƨ,т,υ,v,w,x,γ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"A̴,̴B̴,̴C̴,̴D̴,̴E̴,̴F̴,̴G̴,̴H̴,̴I̴,̴J̴,̴K̴,̴L̴,̴M̴,̴N̴,̴O̴,̴P̴,̴Q̴,̴R̴,̴S̴,̴T̴,̴U̴,̴V̴,̴W̴,̴X̴,̴Y̴,̴Z̴,̴a̴,̴b̴,̴c̴,̴d̴,̴e̴,̴f̴,̴g̴,̴h̴,̴i̴,̴j̴,̴k̴,̴l̴,̴m̴,̴n̴,̴o̴,̴p̴,̴q̴,̴r̴,̴s̴,̴t̴,̴u̴,̴v̴,̴w̴,̴x̴,̴y̴,̴z̴,̴0̴,̴9̴,̴8̴,̴7̴,̴6̴,̴5̴,̴4̴,̴3̴,̴2̴,̴1̴,̴.̴,̴_̴",
-"ⓐ,ⓑ,ⓒ,ⓓ,ⓔ,ⓕ,ⓖ,ⓗ,ⓘ,ⓙ,ⓚ,ⓛ,ⓜ,ⓝ,ⓞ,ⓟ,ⓠ,ⓡ,ⓢ,ⓣ,ⓤ,ⓥ,ⓦ,ⓧ,ⓨ,ⓩ,ⓐ,ⓑ,ⓒ,ⓓ,ⓔ,ⓕ,ⓖ,ⓗ,ⓘ,ⓙ,ⓚ,ⓛ,ⓜ,ⓝ,ⓞ,ⓟ,ⓠ,ⓡ,ⓢ,ⓣ,ⓤ,ⓥ,ⓦ,ⓧ,ⓨ,ⓩ,⓪,➈,➇,➆,➅,➄,➃,➂,➁,➀,●,_",
-"⒜,⒝,⒞,⒟,⒠,⒡,⒢,⒣,⒤,⒥,⒦,⒧,⒨,⒩,⒪,⒫,⒬,⒭,⒮,⒯,⒰,⒱,⒲,⒳,⒴,⒵,⒜,⒝,⒞,⒟,⒠,⒡,⒢,⒣,⒤,⒥,⒦,⒧,⒨,⒩,⒪,⒫,⒬,⒭,⒮,⒯,⒰,⒱,⒲,⒳,⒴,⒵,⓪,⑼,⑻,⑺,⑹,⑸,⑷,⑶,⑵,⑴,.,_",
-"α,в,c,∂,є,ƒ,g,н,ι,נ,к,ℓ,м,η,σ,ρ,q,я,ѕ,т,υ,ν,ω,χ,у,z,α,в,c,∂,є,ƒ,g,н,ι,נ,к,ℓ,м,η,σ,ρ,q,я,ѕ,т,υ,ν,ω,χ,у,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,в,c,ɗ,є,f,g,н,ι,נ,к,Ɩ,м,η,σ,ρ,q,я,ѕ,т,υ,ν,ω,x,у,z,α,в,c,ɗ,є,f,g,н,ι,נ,к,Ɩ,м,η,σ,ρ,q,я,ѕ,т,υ,ν,ω,x,у,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,в,c,d,e,ғ,ɢ,н,ι,j,ĸ,l,м,ɴ,o,p,q,r,ѕ,т,υ,v,w,х,y,z,α,в,c,d,e,ғ,ɢ,н,ι,j,ĸ,l,м,ɴ,o,p,q,r,ѕ,т,υ,v,w,х,y,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,Ⴆ,ƈ,ԃ,ҽ,ϝ,ɠ,ԋ,ι,ʝ,ƙ,ʅ,ɱ,ɳ,σ,ρ,ϙ,ɾ,ʂ,ƚ,υ,ʋ,ɯ,x,ყ,ȥ,α,Ⴆ,ƈ,ԃ,ҽ,ϝ,ɠ,ԋ,ι,ʝ,ƙ,ʅ,ɱ,ɳ,σ,ρ,ϙ,ɾ,ʂ,ƚ,υ,ʋ,ɯ,x,ყ,ȥ,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,в,¢,đ,e,f,g,ħ,ı,נ,κ,ł,м,и,ø,ρ,q,я,š,т,υ,ν,ω,χ,ч,z,α,в,¢,đ,e,f,g,ħ,ı,נ,κ,ł,м,и,ø,ρ,q,я,š,т,υ,ν,ω,χ,ч,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ą,ɓ,ƈ,đ,ε,∱,ɠ,ɧ,ï,ʆ,ҡ,ℓ,ɱ,ŋ,σ,þ,ҩ,ŗ,ş,ŧ,ų,√,щ,х,γ,ẕ,ą,ɓ,ƈ,đ,ε,∱,ɠ,ɧ,ï,ʆ,ҡ,ℓ,ɱ,ŋ,σ,þ,ҩ,ŗ,ş,ŧ,ų,√,щ,х,γ,ẕ,0,9,8,7,6,5,4,3,2,1,.,_",
-"ą,ҍ,ç,ժ,ҽ,ƒ,ց,հ,ì,ʝ,ҟ,Ӏ,ʍ,ղ,օ,ք,զ,ɾ,ʂ,է,մ,ѵ,ա,×,վ,Հ,ą,ҍ,ç,ժ,ҽ,ƒ,ց,հ,ì,ʝ,ҟ,Ӏ,ʍ,ղ,օ,ք,զ,ɾ,ʂ,է,մ,ѵ,ա,×,վ,Հ,⊘,९,𝟠,7,Ϭ,Ƽ,५,Ӡ,ϩ,𝟙,.,_",
-"მ,ჩ,ƈ,ძ,ε,բ,ց,հ,ἶ,ʝ,ƙ,l,ო,ղ,օ,ր,գ,ɾ,ʂ,է,մ,ν,ω,ჯ,ყ,z,მ,ჩ,ƈ,ძ,ε,բ,ց,հ,ἶ,ʝ,ƙ,l,ო,ղ,օ,ր,գ,ɾ,ʂ,է,մ,ν,ω,ჯ,ყ,z,0,Գ,Ց,Դ,6,5,Վ,Յ,Զ,1,.,_",
-"ค,ც,८,ძ,૯,Բ,૭,Һ,ɿ,ʆ,қ,Ն,ɱ,Ո,૦,ƿ,ҩ,Ր,ς,੮,υ,౮,ω,૪,ע,ઽ,ค,ც,८,ძ,૯,Բ,૭,Һ,ɿ,ʆ,қ,Ն,ɱ,Ո,૦,ƿ,ҩ,Ր,ς,੮,υ,౮,ω,૪,ע,ઽ,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,ß,ς,d,ε,ƒ,g,h,ï,յ,κ,ﾚ,m,η,⊕,p,Ω,r,š,†,u,∀,ω,x,ψ,z,α,ß,ς,d,ε,ƒ,g,h,ï,յ,κ,ﾚ,m,η,⊕,p,Ω,r,š,†,u,∀,ω,x,ψ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ª,b,¢,Þ,È,F,૬,ɧ,Î,j,Κ,Ļ,м,η,◊,Ƿ,ƍ,r,S,⊥,µ,√,w,×,ý,z,ª,b,¢,Þ,È,F,૬,ɧ,Î,j,Κ,Ļ,м,η,◊,Ƿ,ƍ,r,S,⊥,µ,√,w,×,ý,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"Δ,Ɓ,C,D,Σ,F,G,H,I,J,Ƙ,L,Μ,∏,Θ,Ƥ,Ⴓ,Γ,Ѕ,Ƭ,Ʊ,Ʋ,Ш,Ж,Ψ,Z,λ,ϐ,ς,d,ε,ғ,ɢ,н,ι,ϳ,κ,l,ϻ,π,σ,ρ,φ,г,s,τ,υ,v,ш,ϰ,ψ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ค,๒,ς,๔,є,Ŧ,ɠ,ђ,เ,ן,к,l,๓,ภ,๏,թ,ợ,г,ร,t,ย,v,ฬ,x,ץ,z,ค,๒,ς,๔,є,Ŧ,ɠ,ђ,เ,ן,к,l,๓,ภ,๏,թ,ợ,г,ร,t,ย,v,ฬ,x,ץ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"Λ,ß,Ƈ,D,Ɛ,F,Ɠ,Ĥ,Ī,Ĵ,Ҡ,Ŀ,M,И,♡,Ṗ,Ҩ,Ŕ,S,Ƭ,Ʊ,Ѵ,Ѡ,Ӿ,Y,Z,Λ,ß,Ƈ,D,Ɛ,F,Ɠ,Ĥ,Ī,Ĵ,Ҡ,Ŀ,M,И,♡,Ṗ,Ҩ,Ŕ,S,Ƭ,Ʊ,Ѵ,Ѡ,Ӿ,Y,Z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ﾑ,乃,ζ,Ð,乇,ｷ,Ǥ,ん,ﾉ,ﾌ,ズ,ﾚ,ᄊ,刀,Ծ,ｱ,Q,尺,ㄎ,ｲ,Ц,Џ,Щ,ﾒ,ﾘ,乙,ﾑ,乃,ζ,Ð,乇,ｷ,Ǥ,ん,ﾉ,ﾌ,ズ,ﾚ,ᄊ,刀,Ծ,ｱ,q,尺,ㄎ,ｲ,Ц,Џ,Щ,ﾒ,ﾘ,乙,ᅙ,9,8,ᆨ,6,5,4,3,ᆯ,1,.,_",
-"α,β,c,δ,ε,Ŧ,ĝ,h,ι,j,κ,l,ʍ,π,ø,ρ,φ,Ʀ,$,†,u,υ,ω,χ,ψ,z,α,β,c,δ,ε,Ŧ,ĝ,h,ι,j,κ,l,ʍ,π,ø,ρ,φ,Ʀ,$,†,u,υ,ω,χ,ψ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ค,๖,¢,໓,ē,f,ງ,h,i,ว,k,l,๓,ຖ,໐,p,๑,r,Ş,t,น,ง,ຟ,x,ฯ,ຊ,ค,๖,¢,໓,ē,f,ງ,h,i,ว,k,l,๓,ຖ,໐,p,๑,r,Ş,t,น,ง,ຟ,x,ฯ,ຊ,0,9,8,7,6,5,4,3,2,1,.,_",
-"ձ,ъ,ƈ,ժ,ε,բ,ց,հ,ﻨ,յ,ĸ,l,ო,ռ,օ,թ,զ,г,ร,է,ս,ν,ա,×,ყ,২,ձ,ъ,ƈ,ժ,ε,բ,ց,հ,ﻨ,յ,ĸ,l,ო,ռ,օ,թ,զ,г,ร,է,ս,ν,ա,×,ყ,২,0,9,8,7,6,5,4,3,2,1,.,_",
-"Â,ß,Ĉ,Ð,Є,Ŧ,Ǥ,Ħ,Ī,ʖ,Қ,Ŀ,♏,И,Ø,P,Ҩ,R,$,ƚ,Ц,V,Щ,X,￥,Ẕ,Â,ß,Ĉ,Ð,Є,Ŧ,Ǥ,Ħ,Ī,ʖ,Қ,Ŀ,♏,И,Ø,P,Ҩ,R,$,ƚ,Ц,V,Щ,X,￥,Ẕ,0,9,8,7,6,5,4,3,2,1,.,_",
-"Λ,ɓ,¢,Ɗ,£,ƒ,ɢ,ɦ,ĩ,ʝ,Қ,Ł,ɱ,ה,ø,Ṗ,Ҩ,Ŕ,Ş,Ŧ,Ū,Ɣ,ω,Ж,¥,Ẑ,Λ,ɓ,¢,Ɗ,£,ƒ,ɢ,ɦ,ĩ,ʝ,Қ,Ł,ɱ,ה,ø,Ṗ,Ҩ,Ŕ,Ş,Ŧ,Ū,Ɣ,ω,Ж,¥,Ẑ,0,9,8,7,6,5,4,3,2,1,.,_",
-"Λ,Б,Ͼ,Ð,Ξ,Ŧ,G,H,ł,J,К,Ł,M,Л,Ф,P,Ǫ,Я,S,T,U,V,Ш,Ж,Џ,Z,Λ,Б,Ͼ,Ð,Ξ,Ŧ,g,h,ł,j,К,Ł,m,Л,Ф,p,Ǫ,Я,s,t,u,v,Ш,Ж,Џ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"Թ,Յ,Շ,Ժ,ȝ,Բ,Գ,ɧ,ɿ,ʝ,ƙ,ʅ,ʍ,Ռ,Ծ,ρ,φ,Ր,Տ,Ե,Մ,ע,ա,Ճ,Վ,Հ,Թ,Յ,Շ,Ժ,ȝ,Բ,Գ,ɧ,ɿ,ʝ,ƙ,ʅ,ʍ,Ռ,Ծ,ρ,φ,Ր,Տ,Ե,Մ,ע,ա,Ճ,Վ,Հ,0,9,8,7,6,5,4,3,2,1,.,_",
-"Æ,þ,©,Ð,E,F,ζ,Ħ,Ї,¿,ズ,ᄂ,M,Ñ,Θ,Ƿ,Ø,Ґ,Š,τ,υ,¥,w,χ,y,շ,Æ,þ,©,Ð,E,F,ζ,Ħ,Ї,¿,ズ,ᄂ,M,Ñ,Θ,Ƿ,Ø,Ґ,Š,τ,υ,¥,w,χ,y,շ,0,9,8,7,6,5,4,3,2,1,.,_",
-"ɐ,q,ɔ,p,ǝ,ɟ,ɓ,ɥ,ı,ſ,ʞ,ๅ,ɯ,u,o,d,b,ɹ,s,ʇ,n,ʌ,ʍ,x,ʎ,z,ɐ,q,ɔ,p,ǝ,ɟ,ɓ,ɥ,ı,ſ,ʞ,ๅ,ɯ,u,o,d,b,ɹ,s,ʇ,n,ʌ,ʍ,x,ʎ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ɒ,d,ɔ,b,ɘ,ʇ,ϱ,н,i,į,ʞ,l,м,и,o,q,p,я,ƨ,т,υ,v,w,x,γ,z,ɒ,d,ɔ,b,ɘ,ʇ,ϱ,н,i,į,ʞ,l,м,и,o,q,p,я,ƨ,т,υ,v,w,x,γ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"4,8,C,D,3,F,9,H,!,J,K,1,M,N,0,P,Q,R,5,7,U,V,W,X,Y,2,4,8,C,D,3,F,9,H,!,J,K,1,M,N,0,P,Q,R,5,7,U,V,W,X,Y,2,0,9,8,7,6,5,4,3,2,1,.,_",
-"Λ,M,X,ʎ,Z,ɐ,q,ɔ,p,ǝ,ɟ,ƃ,ɥ,ı,ɾ,ʞ,l,ա,u,o,d,b,ɹ,s,ʇ,n,ʌ,ʍ,x,ʎ,z,Λ,M,X,ʎ,Z,ɐ,q,ɔ,p,ǝ,ɟ,ƃ,ɥ,ı,ɾ,ʞ,l,ա,u,o,d,b,ɹ,s,ʇ,n,ʌ,ʍ,x,ʎ,z,0,9,8,7,6,5,4,3,2,1,.,‾",
-"A̴,̴B̴,̴C̴,̴D̴,̴E̴,̴F̴,̴G̴,̴H̴,̴I̴,̴J̴,̴K̴,̴L̴,̴M̴,̴N̴,̴O̴,̴P̴,̴Q̴,̴R̴,̴S̴,̴T̴,̴U̴,̴V̴,̴W̴,̴X̴,̴Y̴,̴Z̴,̴a̴,̴b̴,̴c̴,̴d̴,̴e̴,̴f̴,̴g̴,̴h̴,̴i̴,̴j̴,̴k̴,̴l̴,̴m̴,̴n̴,̴o̴,̴p̴,̴q̴,̴r̴,̴s̴,̴t̴,̴u̴,̴v̴,̴w̴,̴x̴,̴y̴,̴z̴,̴0̴,̴9̴,̴8̴,̴7̴,̴6̴,̴5̴,̴4̴,̴3̴,̴2̴,̴1̴,̴.̴,̴_̴",
-"A̱,̱Ḇ,̱C̱,̱Ḏ,̱E̱,̱F̱,̱G̱,̱H̱,̱I̱,̱J̱,̱Ḵ,̱Ḻ,̱M̱,̱Ṉ,̱O̱,̱P̱,̱Q̱,̱Ṟ,̱S̱,̱Ṯ,̱U̱,̱V̱,̱W̱,̱X̱,̱Y̱,̱Ẕ,̱a̱,̱ḇ,̱c̱,̱ḏ,̱e̱,̱f̱,̱g̱,̱ẖ,̱i̱,̱j̱,̱ḵ,̱ḻ,̱m̱,̱ṉ,̱o̱,̱p̱,̱q̱,̱ṟ,̱s̱,̱ṯ,̱u̱,̱v̱,̱w̱,̱x̱,̱y̱,̱ẕ,̱0̱,̱9̱,̱8̱,̱7̱,̱6̱,̱5̱,̱4̱,̱3̱,̱2̱,̱1̱,̱.̱,̱_̱",
-"A̲,̲B̲,̲C̲,̲D̲,̲E̲,̲F̲,̲G̲,̲H̲,̲I̲,̲J̲,̲K̲,̲L̲,̲M̲,̲N̲,̲O̲,̲P̲,̲Q̲,̲R̲,̲S̲,̲T̲,̲U̲,̲V̲,̲W̲,̲X̲,̲Y̲,̲Z̲,̲a̲,̲b̲,̲c̲,̲d̲,̲e̲,̲f̲,̲g̲,̲h̲,̲i̲,̲j̲,̲k̲,̲l̲,̲m̲,̲n̲,̲o̲,̲p̲,̲q̲,̲r̲,̲s̲,̲t̲,̲u̲,̲v̲,̲w̲,̲x̲,̲y̲,̲z̲,̲0̲,̲9̲,̲8̲,̲7̲,̲6̲,̲5̲,̲4̲,̲3̲,̲2̲,̲1̲,̲.̲,̲_̲",
-"Ā,̄B̄,̄C̄,̄D̄,̄Ē,̄F̄,̄Ḡ,̄H̄,̄Ī,̄J̄,̄K̄,̄L̄,̄M̄,̄N̄,̄Ō,̄P̄,̄Q̄,̄R̄,̄S̄,̄T̄,̄Ū,̄V̄,̄W̄,̄X̄,̄Ȳ,̄Z̄,̄ā,̄b̄,̄c̄,̄d̄,̄ē,̄f̄,̄ḡ,̄h̄,̄ī,̄j̄,̄k̄,̄l̄,̄m̄,̄n̄,̄ō,̄p̄,̄q̄,̄r̄,̄s̄,̄t̄,̄ū,̄v̄,̄w̄,̄x̄,̄ȳ,̄z̄,̄0̄,̄9̄,̄8̄,̄7̄,̄6̄,̄5̄,̄4̄,̄3̄,̄2̄,̄1̄,̄.̄,̄_̄",
-"A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0,9,8,7,6,5,4,3,2,1,.,_",
-"a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"@,♭,ḉ,ⓓ,℮,ƒ,ℊ,ⓗ,ⓘ,נ,ⓚ,ℓ,ⓜ,η,ø,℘,ⓠ,ⓡ,﹩,т,ⓤ,√,ω,ж,૪,ℨ,@,♭,ḉ,ⓓ,℮,ƒ,ℊ,ⓗ,ⓘ,נ,ⓚ,ℓ,ⓜ,η,ø,℘,ⓠ,ⓡ,﹩,т,ⓤ,√,ω,ж,૪,ℨ,0,➈,➑,➐,➅,➄,➃,➌,➁,➊,.,_",
-"@,♭,¢,ⅾ,ε,ƒ,ℊ,ℌ,ї,נ,к,ℓ,м,п,ø,ρ,ⓠ,ґ,﹩,⊥,ü,√,ω,ϰ,૪,ℨ,@,♭,¢,ⅾ,ε,ƒ,ℊ,ℌ,ї,נ,к,ℓ,м,п,ø,ρ,ⓠ,ґ,﹩,⊥,ü,√,ω,ϰ,૪,ℨ,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,♭,ḉ,∂,ℯ,ƒ,ℊ,ℌ,ї,ʝ,ḱ,ℓ,м,η,ø,℘,ⓠ,я,﹩,⊥,ц,ṽ,ω,ჯ,૪,ẕ,α,♭,ḉ,∂,ℯ,ƒ,ℊ,ℌ,ї,ʝ,ḱ,ℓ,м,η,ø,℘,ⓠ,я,﹩,⊥,ц,ṽ,ω,ჯ,૪,ẕ,0,9,8,7,6,5,4,3,2,1,.,_",
-"@,ß,¢,ḓ,℮,ƒ,ℊ,ℌ,ї,נ,ḱ,ʟ,м,п,◎,℘,ⓠ,я,﹩,т,ʊ,♥️,ẘ,✄,૪,ℨ,@,ß,¢,ḓ,℮,ƒ,ℊ,ℌ,ї,נ,ḱ,ʟ,м,п,◎,℘,ⓠ,я,﹩,т,ʊ,♥️,ẘ,✄,૪,ℨ,0,9,8,7,6,5,4,3,2,1,.,_",
-"@,ß,¢,ḓ,℮,ƒ,ℊ,н,ḯ,נ,к,ℓμ,п,☺️,℘,ⓠ,я,﹩,⊥,υ,ṽ,ω,✄,૪,ℨ,@,ß,¢,ḓ,℮,ƒ,ℊ,н,ḯ,נ,к,ℓμ,п,☺️,℘,ⓠ,я,﹩,⊥,υ,ṽ,ω,✄,૪,ℨ,0,9,8,7,6,5,4,3,2,1,.,_",
-"@,ß,ḉ,ḓ,є,ƒ,ℊ,ℌ,ї,נ,ḱ,ʟ,ღ,η,◎,℘,ⓠ,я,﹩,⊥,ʊ,♥️,ω,ϰ,૪,ẕ,@,ß,ḉ,ḓ,є,ƒ,ℊ,ℌ,ї,נ,ḱ,ʟ,ღ,η,◎,℘,ⓠ,я,﹩,⊥,ʊ,♥️,ω,ϰ,૪,ẕ,0,9,8,7,6,5,4,3,2,1,.,_",
-"@,ß,ḉ,∂,ε,ƒ,ℊ,ℌ,ї,נ,ḱ,ł,ღ,и,ø,℘,ⓠ,я,﹩,т,υ,√,ω,ჯ,૪,ẕ,@,ß,ḉ,∂,ε,ƒ,ℊ,ℌ,ї,נ,ḱ,ł,ღ,и,ø,℘,ⓠ,я,﹩,т,υ,√,ω,ჯ,૪,ẕ,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,♭,¢,∂,ε,ƒ,❡,н,ḯ,ʝ,ḱ,ʟ,μ,п,ø,ρ,ⓠ,ґ,﹩,т,υ,ṽ,ω,ж,૪,ẕ,α,♭,¢,∂,ε,ƒ,❡,н,ḯ,ʝ,ḱ,ʟ,μ,п,ø,ρ,ⓠ,ґ,﹩,т,υ,ṽ,ω,ж,૪,ẕ,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,♭,ḉ,∂,℮,ⓕ,ⓖ,н,ḯ,ʝ,ḱ,ℓ,м,п,ø,ⓟ,ⓠ,я,ⓢ,ⓣ,ⓤ,♥️,ⓦ,✄,ⓨ,ⓩ,α,♭,ḉ,∂,℮,ⓕ,ⓖ,н,ḯ,ʝ,ḱ,ℓ,м,п,ø,ⓟ,ⓠ,я,ⓢ,ⓣ,ⓤ,♥️,ⓦ,✄,ⓨ,ⓩ,0,➒,➑,➐,➏,➄,➍,➂,➁,➀,.,_",
-"@,♭,ḉ,ḓ,є,ƒ,ⓖ,ℌ,ⓘ,נ,к,ⓛ,м,ⓝ,ø,℘,ⓠ,я,﹩,ⓣ,ʊ,√,ω,ჯ,૪,ⓩ,@,♭,ḉ,ḓ,є,ƒ,ⓖ,ℌ,ⓘ,נ,к,ⓛ,м,ⓝ,ø,℘,ⓠ,я,﹩,ⓣ,ʊ,√,ω,ჯ,૪,ⓩ,0,➒,➇,➆,➅,➄,➍,➌,➋,➀,.,_",
-"α,♭,ⓒ,∂,є,ⓕ,ⓖ,ℌ,ḯ,ⓙ,ḱ,ł,ⓜ,и,ⓞ,ⓟ,ⓠ,ⓡ,ⓢ,⊥,ʊ,ⓥ,ⓦ,ж,ⓨ,ⓩ,α,♭,ⓒ,∂,є,ⓕ,ⓖ,ℌ,ḯ,ⓙ,ḱ,ł,ⓜ,и,ⓞ,ⓟ,ⓠ,ⓡ,ⓢ,⊥,ʊ,ⓥ,ⓦ,ж,ⓨ,ⓩ,0,➒,➑,➆,➅,➎,➍,➌,➁,➀,.,_",
-"ⓐ,ß,ḉ,∂,℮,ⓕ,❡,ⓗ,ї,נ,ḱ,ł,μ,η,ø,ρ,ⓠ,я,﹩,ⓣ,ц,√,ⓦ,✖️,૪,ℨ,ⓐ,ß,ḉ,∂,℮,ⓕ,❡,ⓗ,ї,נ,ḱ,ł,μ,η,ø,ρ,ⓠ,я,﹩,ⓣ,ц,√,ⓦ,✖️,૪,ℨ,0,➒,➑,➐,➅,➄,➍,➂,➁,➊,.,_",
-"α,ß,ⓒ,ⅾ,ℯ,ƒ,ℊ,ⓗ,ї,ʝ,к,ʟ,ⓜ,η,ⓞ,℘,ⓠ,ґ,﹩,т,υ,ⓥ,ⓦ,ж,ⓨ,ẕ,α,ß,ⓒ,ⅾ,ℯ,ƒ,ℊ,ⓗ,ї,ʝ,к,ʟ,ⓜ,η,ⓞ,℘,ⓠ,ґ,﹩,т,υ,ⓥ,ⓦ,ж,ⓨ,ẕ,0,➈,➇,➐,➅,➎,➍,➌,➁,➊,.,_",
-"@,♭,ḉ,ⅾ,є,ⓕ,❡,н,ḯ,נ,ⓚ,ⓛ,м,ⓝ,☺️,ⓟ,ⓠ,я,ⓢ,⊥,υ,♥️,ẘ,ϰ,૪,ⓩ,@,♭,ḉ,ⅾ,є,ⓕ,❡,н,ḯ,נ,ⓚ,ⓛ,м,ⓝ,☺️,ⓟ,ⓠ,я,ⓢ,⊥,υ,♥️,ẘ,ϰ,૪,ⓩ,0,➒,➑,➆,➅,➄,➃,➂,➁,➀,.,_",
-"ⓐ,♭,ḉ,ⅾ,є,ƒ,ℊ,ℌ,ḯ,ʝ,ḱ,ł,μ,η,ø,ⓟ,ⓠ,ґ,ⓢ,т,ⓤ,√,ⓦ,✖️,ⓨ,ẕ,ⓐ,♭,ḉ,ⅾ,є,ƒ,ℊ,ℌ,ḯ,ʝ,ḱ,ł,μ,η,ø,ⓟ,ⓠ,ґ,ⓢ,т,ⓤ,√,ⓦ,✖️,ⓨ,ẕ,0,➈,➇,➐,➅,➄,➃,➂,➁,➀,.,_",
-"ձ,ъƈ,ժ,ε,բ,ց,հ,ﻨ,յ,ĸ,l,ო,ռ,օ,թ,զ,г,ร,է,ս,ν,ա,×,ყ,২,ձ,ъƈ,ժ,ε,բ,ց,հ,ﻨ,յ,ĸ,l,ო,ռ,օ,թ,զ,г,ร,է,ս,ν,ա,×,ყ,২,0,9,8,7,6,5,4,3,2,1,.,_",
-"λ,ϐ,ς,d,ε,ғ,ϑ,ɢ,н,ι,ϳ,κ,l,ϻ,π,σ,ρ,φ,г,s,τ,υ,v,ш,ϰ,ψ,z,λ,ϐ,ς,d,ε,ғ,ϑ,ɢ,н,ι,ϳ,κ,l,ϻ,π,σ,ρ,φ,г,s,τ,υ,v,ш,ϰ,ψ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ค,๒,ς,๔,є,Ŧ,ɠ,ђ,เ,ן,к,l,๓,ภ,๏,թ,ợ,г,ร,t,ย,v,ฬ,x,ץ,z,ค,๒,ς,๔,є,Ŧ,ɠ,ђ,เ,ן,к,l,๓,ภ,๏,թ,ợ,г,ร,t,ย,v,ฬ,x,ץ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"მ,ჩ,ƈძ,ε,բ,ց,հ,ἶ,ʝ,ƙ,l,ო,ղ,օ,ր,գ,ɾ,ʂ,է,մ,ν,ω,ჯ,ყ,z,მ,ჩ,ƈძ,ε,բ,ց,հ,ἶ,ʝ,ƙ,l,ო,ղ,օ,ր,գ,ɾ,ʂ,է,մ,ν,ω,ჯ,ყ,z,0,Գ,Ց,Դ,6,5,Վ,Յ,Զ,1,.,_",
-"ค,ც,८,ძ,૯,Բ,૭,Һ,ɿ,ʆ,қ,Ն,ɱ,Ո,૦,ƿ,ҩ,Ր,ς,੮,υ,౮,ω,૪,ע,ઽ,ค,ც,८,ძ,૯,Բ,૭,Һ,ɿ,ʆ,қ,Ն,ɱ,Ո,૦,ƿ,ҩ,Ր,ς,੮,υ,౮,ω,૪,ע,ઽ,0,9,8,7,6,5,4,3,2,1,.,_",
-"Λ,Б,Ͼ,Ð,Ξ,Ŧ,g,h,ł,j,К,Ł,m,Л,Ф,p,Ǫ,Я,s,t,u,v,Ш,Ж,Џ,z,Λ,Б,Ͼ,Ð,Ξ,Ŧ,g,h,ł,j,К,Ł,m,Л,Ф,p,Ǫ,Я,s,t,u,v,Ш,Ж,Џ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"λ,ß,Ȼ,ɖ,ε,ʃ,Ģ,ħ,ί,ĵ,κ,ι,ɱ,ɴ,Θ,ρ,ƣ,ર,Ș,τ,Ʋ,ν,ώ,Χ,ϓ,Հ,λ,ß,Ȼ,ɖ,ε,ʃ,Ģ,ħ,ί,ĵ,κ,ι,ɱ,ɴ,Θ,ρ,ƣ,ર,Ș,τ,Ʋ,ν,ώ,Χ,ϓ,Հ,0,9,8,7,6,5,4,3,2,1,.,_",
-"ª,b,¢,Þ,È,F,૬,ɧ,Î,j,Κ,Ļ,м,η,◊,Ƿ,ƍ,r,S,⊥,µ,√,w,×,ý,z,ª,b,¢,Þ,È,F,૬,ɧ,Î,j,Κ,Ļ,м,η,◊,Ƿ,ƍ,r,S,⊥,µ,√,w,×,ý,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"Թ,Յ,Շ,Ժ,ȝ,Բ,Գ,ɧ,ɿ,ʝ,ƙ,ʅ,ʍ,Ռ,Ծ,ρ,φ,Ր,Տ,Ե,Մ,ע,ա,Ճ,Վ,Հ,Թ,Յ,Շ,Ժ,ȝ,Բ,Գ,ɧ,ɿ,ʝ,ƙ,ʅ,ʍ,Ռ,Ծ,ρ,φ,Ր,Տ,Ե,Մ,ע,ա,Ճ,Վ,Հ,0,9,8,7,6,5,4,3,2,1,.,_",
-"Λ,Ϧ,ㄈ,Ð,Ɛ,F,Ɠ,н,ɪ,ﾌ,Қ,Ł,௱,Л,Ø,þ,Ҩ,尺,ら,Ť,Ц,Ɣ,Ɯ,χ,Ϥ,Ẕ,Λ,Ϧ,ㄈ,Ð,Ɛ,F,Ɠ,н,ɪ,ﾌ,Қ,Ł,௱,Л,Ø,þ,Ҩ,尺,ら,Ť,Ц,Ɣ,Ɯ,χ,Ϥ,Ẕ,0,9,8,7,6,5,4,3,2,1,.,_",
-"Ǟ,в,ट,D,ę,բ,g,৸,i,j,κ,l,ɱ,П,Φ,Р,q,Я,s,Ʈ,Ц,v,Щ,ж,ყ,ւ,Ǟ,в,ट,D,ę,բ,g,৸,i,j,κ,l,ɱ,П,Φ,Р,q,Я,s,Ʈ,Ц,v,Щ,ж,ყ,ւ,0,9,8,7,6,5,4,3,2,1,.,_",
-"ɒ,d,ɔ,b,ɘ,ʇ,ϱ,н,i,į,ʞ,l,м,и,o,q,p,я,ƨ,т,υ,v,w,x,γ,z,ɒ,d,ɔ,b,ɘ,ʇ,ϱ,н,i,į,ʞ,l,м,и,o,q,p,я,ƨ,т,υ,v,w,x,γ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"Æ,þ,©,Ð,E,F,ζ,Ħ,Ї,¿,ズ,ᄂ,M,Ñ,Θ,Ƿ,Ø,Ґ,Š,τ,υ,¥,w,χ,y,շ,Æ,þ,©,Ð,E,F,ζ,Ħ,Ї,¿,ズ,ᄂ,M,Ñ,Θ,Ƿ,Ø,Ґ,Š,τ,υ,¥,w,χ,y,շ,0,9,8,7,6,5,4,3,2,1,.,_",
-"ª,ß,¢,ð,€,f,g,h,¡,j,k,|,m,ñ,¤,Þ,q,®,$,t,µ,v,w,×,ÿ,z,ª,ß,¢,ð,€,f,g,h,¡,j,k,|,m,ñ,¤,Þ,q,®,$,t,µ,v,w,×,ÿ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"ɐ,q,ɔ,p,ǝ,ɟ,ɓ,ɥ,ı,ſ,ʞ,ๅ,ɯ,u,o,d,b,ɹ,s,ʇ,n,ʌ,ʍ,x,ʎ,z,ɐ,q,ɔ,p,ǝ,ɟ,ɓ,ɥ,ı,ſ,ʞ,ๅ,ɯ,u,o,d,b,ɹ,s,ʇ,n,ʌ,ʍ,x,ʎ,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"⒜,⒝,⒞,⒟,⒠,⒡,⒢,⒣,⒤,⒥,⒦,⒧,⒨,⒩,⒪,⒫,⒬,⒭,⒮,⒯,⒰,⒱,⒲,⒳,⒴,⒵,⒜,⒝,⒞,⒟,⒠,⒡,⒢,⒣,⒤,⒥,⒦,⒧,⒨,⒩,⒪,⒫,⒬,⒭,⒮,⒯,⒰,⒱,⒲,⒳,⒴,⒵,⒪,⑼,⑻,⑺,⑹,⑸,⑷,⑶,⑵,⑴,.,_",
-"ɑ,ʙ,c,ᴅ,є,ɻ,მ,ʜ,ι,ɿ,ĸ,г,w,и,o,ƅϭ,ʁ,ƨ,⊥,n,ʌ,ʍ,x,⑃,z,ɑ,ʙ,c,ᴅ,є,ɻ,მ,ʜ,ι,ɿ,ĸ,г,w,и,o,ƅϭ,ʁ,ƨ,⊥,n,ʌ,ʍ,x,⑃,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"4,8,C,D,3,F,9,H,!,J,K,1,M,N,0,P,Q,R,5,7,U,V,W,X,Y,2,4,8,C,D,3,F,9,H,!,J,K,1,M,N,0,P,Q,R,5,7,U,V,W,X,Y,2,0,9,8,7,6,5,4,3,2,1,.,_",
-"Λ,ßƇ,D,Ɛ,F,Ɠ,Ĥ,Ī,Ĵ,Ҡ,Ŀ,M,И,♡,Ṗ,Ҩ,Ŕ,S,Ƭ,Ʊ,Ѵ,Ѡ,Ӿ,Y,Z,Λ,ßƇ,D,Ɛ,F,Ɠ,Ĥ,Ī,Ĵ,Ҡ,Ŀ,M,И,♡,Ṗ,Ҩ,Ŕ,S,Ƭ,Ʊ,Ѵ,Ѡ,Ӿ,Y,Z,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,в,¢,đ,e,f,g,ħ,ı,נ,κ,ł,м,и,ø,ρ,q,я,š,т,υ,ν,ω,χ,ч,z,α,в,¢,đ,e,f,g,ħ,ı,נ,κ,ł,м,и,ø,ρ,q,я,š,т,υ,ν,ω,χ,ч,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"α,в,c,ɔ,ε,ғ,ɢ,н,ı,נ,κ,ʟ,м,п,σ,ρ,ǫ,я,ƨ,т,υ,ν,ш,х,ч,z,α,в,c,ɔ,ε,ғ,ɢ,н,ı,נ,κ,ʟ,м,п,σ,ρ,ǫ,я,ƨ,т,υ,ν,ш,х,ч,z,0,9,8,7,6,5,4,3,2,1,.,_",
-"【a】,【b】,【c】,【d】,【e】,【f】,【g】,【h】,【i】,【j】,【k】,【l】,【m】,【n】,【o】,【p】,【q】,【r】,【s】,【t】,【u】,【v】,【w】,【x】,【y】,【z】,【a】,【b】,【c】,【d】,【e】,【f】,【g】,【h】,【i】,【j】,【k】,【l】,【m】,【n】,【o】,【p】,【q】,【r】,【s】,【t】,【u】,【v】,【w】,【x】,【y】,【z】,【0】,【9】,【8】,【7】,【6】,【5】,【4】,【3】,【2】,【1】,.,_",
-"[̲̲̅̅a̲̅,̲̅b̲̲̅,̅c̲̅,̲̅d̲̲̅,̅e̲̲̅,̅f̲̲̅,̅g̲̅,̲̅h̲̲̅,̅i̲̲̅,̅j̲̲̅,̅k̲̅,̲̅l̲̲̅,̅m̲̅,̲̅n̲̅,̲̅o̲̲̅,̅p̲̅,̲̅q̲̅,̲̅r̲̲̅,̅s̲̅,̲̅t̲̲̅,̅u̲̅,̲̅v̲̅,̲̅w̲̅,̲̅x̲̅,̲̅y̲̅,̲̅z̲̅,[̲̲̅̅a̲̅,̲̅b̲̲̅,̅c̲̅,̲̅d̲̲̅,̅e̲̲̅,̅f̲̲̅,̅g̲̅,̲̅h̲̲̅,̅i̲̲̅,̅j̲̲̅,̅k̲̅,̲̅l̲̲̅,̅m̲̅,̲̅n̲̅,̲̅o̲̲̅,̅p̲̅,̲̅q̲̅,̲̅r̲̲̅,̅s̲̅,̲̅t̲̲̅,̅u̲̅,̲̅v̲̅,̲̅w̲̅,̲̅x̲̅,̲̅y̲̅,̲̅z̲̅,̲̅0̲̅,̲̅9̲̲̅,̅8̲̅,̲̅7̲̅,̲̅6̲̅,̲̅5̲̅,̲̅4̲̅,̲̅3̲̲̅,̅2̲̲̅,̅1̲̲̅̅],.,_",
-"[̺͆a̺͆͆,̺b̺͆͆,̺c̺͆,̺͆d̺͆,̺͆e̺͆,̺͆f̺͆͆,̺g̺͆,̺͆h̺͆,̺͆i̺͆,̺͆j̺͆,̺͆k̺͆,̺l̺͆͆,̺m̺͆͆,̺n̺͆͆,̺o̺͆,̺͆p̺͆͆,̺q̺͆͆,̺r̺͆͆,̺s̺͆͆,̺t̺͆͆,̺u̺͆͆,̺v̺͆͆,̺w̺͆,̺͆x̺͆,̺͆y̺͆,̺͆z̺,[̺͆a̺͆͆,̺b̺͆͆,̺c̺͆,̺͆d̺͆,̺͆e̺͆,̺͆f̺͆͆,̺g̺͆,̺͆h̺͆,̺͆i̺͆,̺͆j̺͆,̺͆k̺͆,̺l̺͆͆,̺m̺͆͆,̺n̺͆͆,̺o̺͆,̺͆p̺͆͆,̺q̺͆͆,̺r̺͆͆,̺s̺͆͆,̺t̺͆͆,̺u̺͆͆,̺v̺͆͆,̺w̺͆,̺͆x̺͆,̺͆y̺͆,̺͆z̺,̺͆͆0̺͆,̺͆9̺͆,̺͆8̺̺͆͆7̺͆,̺͆6̺͆,̺͆5̺͆,̺͆4̺͆,̺͆3̺͆,̺͆2̺͆,̺͆1̺͆],.,_",
-"̛̭̰̃ã̛̰̭,̛̭̰̃b̛̰̭̃̃,̛̭̰c̛̛̰̭̃̃,̭̰d̛̰̭̃,̛̭̰̃ḛ̛̭̃̃,̛̭̰f̛̰̭̃̃,̛̭̰g̛̰̭̃̃,̛̭̰h̛̰̭̃,̛̭̰̃ḭ̛̛̭̃̃,̭̰j̛̰̭̃̃,̛̭̰k̛̰̭̃̃,̛̭̰l̛̰̭,̛̭̰̃m̛̰̭̃̃,̛̭̰ñ̛̛̰̭̃,̭̰ỡ̰̭̃,̛̭̰p̛̰̭̃,̛̭̰̃q̛̰̭̃̃,̛̭̰r̛̛̰̭̃̃,̭̰s̛̰̭,̛̭̰̃̃t̛̰̭̃,̛̭̰̃ữ̰̭̃,̛̭̰ṽ̛̰̭̃,̛̭̰w̛̛̰̭̃̃,̭̰x̛̰̭̃,̛̭̰̃ỹ̛̰̭̃,̛̭̰z̛̰̭̃̃,̛̛̭̰ã̛̰̭,̛̭̰̃b̛̰̭̃̃,̛̭̰c̛̛̰̭̃̃,̭̰d̛̰̭̃,̛̭̰̃ḛ̛̭̃̃,̛̭̰f̛̰̭̃̃,̛̭̰g̛̰̭̃̃,̛̭̰h̛̰̭̃,̛̭̰̃ḭ̛̛̭̃̃,̭̰j̛̰̭̃̃,̛̭̰k̛̰̭̃̃,̛̭̰l̛̰̭,̛̭̰̃m̛̰̭̃̃,̛̭̰ñ̛̛̰̭̃,̭̰ỡ̰̭̃,̛̭̰p̛̰̭̃,̛̭̰̃q̛̰̭̃̃,̛̭̰r̛̛̰̭̃̃,̭̰s̛̰̭,̛̭̰̃̃t̛̰̭̃,̛̭̰̃ữ̰̭̃,̛̭̰ṽ̛̰̭̃,̛̭̰w̛̛̰̭̃̃,̭̰x̛̰̭̃,̛̭̰̃ỹ̛̰̭̃,̛̭̰z̛̰̭̃̃,̛̭̰0̛̛̰̭̃̃,̭̰9̛̰̭̃̃,̛̭̰8̛̛̰̭̃̃,̭̰7̛̰̭̃̃,̛̭̰6̛̰̭̃̃,̛̭̰5̛̰̭̃,̛̭̰̃4̛̰̭̃,̛̭̰̃3̛̰̭̃̃,̛̭̰2̛̰̭̃̃,̛̭̰1̛̰̭̃,.,_",
-"a,ะb,ะc,ะd,ะe,ะf,ะg,ะh,ะi,ะj,ะk,ะl,ะm,ะn,ะo,ะp,ะq,ะr,ะs,ะt,ะu,ะv,ะw,ะx,ะy,ะz,a,ะb,ะc,ะd,ะe,ะf,ะg,ะh,ะi,ะj,ะk,ะl,ะm,ะn,ะo,ะp,ะq,ะr,ะs,ะt,ะu,ะv,ะw,ะx,ะy,ะz,ะ0,ะ9,ะ8,ะ7,ะ6,ะ5,ะ4,ะ3,ะ2,ะ1ะ,.,_",
-"̑ȃ,̑b̑,̑c̑,̑d̑,̑ȇ,̑f̑,̑g̑,̑h̑,̑ȋ,̑j̑,̑k̑,̑l̑,̑m̑,̑n̑,̑ȏ,̑p̑,̑q̑,̑ȓ,̑s̑,̑t̑,̑ȗ,̑v̑,̑w̑,̑x̑,̑y̑,̑z̑,̑ȃ,̑b̑,̑c̑,̑d̑,̑ȇ,̑f̑,̑g̑,̑h̑,̑ȋ,̑j̑,̑k̑,̑l̑,̑m̑,̑n̑,̑ȏ,̑p̑,̑q̑,̑ȓ,̑s̑,̑t̑,̑ȗ,̑v̑,̑w̑,̑x̑,̑y̑,̑z̑,̑0̑,̑9̑,̑8̑,̑7̑,̑6̑,̑5̑,̑4̑,̑3̑,̑2̑,̑1̑,.,_",
-"~a,͜͝b,͜͝c,͜͝d,͜͝e,͜͝f,͜͝g,͜͝h,͜͝i,͜͝j,͜͝k,͜͝l,͜͝m,͜͝n,͜͝o,͜͝p,͜͝q,͜͝r,͜͝s,͜͝t,͜͝u,͜͝v,͜͝w,͜͝x,͜͝y,͜͝z,~a,͜͝b,͜͝c,͜͝d,͜͝e,͜͝f,͜͝g,͜͝h,͜͝i,͜͝j,͜͝k,͜͝l,͜͝m,͜͝n,͜͝o,͜͝p,͜͝q,͜͝r,͜͝s,͜͝t,͜͝u,͜͝v,͜͝w,͜͝x,͜͝y,͜͝z,͜͝0,͜͝9,͜͝8,͜͝7,͜͝6,͜͝5,͜͝4,͜͝3,͜͝2͜,͝1͜͝~,.,_",
-"̤̈ä̤,̤̈b̤̈,̤̈c̤̈̈,̤d̤̈,̤̈ë̤,̤̈f̤̈,̤̈g̤̈̈,̤ḧ̤̈,̤ï̤̈,̤j̤̈,̤̈k̤̈̈,̤l̤̈,̤̈m̤̈,̤̈n̤̈,̤̈ö̤,̤̈p̤̈,̤̈q̤̈,̤̈r̤̈,̤̈s̤̈̈,̤ẗ̤̈,̤ṳ̈,̤̈v̤̈,̤̈ẅ̤,̤̈ẍ̤,̤̈ÿ̤,̤̈z̤̈,̤̈ä̤,̤̈b̤̈,̤̈c̤̈̈,̤d̤̈,̤̈ë̤,̤̈f̤̈,̤̈g̤̈̈,̤ḧ̤̈,̤ï̤̈,̤j̤̈,̤̈k̤̈̈,̤l̤̈,̤̈m̤̈,̤̈n̤̈,̤̈ö̤,̤̈p̤̈,̤̈q̤̈,̤̈r̤̈,̤̈s̤̈̈,̤ẗ̤̈,̤ṳ̈,̤̈v̤̈,̤̈ẅ̤,̤̈ẍ̤,̤̈ÿ̤,̤̈z̤̈,̤̈0̤̈,̤̈9̤̈,̤̈8̤̈,̤̈7̤̈,̤̈6̤̈,̤̈5̤̈,̤̈4̤̈,̤̈3̤̈,̤̈2̤̈̈,̤1̤̈,.,_",
-"≋̮̑ȃ̮,̮̑b̮̑,̮̑c̮̑,̮̑d̮̑,̮̑ȇ̮,̮̑f̮̑,̮̑g̮̑,̮̑ḫ̑,̮̑ȋ̮,̮̑j̮̑,̮̑k̮̑,̮̑l̮̑,̮̑m̮̑,̮̑n̮̑,̮̑ȏ̮,̮̑p̮̑,̮̑q̮̑,̮̑r̮,̮̑̑s̮,̮̑̑t̮,̮̑̑u̮,̮̑̑v̮̑,̮̑w̮̑,̮̑x̮̑,̮̑y̮̑,̮̑z̮̑,≋̮̑ȃ̮,̮̑b̮̑,̮̑c̮̑,̮̑d̮̑,̮̑ȇ̮,̮̑f̮̑,̮̑g̮̑,̮̑ḫ̑,̮̑ȋ̮,̮̑j̮̑,̮̑k̮̑,̮̑l̮̑,̮̑m̮̑,̮̑n̮̑,̮̑ȏ̮,̮̑p̮̑,̮̑q̮̑,̮̑r̮,̮̑̑s̮,̮̑̑t̮,̮̑̑u̮,̮̑̑v̮̑,̮̑w̮̑,̮̑x̮̑,̮̑y̮̑,̮̑z̮̑,̮̑0̮̑,̮̑9̮̑,̮̑8̮̑,̮̑7̮̑,̮̑6̮̑,̮̑5̮̑,̮̑4̮̑,̮̑3̮̑,̮̑2̮̑,̮̑1̮̑≋,.,_",
-"a̮,̮b̮̮,c̮̮,d̮̮,e̮̮,f̮̮,g̮̮,ḫ̮,i̮,j̮̮,k̮̮,l̮,̮m̮,̮n̮̮,o̮,̮p̮̮,q̮̮,r̮̮,s̮,̮t̮̮,u̮̮,v̮̮,w̮̮,x̮̮,y̮̮,z̮̮,a̮,̮b̮̮,c̮̮,d̮̮,e̮̮,f̮̮,g̮̮,ḫ̮i,̮̮,j̮̮,k̮̮,l̮,̮m̮,̮n̮̮,o̮,̮p̮̮,q̮̮,r̮̮,s̮,̮t̮̮,u̮̮,v̮̮,w̮̮,x̮̮,y̮̮,z̮̮,0̮̮,9̮̮,8̮̮,7̮̮,6̮̮,5̮̮,4̮̮,3̮̮,2̮̮,1̮,.,_",
-"A̲,̲B̲,̲C̲,̲D̲,̲E̲,̲F̲,̲G̲,̲H̲,̲I̲,̲J̲,̲K̲,̲L̲,̲M̲,̲N̲,̲O̲,̲P̲,̲Q̲,̲R̲,̲S̲,̲T̲,̲U̲,̲V̲,̲W̲,̲X̲,̲Y̲,̲Z̲,̲a̲,̲b̲,̲c̲,̲d̲,̲e̲,̲f̲,̲g̲,̲h̲,̲i̲,̲j̲,̲k̲,̲l̲,̲m̲,̲n̲,̲o̲,̲p̲,̲q̲,̲r̲,̲s̲,̲t̲,̲u̲,̲v̲,̲w̲,̲x̲,̲y̲,̲z̲,̲0̲,̲9̲,̲8̲,̲7̲,̲6̲,̲5̲,̲4̲,̲3̲,̲2̲,̲1̲,̲.̲,̲_̲",
-"Â,ß,Ĉ,Ð,Є,Ŧ,Ǥ,Ħ,Ī,ʖ,Қ,Ŀ,♏,И,Ø,P,Ҩ,R,$,ƚ,Ц,V,Щ,X,￥,Ẕ,Â,ß,Ĉ,Ð,Є,Ŧ,Ǥ,Ħ,Ī,ʖ,Қ,Ŀ,♏,И,Ø,P,Ҩ,R,$,ƚ,Ц,V,Щ,X,￥,Ẕ,0,9,8,7,6,5,4,3,2,1,.,_",
-}
--------------------------------faeder
-local result = {}
-i=0
-for k=1,#fonts do
-i=i+1
-local tar_font = fonts[i]:split(",")
-local text = TextToBeauty
-local text = text:gsub("A",tar_font[1])
-local text = text:gsub("B",tar_font[2])
-local text = text:gsub("C",tar_font[3])
-local text = text:gsub("D",tar_font[4])
-local text = text:gsub("E",tar_font[5])
-local text = text:gsub("F",tar_font[6])
-local text = text:gsub("G",tar_font[7])
-local text = text:gsub("H",tar_font[8])
-local text = text:gsub("I",tar_font[9])
-local text = text:gsub("J",tar_font[10])
-local text = text:gsub("K",tar_font[11])
-local text = text:gsub("L",tar_font[12])
-local text = text:gsub("M",tar_font[13])
-local text = text:gsub("N",tar_font[14])
-local text = text:gsub("O",tar_font[15])
-local text = text:gsub("P",tar_font[16])
-local text = text:gsub("Q",tar_font[17])
-local text = text:gsub("R",tar_font[18])
-local text = text:gsub("S",tar_font[19])
-local text = text:gsub("T",tar_font[20])
-local text = text:gsub("U",tar_font[21])
-local text = text:gsub("V",tar_font[22])
-local text = text:gsub("W",tar_font[23])
-local text = text:gsub("X",tar_font[24])
-local text = text:gsub("Y",tar_font[25])
-local text = text:gsub("Z",tar_font[26])
-local text = text:gsub("a",tar_font[27])
-local text = text:gsub("b",tar_font[28])
-local text = text:gsub("c",tar_font[29])
-local text = text:gsub("d",tar_font[30])
-local text = text:gsub("e",tar_font[31])
-local text = text:gsub("f",tar_font[32])
-local text = text:gsub("g",tar_font[33])
-local text = text:gsub("h",tar_font[34])
-local text = text:gsub("i",tar_font[35])
-local text = text:gsub("j",tar_font[36])
-local text = text:gsub("k",tar_font[37])
-local text = text:gsub("l",tar_font[38])
-local text = text:gsub("m",tar_font[39])
-local text = text:gsub("n",tar_font[40])
-local text = text:gsub("o",tar_font[41])
-local text = text:gsub("p",tar_font[42])
-local text = text:gsub("q",tar_font[43])
-local text = text:gsub("r",tar_font[44])
-local text = text:gsub("s",tar_font[45])
-local text = text:gsub("t",tar_font[46])
-local text = text:gsub("u",tar_font[47])
-local text = text:gsub("v",tar_font[48])
-local text = text:gsub("w",tar_font[49])
-local text = text:gsub("x",tar_font[50])
-local text = text:gsub("y",tar_font[51])
-local text = text:gsub("z",tar_font[52])
-local text = text:gsub("0",tar_font[53])
-local text = text:gsub("9",tar_font[54])
-local text = text:gsub("8",tar_font[55])
-local text = text:gsub("7",tar_font[56])
-local text = text:gsub("6",tar_font[57])
-local text = text:gsub("5",tar_font[58])
-local text = text:gsub("4",tar_font[59])
-local text = text:gsub("3",tar_font[60])
-local text = text:gsub("2",tar_font[61])
-local text = text:gsub("1",tar_font[62])
-table.insert(result, text)
-end		
-local result_text = "🚦⁞ الكلمه • "..TextToBeauty.." •\n🎖⁞ تم زخرفتها  "..tostring(#fonts).." نوع •\n\n"
-for v=1,#result do
-result_text = result_text..v.." - "..result[v].."\n"
+if text:match("^زخرفه$")  then  
+faederdx1:setex(FAEDER.."zr:wordd" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+faederdx1:setex(FAEDER.."zr:word" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ ارسل الكلمه لزخرفتها •\n🚦⁞ يمكن الزخرفه باللغتين {ar , en}', 1, 'md')
 end
-result_text = result_text
-faederdx(msg.chat_id_, msg.id_, 1, result_text, 1, 'md')
-end
----------------------------------------------faeder--------------------------------------------------
+--------------------
 if text:match("^مشاهده المنشور$") then
 faederdx1:set(FAEDER..'bot:viewget'..msg.sender_user_id_,true)
 if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
@@ -3246,20 +3421,16 @@ faederdx(msg.chat_id_, msg.id_, 1, "🚦⁞ تم الغاء طردك لا تشا
 end
 end
 end   
-if text == 'تفعيل اطردني' and is_owner(msg.sender_user_id_, msg.chat_id_) then
+if text == 'تعطيل اطردني' and is_owner(msg.sender_user_id_, msg.chat_id_) then
 if not faederdx1:get(FAEDER.."lock_kickme"..msg.chat_id_) then
 faederdx1:set(FAEDER.."lock_kickme"..msg.chat_id_, true)
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تفعيل امر اطردني •', 1, 'md')
-else
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تفعيل امر اطردني •', 1, 'md')
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تعطيل امر اطردني •', 1, 'md')
 end
 end
-if text == 'تعطيل اطردني' and is_owner(msg.sender_user_id_, msg.chat_id_) then
+if text == 'تفعيل اطردني' and is_owner(msg.sender_user_id_, msg.chat_id_) then
 if faederdx1:get(FAEDER.."lock_kickme"..msg.chat_id_) then
 faederdx1:del(FAEDER.."lock_kickme"..msg.chat_id_)
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تعطيل امر اطردني •', 1, 'md')
-else
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تعطيل امر اطردني •', 1, 'md')
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تفعيل امر اطردني •', 1, 'md')
 end
 end
 if text:match("^source$") or text:match("^اصدار$") or text:match("^الاصدار$") or  text:match("^السورس$") or text:match("^سورس$") then 
@@ -3641,7 +3812,7 @@ if user_info_ then
 local hash = 'bot:momod:'..msg.chat_id_
 if not faederdx1:sismember(FAEDER..hash, result.sender_user_id_) then
 if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
-faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is not promote ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
+faederdx(msg.chat_id_, msg.id_, 1, '*??|| User ؛ '..result.sender_user_id_..' ، 🚷\n🎈|| is not promote ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
 else
 faederdx(msg.chat_id_, msg.id_, 1, '👤╿❯ *العضو* « ['..faeder_res..'] »\n💯┊❯ *ايديه* « *'..result.sender_user_id_..'* »\n📌┊❯ *بواسطه « '..renk_faeder(msg)..' »*\n☑️╽❯ *لم يتم رفعه « ادمن » سابقا*', 1, 'md')
 end
@@ -3837,11 +4008,12 @@ end
 end
 ----------------------------------------faeder--------------------------------------------------------------       
 if is_momod(msg.sender_user_id_, msg.chat_id_) then
-if text:match("^[Dd]el$") or text:match("^مسح$") and is_sudo(msg) and msg.reply_to_message_id_ ~= 0 then
+if text:match("^[Dd]el$") or text:match("^مسح$") and msg.reply_to_message_id_ ~= 0 then
 local id = msg.id_
 local msgs = {[0] = id}
 delete_msg(msg.chat_id_,{[0] = msg.reply_to_message_id_})
 delete_msg(msg.chat_id_,msgs)
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم مسح الرساله مع رساله الامر •', 1, 'md')
 end
 -----------------------------------------faeder-----------------------------------------------------
 local text = msg.content_.text_:gsub('حظر','Ban') 
@@ -4373,7 +4545,7 @@ end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,mute_by_reply)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) then
-if text:match("^المقيدين$") then
+if text==("المقيدين") then 
 local hash =  'tkeed:'..msg.chat_id_
 local list = faederdx1:smembers(FAEDER..hash)
 if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
@@ -5257,7 +5429,7 @@ faederdx1:srem(FAEDER..hash, ap[2])
 if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
 faederdx(msg.chat_id_, msg.id_, 1, '*🎈|| The User ؛ '..ap[2]..' ، 🚷\n🎈|| removed from Dev therd bot ✅ \nֆ • • • • • • • • • • • • • • • • ֆ*', 1, 'md')
 else
-faederdx(msg.chat_id_, msg.id_, 1, '👤╿❯ *المطور الثالث* « ['..faeder_res..'] »\n💯┊❯ *ايديه* « *'..ap[2]..'* »\n📌┊❯ *بواسطه « '..renk_faeder(msg)..' »*\n☑️╽❯ * تم تنزيله « عضو » بنجاح *', 1, 'md')
+faederdx(msg.chat_id_, msg.id_, 1, '👤╿❯ *المطور الثالث* « ['..faeder_res..'] »\n??┊❯ *ايديه* « *'..ap[2]..'* »\n📌┊❯ *بواسطه « '..renk_faeder(msg)..' »*\n☑️╽❯ * تم تنزيله « عضو » بنجاح *', 1, 'md')
 end
 end
 end
@@ -6032,89 +6204,370 @@ if text:match("^[Ii]nvite (%d+)$") then
 local ap = {string.match(text, "^([Ii]nvite) (%d+)$")}
 add_user(msg.chat_id_, ap[2], 5)
 end
+-------- 
+if text:match("^تعيين الايدي$") and is_owner(msg.sender_user_id_, msg.chat_id_) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ اتبع التعليمات ليتم تعيين الكليشه الجديده •\n🌿⁞ ارسل كليشه تحتوي على النصوص التي باللغه الانكليزيه ادناه •\n\n• username ~ معرف العضو\n• photo ~ عدد صور العضو \n• nkat ~ عدد نقاط العضو \n• cont ~ عدد اضافات العضو\n• sticker ~ عدد ملصقات العضو\n• msgs ~ عدد رسائل العضو\n• id ~ ايدي العضو \n• formsg ~ تفاعل العضو \n• renk ~ رتبه العضو ', 1, 'md')
+faederdx1:set("FAEDER:now:id:"..bot_id..msg.chat_id_..msg.sender_user_id_,'faeder')
+return "faeder"
+end
+if text and is_owner(msg.sender_user_id_, msg.chat_id_)  and faederdx1:get("FAEDER:now:id:"..bot_id..msg.chat_id_..msg.sender_user_id_) then 
+faederdx1:del("FAEDER:now:id:"..bot_id..msg.chat_id_..msg.sender_user_id_)
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم حفض الكليشه الجديده • ', 1, 'md')
+faederdx1:set("FAEDER:faeder:id:text:"..bot_id..msg.chat_id_,text)
+end
+if text:match("^مسح الايدي$") and is_owner(msg.sender_user_id_, msg.chat_id_) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم مسح كليشه الايدي • ', 1, 'md')
+faederdx1:del("FAEDER:faeder:id:text:"..bot_id..msg.chat_id_)
+end
 ---------------------------------faeder--------------------------------------------------------------    
-if msg.reply_to_message_id_ ~= 0 then
-return ""
-else
-if text:match("^[Ii]d$") or text:match("^ايدي$") then
-function getmepar(extra,result,success) 
+if (text:match("^ايدي$") or text:match("^[Ii]Dd$")) and faeder11(msg) then
+function faeder(extra,result,success)
 if result.username_ then username = '@'..result.username_ else username = ' لا يوجد 🎍 ' end
+local function getpro(extra, result, success)
 local user_msgs = faederdx1:get(FAEDER..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
 local sticker = (tonumber(faederdx1:get(FAEDER.."sticker:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
 local user_nkt = tonumber(faederdx1:get(FAEDER..'bot:add:num'..msg.chat_id_..msg.sender_user_id_) or 0)
 local cont = (tonumber(faederdx1:get(FAEDER..'bot:user:add'..msg.chat_id_..':'..msg.sender_user_id_)) or 0)
 local msguser = tonumber(faederdx1:get(FAEDER..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_))
-local function getproen(extra, result, success)
-if faederdx1:get(FAEDER..'getidstatus'..msg.chat_id_) == "Photo" then
 if result.photos_[0] then
 if is_sudo(msg) then
-t = 'مطور اساسي 🍷'
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Bot Leader'
+else
+t = ' مطور اساسي'
+end
 elseif is_admin(msg.sender_user_id_) then
-t = 'مطور فالرتبه الثالثه 🚩'
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Dev 3'
+else
+t = 'مطور رتبه ثالثه'
+end
 elseif is_onall(msg.sender_user_id_) then
-t = 'مدير عام 🚩'
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Owner All'
+else
+t = 'مدير عام'
+end
 elseif is_moall(msg.sender_user_id_) then
-t = 'ادمن عام 🚩'
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Momod All'
+else
+t = 'ادمن عام'
+end
 elseif is_vpall(msg.sender_user_id_) then
-t = 'مميز عام🚩'
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Vip All'
+else
+t = 'مميز عام'
+end
 elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then
-t = 'منشئ الكروب 💷'
-elseif is_donky(msg.sender_user_id_, msg.chat_id_) then
-t = 'مطي معدل 😹💔'
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = ' creator'
+else
+t = 'منشئ'
+end
 elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
-t = 'مدير البوت 💷'
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = ' Owner'
+else 
+t = 'مدير'
+end
 elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
-t = 'ادمن البوت 💷'
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'momod'
+else
+t = 'ادمن'
+end
+elseif is_donky(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Donky'
+else
+t = 'مطي واليكرم 😹💔'
+end
 elseif is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-t = 'عضو مميز 💷'
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Vip'
 else
-t = 'عضو متخلف 🗳'
+t = 'عضو مميز'
 end
-local fae = '🎖-┊رتبتک↜⋞ '..t..' ⋟ ✓\n🎟-┊ایدیک↜⋞ '..msg.sender_user_id_..' ⋟ ✓\n🎫-┊معرفک↜⋞ ' ..username..' ⋟ ✓\n🎴-┊صورک↜⋞ '..result.total_count_..' ⋟ ✓\n🛢-┊جهاتک↜⋞ '..cont..' ⋟ ✓\n♦️-┊ملصقاتک↜⋞ '..sticker..' ⋟ ✓\n💰-┊نقاطک↜⋞ '..user_nkt..' ⋟ ✓\n🃏-┊تفاعلک↜⋞ '..formsgg(msguser)..' ⋟ ✓\n📨-┊رسائلک↜⋞ '..user_msgs 
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,fae,msg.id_,msg.id_)
 else
-faederdx(msg.chat_id_, msg.id_, 1, '🚧⁞ ~ « لا تمتلك صوره شخصيه »\n\n🎟-┊ایدیک↜⋞ '..msg.sender_user_id_..' ⋟ ✓\n🎫-┊معرفک↜⋞ ' ..username..' ⋟ ✓\n🎴-┊صورک↜⋞ '..result.total_count_..' ⋟ ✓\n🛢-┊جهاتک↜⋞ '..cont..' ⋟ ✓\n♦️-┊ملصقاتک↜⋞ '..sticker..' ⋟ ✓\n💰-┊نقاطک↜⋞ '..user_nkt..' ⋟ ✓\n🃏-┊تفاعلک↜⋞ '..formsgg(msguser)..' ⋟ ✓\n📨-┊رسائلک↜⋞ '..user_msgs, 1, 'md')
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Member'
+else
+t = 'فقط عضو'
 end
 end
-if faederdx1:get(FAEDER..'getidstatus'..msg.chat_id_) == "Simple" then
+if not faederdx1:get('FAEDER:id:mute'..msg.chat_id_) then
+if not faederdx1:get('FAEDER:id:photo'..msg.chat_id_) then 
+if not faederdx1:get("FAEDER:faeder:id:text:"..bot_id..msg.chat_id_) then 
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,"\n◗≡¹⁞ معرفك ‹› "..username.."\n◗≡²⁞ صورك ‹› "..result.total_count_.."\n◗≡³⁞ نقـاطك ‹› "..user_nkt.."\n◗≡⁴⁞ جهاتك ‹› "..cont.."\n◗≡°⁞ ملصقاتك ‹› "..sticker.."\n◗≡⁴⁞ رسائلك ‹› "..user_msgs.."\n◗≡³⁞ ايديك ‹› "..msg.sender_user_id_.."\n◗≡²⁞ تفاعلك ‹› "..formsgg(msguser).."\n◗≡¹⁞ رتبـتك ‹› "..t.."\n",msg.id_,msg.id_.."") 
+else
+local new_id = faederdx1:get("FAEDER:faeder:id:text:"..bot_id..msg.chat_id_)
+local new_id = new_id:gsub('username',(username or 'لا يوجد'))
+local new_id = new_id:gsub('photo',(result.total_count_ or 'لا يوجد')) 
+local new_id = new_id:gsub('nkat',(user_nkt or 'لا يوجد'))
+local new_id = new_id:gsub('cont',(cont or 'لا يوجد'))
+local new_id = new_id:gsub('sticker',(sticker or 'لا يوجد'))
+local new_id = new_id:gsub('msgs',(user_msgs or 'لا يوجد'))
+local new_id = new_id:gsub('id',(msg.sender_user_id_ or 'لا يوجد'))
+local new_id = new_id:gsub('formsg',(formsgg(msguser) or 'لا يوجد'))
+local new_id = new_id:gsub('renk',(t or 'لا يوجد'))
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,new_id,msg.id_,msg.id_.."")
+end
+else
 if is_sudo(msg) then
-t = 'مطور اساسي 🍷' 
-elseif is_admin(msg.sender_user_id_) then
-t = 'مطور فالرتبه الثالثه 🚩'
-elseif is_onall(msg.sender_user_id_) then
-t = 'مدير عام 🚩'
-elseif is_moall(msg.sender_user_id_) then
-t = 'ادمن عام 🚩'
-elseif is_vpall(msg.sender_user_id_) then
-t = 'مميز عام🚩'
-elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then
-t = 'منشئ الكروب 💷'
-elseif is_donky(msg.sender_user_id_, msg.chat_id_) then
-t = 'مطي معدل 😹💔'
-elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
-t = 'مدير البوت 💷'
-elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
-t = 'ادمن البوت 💷'
-elseif is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-t = 'عضو مميز 💷'
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Bot Leader'
 else
-t = 'عضو متخلف 🗳'
+t = ' مطور اساسي'
 end
-faederdx(msg.chat_id_, msg.id_, 1, '🎖-┊رتبتک↜⋞ '..t..' ⋟ ✓\n🎟-┊ایدیک↜⋞ '..msg.sender_user_id_..' ⋟ ✓\n🎫-┊معرفک↜⋞ ' ..username..' ⋟ ✓\n🎴-┊صورک↜⋞ '..result.total_count_..' ⋟ ✓\n🛢-┊جهاتک↜⋞ '..cont..' ⋟ ✓\n♦️-┊ملصقاتک↜⋞ '..sticker..' ⋟ ✓\n💰-┊نقاطک↜⋞ '..user_nkt..' ⋟ ✓\n🃏-┊تفاعلک↜⋞ '..formsgg(msguser)..' ⋟ ✓\n📨-┊رسائلک↜⋞ '..user_msgs , 1, 'md')
+elseif is_admin(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Dev 3'
+else
+t = 'مطور رتبه ثالثه'
 end
-if not faederdx1:get(FAEDER..'getidstatus'..msg.chat_id_) then
-faederdx(msg.chat_id_, msg.id_, 1, '🎖-┊رتبتک↜⋞ '..t..' ⋟ ✓\n🎟-┊ایدیک↜⋞ '..msg.sender_user_id_..' ⋟ ✓\n🎫-┊معرفک↜⋞ ' ..username..' ⋟ ✓\n🎴-┊صورک↜⋞ '..result.total_count_..' ⋟ ✓\n🛢-┊جهاتک↜⋞ '..cont..' ⋟ ✓\n♦️-┊ملصقاتک↜⋞ '..sticker..' ⋟ ✓\n💰-┊نقاطک↜⋞ '..user_nkt..' ⋟ ✓\n🃏-┊تفاعلک↜⋞ '..formsgg(msguser)..' ⋟ ✓\n📨-┊رسائلک↜⋞ '..user_msgs , 1, 'md')
+elseif is_onall(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Owner All'
+else
+t = 'مدير عام'
+end
+elseif is_moall(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Momod All'
+else
+t = 'ادمن عام'
+end
+elseif is_vpall(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Vip All'
+else
+t = 'مميز عام'
+end
+elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = ' creator'
+else
+t = 'منشئ'
+end
+elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = ' Owner'
+else 
+t = 'مدير'
+end
+elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'momod'
+else
+t = 'ادمن'
+end
+elseif is_donky(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Donky'
+else
+t = 'مطي واليكرم 😹💔'
+end
+elseif is_vipmem(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Vip'
+else
+t = 'عضو مميز'
+end
+else
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Member'
+else
+t = 'فقط عضو'
 end
 end
+if not faederdx1:get("FAEDER:faeder:id:text:"..bot_id..msg.chat_id_) then 
+faederdx(msg.chat_id_, msg.id_, 1, "◗≡¹⁞ معرفك ‹› "..username.."\n◗≡²⁞ صورك ‹› "..result.total_count_.."\n◗≡³⁞ نقـاطك ‹› "..user_nkt.."\n◗≡⁴⁞ جهاتك ‹› "..cont.."\n◗≡°⁞ ملصقاتك ‹› "..sticker.."\n◗≡⁴⁞ رسائلك ‹› "..user_msgs.."\n◗≡³⁞ ايديك ‹› "..msg.sender_user_id_.."\n◗≡²⁞ تفاعلك ‹› "..formsgg(msguser).."\n◗≡¹⁞ رتبـتك ‹› "..t.."\n", 1, 'html')
+else
+local new_id = faederdx1:get("FAEDER:faeder:id:text:"..bot_id..msg.chat_id_)
+local new_id = new_id:gsub('username',(username or 'لا يوجد'))
+local new_id = new_id:gsub('photo',(result.total_count_ or 'لا يوجد')) 
+local new_id = new_id:gsub('nkat',(user_nkt or 'لا يوجد'))
+local new_id = new_id:gsub('cont',(cont or 'لا يوجد'))
+local new_id = new_id:gsub('sticker',(sticker or 'لا يوجد'))
+local new_id = new_id:gsub('msgs',(user_msgs or 'لا يوجد'))
+local new_id = new_id:gsub('id',(msg.sender_user_id_ or 'لا يوجد'))
+local new_id = new_id:gsub('formsg',(formsgg(msguser) or 'لا يوجد'))
+local new_id = new_id:gsub('renk',(t or 'لا يوجد'))
+faederdx(msg.chat_id_, msg.id_, 1, new_id, 1, 'html')  
+end
+end
+else
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ ID disabled • ', 1, 'md')
+else
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ الايدي معطل • ', 1, 'md')
+end
+end
+else
+if is_sudo(msg) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Bot Leader'
+else
+t = ' مطور اساسي'
+end
+elseif is_admin(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Dev 3'
+else
+t = 'مطور رتبه ثالثه'
+end
+elseif is_onall(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Owner All'
+else
+t = 'مدير عام'
+end
+elseif is_moall(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Momod All'
+else
+t = 'ادمن عام'
+end
+elseif is_vpall(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Vip All'
+else
+t = 'مميز عام'
+end
+elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = ' creator'
+else
+t = 'منشئ'
+end
+elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = ' Owner'
+else 
+t = 'مدير'
+end
+elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'momod'
+else
+t = 'ادمن'
+end
+elseif is_donky(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Donky'
+else
+t = 'مطي واليكرم 😹💔'
+end
+elseif is_vipmem(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Vip'
+else
+t = 'عضو مميز'
+end
+else
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Member'
+else
+t = 'فقط عضو'
+end
+end
+if not faederdx1:get('FAEDER:id:mute'..msg.chat_id_) then
+if not faederdx1:get('FAEDER:id:photo'..msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+faederdx(msg.chat_id_, msg.id_, 1, "◗≡¹⁞ You not have any photo \n◗≡²⁞ User name ‹› "..username.."\n◗≡³⁞ Point ‹› "..user_nkt.."\n◗≡⁴⁞ Contacts ‹› "..cont.."\n◗≡°⁞ Sticker ‹› "..sticker.."\n◗≡⁴⁞ Msg ‹› "..user_msgs.."\n◗≡³⁞ ID ‹› "..msg.sender_user_id_.."\n◗≡²⁞ interaction ‹› "..formsgg(msguser).."\n◗≡¹⁞ Renk ‹› "..t.."\n", 1, 'html')
+else
+faederdx(msg.chat_id_, msg.id_, 1, "◗≡¹⁞ لا تمتلك صوره شخصيه\n◗≡²⁞ معرفك ‹› "..username.."\n◗≡³⁞ نقاطك ‹› "..user_nkt.."\n◗≡⁴⁞ جهاتك ‹› "..cont.."\n◗≡°⁞ ملصقاتك ‹› "..sticker.."\n◗≡⁴⁞ رسائلك ‹› "..user_msgs.."\n◗≡³⁞ ايديك ‹› "..msg.sender_user_id_.."\n◗≡²⁞ تفاعلك ‹› "..formsgg(msguser).."\n◗≡¹⁞ موقعك ‹› "..t.."\n", 1, 'html')
+end
+else
+if is_sudo(msg) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Bot Leader'
+else
+t = ' مطور اساسي'
+end
+elseif is_admin(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Dev 3'
+else
+t = 'مطور رتبه ثالثه'
+end
+elseif is_onall(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Owner All'
+else
+t = 'مدير عام'
+end
+elseif is_moall(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Momod All'
+else
+t = 'ادمن عام'
+end
+elseif is_vpall(msg.sender_user_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Vip All'
+else
+t = 'مميز عام'
+end
+elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = ' creator'
+else
+t = 'منشئ'
+end
+elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = ' Owner'
+else 
+t = 'مدير'
+end
+elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'momod'
+else
+t = 'ادمن'
+end
+elseif is_donky(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Donky'
+else
+t = 'مطي واليكرم 😹💔'
+end
+elseif is_vipmem(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Vip'
+else
+t = 'عضو مميز'
+end
+else
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+t = 'Member'
+else
+t = 'فقط عضو'
+end
+end
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+faederdx(msg.chat_id_, msg.id_, 1, "◗≡¹⁞ User name ‹› "..username.."\n◗≡²⁞ Photo ‹› "..result.total_count_.."\n◗≡³⁞ Point ‹› "..user_nkt.."\n◗≡⁴⁞ Contacts ‹› "..cont.."\n◗≡°⁞ Sticker ‹› "..sticker.."\n◗≡⁴⁞ Msg ‹› "..user_msgs.."\n◗≡³⁞ ID ‹› "..msg.sender_user_id_.."\n◗≡²⁞ interaction ‹› "..formsgg(msguser).."\n◗≡¹⁞ Renk ‹› "..t.."\n", 1, 'html')
+else
+faederdx(msg.chat_id_, msg.id_, 1, "◗≡¹⁞ معرفك ‹› "..username.."\n◗≡²⁞ صورك ‹› "..result.total_count_.."\n◗≡³⁞ نقـاطك ‹› "..user_nkt.."\n◗≡⁴⁞ جهاتك ‹› "..cont.."\n◗≡°⁞ ملصقاتك ‹› "..sticker.."\n◗≡⁴⁞ رسائلك ‹› "..user_msgs.."\n◗≡³⁞ ايديك ‹› "..msg.sender_user_id_.."\n◗≡²⁞ تفاعلك ‹› "..formsgg(msguser).."\n◗≡¹⁞ رتبـتك ‹› "..t.."\n", 1, 'html')
+end
+end
+else
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ ID disabled • ', 1, 'md')
+else
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ الايدي معطل • ', 1, 'md')
+end end end end
 tdcli_function ({
 ID = "GetUserProfilePhotos",
 user_id_ = msg.sender_user_id_,
 offset_ = 0,
 limit_ = 1
-}, getproen, nil)
+}, getpro, nil)
 end
-getUser(msg.sender_user_id_, getmepar)  
-end   
+getUser(msg.sender_user_id_, faeder)
 end
 ----------------------------------------faeder-------------------------------------------------------
 local text = msg.content_.text_:gsub('جلب الصوره','Getprofilestatus')
@@ -6492,11 +6945,8 @@ end
 end
 end
 ---------------------------------------faeder--------------------------------------------------------
-local text = msg.content_.text_:gsub('ضع الايدي','Getidstatus')
-if text:match("^[Gg]etidstatus (.*)$") then
-local status = {string.match(text, "^([Gg]etidstatus) (.*)$")}
-if status[2] == "photo" or status[2] == "بالصوره" then
-if faederdx1:get(FAEDER..'getidstatus'..msg.chat_id_) == "Photo" then
+if (text and text == 'enable id photo') and is_owner(msg.sender_user_id_, msg.chat_id_) or (text and text == 'Enable id photo') and is_owner(msg.sender_user_id_, msg.chat_id_) or (text and text == 'ضع الايدي بالصوره') and is_owner(msg.sender_user_id_, msg.chat_id_) then
+if not faederdx1:get('FAEDER:id:photo'..msg.chat_id_) then
 if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
 faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Get id status is *already* on Photo ', 1, 'md')
 else
@@ -6507,12 +6957,10 @@ if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
 faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Get ID status has been changed to *Photo* ', 1, 'md')
 else
 faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم وضع الايدي بالصوره •', 1, 'md')
-end
-faederdx1:set(FAEDER..'getidstatus'..msg.chat_id_,'Photo')
-end
-end
-if status[2] == "simple" or status[2] == "بدون صوره" then
-if faederdx1:get(FAEDER..'getidstatus'..msg.chat_id_) == "Simple" then
+faederdx1:del('FAEDER:id:photo'..msg.chat_id_)
+end end end
+if (text and text == 'disable id photo') and is_owner(msg.sender_user_id_, msg.chat_id_) or (text and text == 'Disable id photo') and is_owner(msg.sender_user_id_, msg.chat_id_) or (text and text == 'ضع الايدي بدون صوره') and is_owner(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get('FAEDER:id:photo'..msg.chat_id_) then
 if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
 faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Get ID status is *already* on Simple ', 1, 'md')
 else
@@ -6523,12 +6971,36 @@ if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
 faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Get ID status has been change to *Simple* ', 1, 'md')
 else
 faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم وضع الايدي بدون صوره •', 1, 'md')
+faederdx1:set('FAEDER:id:photo'..msg.chat_id_,true)
+end end end
+if (text and text == 'enable id') and is_owner(msg.sender_user_id_, msg.chat_id_)  or (text and text == 'Enable Id') and is_owner(msg.sender_user_id_, msg.chat_id_) or (text and text == 'تفعيل الايدي') and is_owner(msg.sender_user_id_, msg.chat_id_) then
+if not faederdx1:get('FAEDER:id:mute'..msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ ID is already enabled • ', 1, 'md')
+else
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ الايدي بالفعل تم تفعيله • ', 1, 'md')
 end
-faederdx1:set(FAEDER..'getidstatus'..msg.chat_id_,'Simple')
+else
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ ID has been enable • ', 1, 'md')
+else
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تفعيل الايدي • ', 1, 'md')
+faederdx1:del('FAEDER:id:mute'..msg.chat_id_)
+end end end
+if (text and text == 'disable id') and is_owner(msg.sender_user_id_, msg.chat_id_)  or (text and text == 'Disable Id') and is_owner(msg.sender_user_id_, msg.chat_id_) or (text and text == 'تعطيل الايدي') and is_owner(msg.sender_user_id_, msg.chat_id_) then
+if faederdx1:get('FAEDER:id:mute'..msg.chat_id_) then
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ ID is already disabled • ', 1, 'md')
+else
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ الايدي بالفعل تم تعطيله • ', 1, 'md')
 end
-end
-end
-end
+else
+if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ ID has been disable • ', 1, 'md')
+else
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تعطيل الايدي • ', 1, 'md')
+faederdx1:set('FAEDER:id:mute'..msg.chat_id_,true)
+end end end
 -------------------------------------faeder----------------------------------------------------------
 if is_sudo(msg) then
 local text = msg.content_.text_:gsub('المغادره التلقائيه','Autoleave')
@@ -8094,7 +8566,7 @@ if txt[2] == 'modlist' or txts[2] == 'الادمنيه' then
 if faederdx1:get(FAEDER..'lang:gp:'..msg.chat_id_) then
 faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ Mod list has been cleared •', 1, 'md')
 else
-local faeder = '🚦⁞ تم مسح الادمنيه • \n🎗⁞ بواسطه «'..msg.sender_user_id_..'» •'
+local faeder = '🚦⁞ تم مسح الادمنيه • \n??⁞ بواسطه «'..msg.sender_user_id_..'» •'
 faedrmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, faeder, 35, string.len(msg.sender_user_id_))
 end
 faederdx1:del(FAEDER..'bot:momod:'..msg.chat_id_)
@@ -8675,36 +9147,6 @@ faeder = 'تم تعطيل اللعبه'
 faederdx(msg.chat_id_, msg.id_, 1,faeder, 1, 'md')
 faederdx1:del(FAEDER..'bot:lock_geam'..msg.chat_id_) 
 end
-if text == 'تفعيل الاشتراك الاجباري' then
-if not is_leader(msg) then
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ للمطور الاساسي فقط •', 1, 'md') 
-else
-if not faederdx1:get(FAEDER.."faederr") then
-faederdx1:set(FAEDER.."faederr", true)
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تفعيل الاشتراك الاجباري •\n💷⁞ قناة الاشتراك » ['..(faederdx1:get(FAEDER..'fead') or '@faeder_ch')..']\n📱⁞ لتغيير القناة ارسل •\n🗃⁞ -{ تعين قناة الاشتراك }- ♤', 1, 'md')
-else
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تفعيل الاشتراك الاجباري •\n💷⁞ قناة الاشتراك » ['..(faederdx1:get(FAEDER..'fead') or '@faeder_ch')..']\n📱⁞ لتغيير القناة ارسل •\n🗃⁞ -{ تعين قناة الاشتراك }- ♤', 1, 'md')
-end end end
-if text == 'تعطيل الاشتراك الاجباري' then
-if not is_leader(msg) then
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ للمطور الاساسي فقط •', 1, 'md')
-else
-if faederdx1:get(FAEDER.."faederr") then
-faederdx1:del(FAEDER.."faederr")
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تعطيل الاشتراك الاجباري •', 1, 'md')
-else
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تعطيل الاشتراك الاجباري •', 1, 'md')
-end end end
-if text == 'جلب قناة الاشتراك' or text == 'قناة الاشتراك' then
-if not is_leader(msg) then
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ للمطور الاساسي فقط •', 1, 'md')
-else
-local faed = faederdx1:get(FAEDER.."fead") or "@faeder_ch"
-if faed then
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ *قناة الاشتراك* : ['..faed..']', 1, 'md')
-else
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ لم يتم تعيين القناة •', 1, 'md')
-end end end
 if text:match('^تفعيل$') then
 function adding(extra,result,success)
 local txt = {string.match(text, "^(تفعيل)$")}
@@ -9065,7 +9507,7 @@ local text =  [[
 ┓ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┏
    📚*⁞* الـروابـط          «» المـعـرف •
    📚*⁞* الـبـوتـات         «» الشارحـه •
-   📚*⁞* المتحركه         «» المـلـفـات •
+   ??*⁞* المتحركه         «» المـلـفـات •
    📚*⁞* الـصـور            «» الملصقات •
    📚*⁞* الفيـديـو          «» الاونـلايـن • 
    📚*⁞* الدردشـه          «» الـتوجـيـه •
@@ -9076,7 +9518,7 @@ local text =  [[
    📚*⁞* الهاشتاك           «» الـتعديـل •
    📚*⁞* التثبيت            «» الاشعارات •
    📚*⁞* الـكـل               «» الكـلايـش •
-   📚*⁞* المواقـع            «» الشبـكات •
+   ??*⁞* المواقـع            «» الشبـكات •
    📚*⁞* الاشعارات         «» الفارسيه
    📚*⁞* الفشار              «» الكل
    📚*⁞* البوتات بالطرد   «» البوتات بالتقييد •
@@ -9146,7 +9588,7 @@ local text =  [[
 🗃*⁞* الدعم      «» قائمه المنع •
 🗃*⁞* الردود     «» المحظورين •
 🗃*⁞* المدراء    «» الاعدادات •
-🗃*⁞* الادمنيه   «» المكتومين •
+??*⁞* الادمنيه   «» المكتومين •
 🗃*⁞* المقيدين  «» الاعضاء المميزين •
 🗃*⁞* المطايه    «»   المميزين عام •
 🗃*⁞* المنشئين  «» المدراء العامين •
@@ -9179,6 +9621,7 @@ local text =  [[
 🚦*⁞* اوامر الخدمه  ✓
 ┓ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┏
   🗳*⁞* الوقت •
+  🗳*⁞* زخرفه • 
   🗳*⁞* الرابط •
   🗳*⁞* موقعي •
   🗳*⁞* جهاتي •
@@ -9215,7 +9658,6 @@ local text =  [[
   📚*⁞* صورتي  + الرقم •
   📚*⁞* الحساب + الايدي •
   📚*⁞* طقس    + اسم المدينه •
-  📚*⁞* زخرفه   + النص {انكلش فقط} •
 ┛ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┗
 ]]
 faederdx(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
@@ -9237,6 +9679,9 @@ if text:match("^م٤$") or text:match("^م4$") then
 local help = faederdx1:get(FAEDER..'bot:help4')
 local text =  [[
 🎖*⁞* ٱوٱمـر لـوضع ✓
+┓ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┏
+    🎨*⁞* تعيين «» مسح الايدي •
+┛ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┗
 ┓ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┏
     🎨*⁞* ضع + احد الاوامر ادناه •
 ┛ـ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ـ┗
@@ -9324,9 +9769,13 @@ local text =  [[
 
   🗃*⁞* رد الخاص تفعيل «» تعطيل •
   🗃*⁞* المغادره التلقائيه تفعيل «» تعطيل •
- 
+
+  🚠*⁞* قناة الاشتراك •
+  🚠*⁞* تعيين «» تغيير قناة الاشتراك •
+  🚠*⁞* تفعيل «» تعطيل الاشتراك الاجباري •
+  
   📱*⁞* مسح المدراء •
- 📱*⁞* مسح المنشئين •
+  📱*⁞* مسح المنشئين •
   📱*⁞* مسح  قائمه العام •
   📱*⁞* مسح ردود المطور •
   📱*⁞* مسح المميزين عام •
@@ -9376,8 +9825,10 @@ io.popen("rm -rf ~/.telegram-cli/data/video/*")
 io.popen("rm -rf ~/.telegram-cli/data/voice/*") 
 io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
 print("\27[31;47m\n          💥»» تم تحديث البوت ««💥          \n\27[0;34;49m\n") 
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ تم تحديث البوت • ', 1, 'md') end 
---------------faeder
+faederdx(msg.chat_id_, msg.id_, 1, "🎖 ⁞ تم تحديث البوت •", 1, "md")
+end 
+
+---------------faeder
 if is_leader(msg) then
 local text = msg.content_.text_:gsub("[Ss]etprice", "Setnerkh")
 if text:match("^[Ss]etnerkh$") or text:match("^ضع كليشه المطور$") then
@@ -9390,7 +9841,7 @@ faederdx1:setex(FAEDER.."bot:nerkh" .. msg.chat_id_ .. ":" .. msg.sender_user_id
 end end
 -------------------------------------------------faeder----------------------------------------------
 if text:match("^قرنابيط$") then
-faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ قنوات السورس •\n\n• [@faeder_ch] •\n\n• [@team_faeder] •', 1, 'md')    
+faederdx(msg.chat_id_, msg.id_, 1, '🚦⁞ قنوات السورس •\n\n• [@faeder_ch] •\n\n• [@team_faeder] •\n ['..os.date("%H:%M:%S")..']', 1, 'md')    
 end end
 -----------------------------------------faeder------------------------------------------------------
 end   
@@ -9401,14 +9852,14 @@ end
 elseif (data.ID == "UpdateChat") then
 chat = data.chat_
 chats[chat.id_] = chat
----------------------------------------faeder--------------------------------------------------------
+---------------------------------------faeder-------------------------------------------------------- 
 elseif (data.ID == "UpdateMessageEdited") then
 local msg = data
 function get_msg_contact(extra, result, success)
 local text = (result.content_.text_ or result.content_.caption_)
 if result.id_ and result.content_.text_ then
 faederdx1:set(FAEDER..'bot:editid'..result.id_,result.content_.text_)
-end
+end 
 if not is_vipmem(result.sender_user_id_, result.chat_id_) then
 check_filter_words(result, text)
 if faederdx1:get(FAEDER..'editmsg'..msg.chat_id_) then
@@ -9451,7 +9902,7 @@ elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then
 tdcli_function ({ID="GetChats", offset_order_="9223372036854775807", offset_chat_id_=0, limit_=20}, dl_cb, nil)
 end
 -----------------------------------------faeder------------------------------------------------------
-end end 
+end end end  
 -- END VERSION FAEDER DX 
 -- all the file by faeder dx @pro_c9
 -- join in chennel @faeder_ch 
