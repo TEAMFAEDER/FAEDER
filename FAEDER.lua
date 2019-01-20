@@ -3271,7 +3271,7 @@ ten = '*Group Admin*'
 tar = 'ادمن البوت'
 else
 ten = 'Member'
-tar = 'عضو جايف'
+tar = 'عضو فقط'
 end
 function formsgg(msgs) 
 local faeder = ''  
@@ -3355,7 +3355,7 @@ faeder1 = "عضو مميز 🚩"
 elseif is_donky(result.sender_user_id_, msg.chat_id_) then
 faeder1 = "مطي مرتب 😹💔"
 else
-faeder1 = "عضو فايخ 🚩"
+faeder1 = "عضو فقط 🚩"
 end
 end
 local faeder = '*🌿╿❯ اهلا بك عزيزي { '..renk_faeder(msg)..' }*\n*🍄┊❯ رتبه المستخدم* { '..faeder_res..' }\n*💥┊❯ في البوت { '..faeder1..' }*\n*✨┊❯ في الكروب { '..renk_gps..' }*\n'
@@ -3448,7 +3448,7 @@ local text =  [[
 [🗳⁞ قناة السورس •](t.me/faeder_ch)
 [🗳⁞ قناة التحديثات •](t.me/team_faeder)
 
-[🗳⁞  كروب الدعم •](https://t.me/joinchat/B0N8JVDKF5xb_oaNcValyQ)
+[🗳⁞  كروب الدعم •](https://t.me/joinchat/B0N8JVGM9Ez8PKuyT43D5A)
 ]]
 faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
