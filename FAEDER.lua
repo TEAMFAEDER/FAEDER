@@ -1342,7 +1342,7 @@ if msg.content_.ID == "MessageSticker" then
 faederdx1:incr(FAEDER.."sticker:"..msg.sender_user_id_..":"..msg.chat_id_.."")
 end
 -------------------------faeder
-if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(bot_id) then 
+if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(FAEDER) then 
 faederdx1:srem("faeder:addg"..bot_id, msg.chat_id_) 
 faederdx1:del(FAEDER.."bot:charge:"..msg.chat_id_)
 function faeder(extra,result,success) 
