@@ -38,6 +38,7 @@ sudo chmod +x tg
 
 cd ..
 
+chmod +x FA
 
 chmod +x tg
 
