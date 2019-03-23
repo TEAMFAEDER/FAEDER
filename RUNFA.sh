@@ -1,5 +1,3 @@
-!/usr/bin/env bash
-
 
 THIS_DIR=$(cd $(dirname $0); pwd)
 
@@ -38,7 +36,6 @@ sudo chmod +x tg
 
 cd ..
 
-chmod +x FA
 
 chmod +x tg
 
@@ -49,16 +46,16 @@ chmod +x autofaeder.sh
 
 function print_logo() {
 
-green " _              _                 _"
-            |  _|_ _  _  | | _ _     | |_ 
+green ""
+            
 
-green "| |_ / _ |/ _ \/ _ |/ _ \ '|  / _ \ \/ / "
+green ""
 
-green "|  _| (_| |  / (_| |  / |    | (_| |>  <"
+green ""
 
-green "|_|  \,_|\_|\__,_|\___|_|     \__,_/_/\_\"
+ green ""
 
-echo -e "\n\e[0m"
+ echo -e "\n\e[0m"
 
 }
 
@@ -68,14 +65,14 @@ function logo_play() {
 declare -A txtlogo
 
 seconds="0.010"
-txtlogo[1]=" _              _                 _"
-                   |  _|_ _  _  | | _ _     | |_ 
 
-txtlogo[2]="| |_ / _ |/ _ \/ _ |/ _ \ '|  / _ \ \/ / "
+txtlogo[1]=" "
 
-txtlogo[3]="|  _| (_| |  / (_| |  / |    | (_| |>  <"
+    txtlogo[2]="  "
 
-txtlogo[4]="|_|  \,_|\_|\__,_|\___|_|     \__,_/_/\_\"
+    txtlogo[3]=""
+
+    txtlogo[4]=""
 
 printf "\e[31m\t"
 
@@ -169,3 +166,7 @@ exit 1
  fi
  ./tg -s FAEDER.lua
 fi
+
+
+
+
