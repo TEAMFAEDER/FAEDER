@@ -1,3 +1,6 @@
 killall screen
+while(true) do
+rm -fr ../.telegram-cli
 screen ./RUNFA.sh
+done
 echo -e "FAEDER IS RUN BOT"
