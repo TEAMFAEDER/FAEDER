@@ -1,5 +1,3 @@
-!/usr/bin/env bash
-
 
 THIS_DIR=$(cd $(dirname $0); pwd)
 
@@ -101,9 +99,9 @@ function FAEDER() {
 
  green " >>>> I'm not the only one. "
 
-green " >>>> But I'm the best "
+ green " >>>> But I'm the best "
 
-white " >>>> I'm the only programmer"
+ white " >>>> I'm the only programmer"
 
 white " >>>> To a source FAEDER"
 
