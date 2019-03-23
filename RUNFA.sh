@@ -78,9 +78,7 @@ function logo_play() {
 
     
 
-        for x in seq 0 ${#txtlogo[$i]}; do
-
-            printf "${txtlogo[$i]:$x:1}"
+       
 
             sleep $seconds
 
