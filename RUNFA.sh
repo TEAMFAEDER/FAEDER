@@ -41,13 +41,15 @@ install() {
 
 function print_logo() {
 
- green " ____ ____ _"
+ green "_              _                 _"
 
- green " | _ )| _ \ |_ _|___ ____  "
+ green " |  _|_ _  _  | | ___ _     | |_   "
 
- green " | _ \| |_) ) | |/ .__| _ \_| \/ |"
+ green " | |_ / _ |/ _ \/ _ |/ _ \ '|  / _` \ \/ /"
 
- green " |____/|____/ |_|\____/\_____|_/\/\_|"
+ green " |  _| (_| |  / (_| |  / |    | (_| |>  <"
+ 
+ green " |_|  \,_|\___|\__,_|\___|_|     \__,_/_/\_\"
 
  echo -e "\n\e[0m"
 
@@ -60,13 +62,15 @@ function logo_play() {
 
     seconds="0.010"
 
-    txtlogo[1]=" ____ ____ _"
+    txtlogo[1]="_              _                 _"
 
-    txtlogo[2]="| _ )| _ \ |_ _|___ ____  "
+    txtlogo[2]=" |  _|_ _  _  | | ___ _     | |_   "
 
-    txtlogo[3]="| _ \| |_) ) | |/ .__| _ \_| \/ |"
+    txtlogo[3]=" | |_ / _ |/ _ \/ _ |/ _ \ '|  / _` \ \/ /"
 
-    txtlogo[4]="|____/|____/ |_|\____/\_____|_/\/\_|"
+    txtlogo[4]=" |  _| (_| |  / (_| |  / |    | (_| |>  <"
+    
+    txtlogo[5]=" |_|  \,_|\___|\__,_|\___|_|     \__,_/_/\_\"
 
     printf "\e[31m\t"
 
@@ -95,17 +99,17 @@ function FAEDER() {
 
  echo -e "\e[0m"
 
- green " >>>> We Are Not Attacker "
+ green " >>>> I'm not the only one. "
 
- green " >>>> We Are Not Alliance "
+green " >>>> But I'm the best "
 
- white " >>>> We Are Programmer "
+white " >>>> I'm the only programmer"
 
- white " >>>> We Are The Best "
+white " >>>> To a source FAEDER"
 
- red " >>>> We Are Family "
+red " >>>> Follow my program"
 
- red " >>>> @FAEDER "
+red " >>>> @Faeder_ch "
 
  echo -e "\e[0m"
 
