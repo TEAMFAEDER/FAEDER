@@ -1,3 +1,5 @@
+!/usr/bin/env bash
+
 
 THIS_DIR=$(cd $(dirname $0); pwd)
 
@@ -39,15 +41,13 @@ install() {
 
 function print_logo() {
 
- green "_              _                 _"
+ green " ____ ____ _"
 
- green " |  _|_ _  _  | | _ _     | |_   "
+ green " | _ )| _ \ |_ _|___ ____  "
 
- green " | |_ / _ |/ _ \/ _ |/ _ \ '|  / _` \ \/ /"
+ green " | _ \| |_) ) | |/ .__| _ \_| \/ |"
 
- green " |  _| (_| |  / (_| |  / |    | (_| |>  <"
- 
- green " |_|  \,_|\_|\__,_|\___|_|     \__,_/_/\_\"
+ green " |____/|____/ |_|\____/\_____|_/\/\_|"
 
  echo -e "\n\e[0m"
 
@@ -60,15 +60,13 @@ function logo_play() {
 
     seconds="0.010"
 
-    txtlogo[1]="_              _                 _"
+    txtlogo[1]=" ____ ____ _"
 
-    txtlogo[2]=" |  _|_ _  _  | | _ _     | |_   "
+    txtlogo[2]="| _ )| _ \ |_ _|___ ____  "
 
-    txtlogo[3]=" | |_ / _ |/ _ \/ _ |/ _ \ '|  / _` \ \/ /"
+    txtlogo[3]="| _ \| |_) ) | |/ .__| _ \_| \/ |"
 
-    txtlogo[4]=" |  _| (_| |  / (_| |  / |    | (_| |>  <"
-    
-    txtlogo[5]=" |_|  \,_|\_|\__,_|\___|_|     \__,_/_/\_\"
+    txtlogo[4]="|____/|____/ |_|\____/\_____|_/\/\_|"
 
     printf "\e[31m\t"
 
@@ -97,15 +95,15 @@ function FAEDER() {
 
  echo -e "\e[0m"
 
- green ">>>> We Are Not Attacker"
+ green " >>>> We Are Not Attacker "
 
- green ">>>> But I am the best"
+ green " >>>> We Are Not Alliance "
 
- white " >>>> I am the only programmer "
+ white " >>>> We Are Programmer "
 
- white " >>>> To a source FAEDER "
+ white " >>>> We Are The Best "
 
- red " >>>> Follow my channel "
+ red " >>>> We Are Family "
 
  red " >>>> @FAEDER "
 
