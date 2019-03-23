@@ -55,43 +55,6 @@ function print_logo() {
 }
 
 
-function logo_play() {
-
-    declare -A txtlogo
-
-    seconds="0.010"
-
-    txtlogo[1]=" _              _                 _"
-
-    txtlogo[2]="|  _|_ _  _  | | _ _     | |_ "
-
-    txtlogo[3]="| |_ / _ |/ _ \/ _ |/ _ \ '|  / _ \ \/ / "
-
-    txtlogo[4]="|  _| (_| |  / (_| |  / |    | (_| |>  <"
-    
-    txtlogo[5]="|_|  \,_|\_|\__,_|\___|_|     \__,_/_/\_\"
-
-    printf "\e[31m\t"
-
-    for i in ${!txtlogo[@]}; do
-
-        for x in seq 0 ${#txtlogo[$i]}; do
-
-            printf "${txtlogo[$i]:$x:1}"
-
-            sleep $seconds
-
-        done
-
-        printf "\n\t"
-
-    done
-
-    printf "\n"
-
- echo -e "\e[0m"
-
-}
 
 
 function FAEDER() {
