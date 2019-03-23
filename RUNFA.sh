@@ -1,3 +1,5 @@
+!/usr/bin/env bash
+
 
 THIS_DIR=$(cd $(dirname $0); pwd)
 
@@ -41,13 +43,13 @@ function print_logo() {
 
  green "_              _                 _"
 
- green " |  _|_ _  _  | | ___ _     | |_   "
+ green " |  _|_ _  _  | | _ _     | |_   "
 
  green " | |_ / _ |/ _ \/ _ |/ _ \ '|  / _` \ \/ /"
 
  green " |  _| (_| |  / (_| |  / |    | (_| |>  <"
  
- green " |_|  \,_|\___|\__,_|\___|_|     \__,_/_/\_\"
+ green " |_|  \,_|\_|\__,_|\___|_|     \__,_/_/\_\"
 
  echo -e "\n\e[0m"
 
@@ -62,13 +64,13 @@ function logo_play() {
 
     txtlogo[1]="_              _                 _"
 
-    txtlogo[2]=" |  _|_ _  _  | | ___ _     | |_   "
+    txtlogo[2]=" |  _|_ _  _  | | _ _     | |_   "
 
     txtlogo[3]=" | |_ / _ |/ _ \/ _ |/ _ \ '|  / _` \ \/ /"
 
     txtlogo[4]=" |  _| (_| |  / (_| |  / |    | (_| |>  <"
     
-    txtlogo[5]=" |_|  \,_|\___|\__,_|\___|_|     \__,_/_/\_\"
+    txtlogo[5]=" |_|  \,_|\_|\__,_|\___|_|     \__,_/_/\_\"
 
     printf "\e[31m\t"
 
@@ -97,17 +99,18 @@ function FAEDER() {
 
  echo -e "\e[0m"
 
-  green " >>>> We Are Not Attacker "
+ green " >>>> I am not the only one "
 
- green " >>>> We Are Not Alliance "
+ green " >>>> But I am the best "
 
- white " >>>> We Are Programmer "
+ white " >>>> I am the only programmer "
 
- white " >>>> We Are The Best "
+ white " >>>> To a source FAEDER "
 
- red " >>>> We Are Family "
+ red " >>>> Follow my channel "
 
- red " >>>> @BeyondTeam "
+ red " >>>> @FAEDER "
+
  echo -e "\e[0m"
 
 }
