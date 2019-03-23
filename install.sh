@@ -116,6 +116,7 @@ function FAEDER() {
 }
 function chmod_FAEDER() {
  chmod +x tg
+ chmod +x FA
  chmod +x RUNFA.sh
  chmod +x RUNFA.sh
 }
