@@ -97,7 +97,7 @@ function FAEDER() {
 
  echo -e "\e[0m"
 
- green ">>>> I am not the only one"
+ green ">>>> We Are Not Attacker"
 
  green ">>>> But I am the best"
 
