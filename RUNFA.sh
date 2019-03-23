@@ -97,15 +97,15 @@ function FAEDER() {
 
  green " >>>> I am not the only one "
 
- green " >>>> We Are Not Alliance "
+ green " >>>> But i am the best "
 
- white " >>>> We Are Programmer "
+ white " >>>> I am FAEDER the programmer "
 
- white " >>>> We Are The Best "
+ white " >>>> Developer of source FAEDER "
 
- red " >>>> We Are Family "
+ red " >>>> Follow my channel "
 
- red " >>>> @FAEDER "
+ red " >>>> @FAEDER_ch "
 
  echo -e "\e[0m"
 
