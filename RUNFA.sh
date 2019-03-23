@@ -76,7 +76,7 @@ function logo_play() {
 
     printf "\e[31m\t"
 
-    for i in ${!txtlogo[@]}; do
+    
 
         for x in seq 0 ${#txtlogo[$i]}; do
 
