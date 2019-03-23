@@ -1,14 +1,7 @@
-
 THIS_DIR=$(cd $(dirname $0); pwd)
-
 cd $THIS_DIR
-
-
 install() {
-
-  cd tg
-
-  sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
   sudo apt-get install g++-4.7 -y c++-4.7 -y
 
@@ -28,113 +21,20 @@ install() {
 
   sudo apt-get install libnotify-dev -y
 
-  wget https://valtman.name/files/telegram-cli-1222
-
-  mv telegram-cli-1222 tg
-
-  sudo chmod +x tg
-
+wget "https://valtman.name/files/telegram-cli-1222"
+mv telegram-cli-1222 tg
+sudo chmod +x tg
+echo -e " BY TEAM FAEDER"
+echo -e " BY TEAM FAEDER" 
+echo -e " BY TEAM FAEDER" 
 }
-
-
-function print_logo() {
-
- green " _              _                 _"
-
- green "|  _|_ _  _  | | _ _     | |_ "
-
- green "| |_ / _ |/ _ \/ _ |/ _ \ '|  / _ \ \/ / "
-
- green "|  _| (_| |  / (_| |  / |    | (_| |>  <"
- 
- green "|_|  \,_|\_|\__,_|\___|_|     \__,_/_/\_\"
-
-
- echo -e "\n\e[0m"
-
-}
-
-
-
-
-function FAEDER() {
-
- echo -e "\e[0m"
-
- green " >>>> I am not the only one "
-
- green " >>>> But i am the best "
-
- white " >>>> I am FAEDER the programmer "
-
- white " >>>> Developer of source FAEDER "
-
- red " >>>> Follow my channel "
-
- red " >>>> @FAEDER_ch "
-
- echo -e "\e[0m"
-
-}
-
-
-red() {
-
-  printf '\e[1;31m%s\n\e[0;39;49m' "$@"
-
-}
-
-green() {
-
-  printf '\e[1;32m%s\n\e[0;39;49m' "$@"
-
-}
-
-white() {
-
-  printf '\e[1;37m%s\n\e[0;39;49m' "$@"
-
-}
-
-update() {
-
- git pull
-
-}
-
-
 if [ "$1" = "install" ]; then
-
- print_logo
-
- FAEDER
-
- logo_play
-
- install
-
-  else
-
+install
+else
 if [ ! -f ./tg ]; then
-
-    echo "tg not found"
-
-    echo "Run $0 install"
-
-    exit 1
-
- fi
-
- print_logo
-
- FAEDER
-
- logo_play
-
-   #sudo service redis-server restart
-
-   ./tg -s ./FAEDER.lua -l 1 -E $@
-
-   #./tg -s ./FAEDER.lua $@
-
+echo " BY TEAM FAEDER" 
+echo " BY TEAM FAEDER"
+exit 1
+fi
+./tg -s FAEDER.lua
 fi
