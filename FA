@@ -1,5 +1,5 @@
 killall screen
 while(true) do
 rm -fr ../.telegram-cli
-screen ./run
+screen ./RUNFA.sh
 done
