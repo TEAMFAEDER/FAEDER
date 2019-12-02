@@ -15,7 +15,6 @@ echo ""
 echo ""     •{ Setting up offices }•
 exit 1
 fi
-reset
 echo -e "\e[38;5;77m    •{ Welcome to install source Faeder }•\e[0m"
 echo -e "\e[38;5;77m    •{ Setting up offices }•\e[0m"
 echo -e "\e[38;5;77m       •{ install source Faeder [0%]  }•\e[0m"
