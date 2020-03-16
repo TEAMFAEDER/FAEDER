@@ -31,13 +31,8 @@ local SUDO = tonumber(io.read())
 if not tostring(SUDO):match('%d+') then  
 local SUDO = 121863205
 end
-
 io.write("\27[31;47m\n◼¦ ارسل معرف المطور الاساسي مع ال @ SEND ID FOR username \27[0;34;49m\n")  
-local username = tonumber(io.read())   
-if not tostring(username):match('@(.*)') then  
-local username = '@pro_c9'
-end
-
+local username = io.read()
 io.write("\27[31;47m\n◼¦ ارسل توكن البوت        TOKEN FOR YOU \27[0;34;49m\n")  
 local token = io.read()  
 botid = token:match("(%d+)")
