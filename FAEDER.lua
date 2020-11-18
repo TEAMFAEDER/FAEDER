@@ -18,13 +18,12 @@ http  = require ("socket.http")
 json = dofile('./JSON.lua')
 JSON = dofile('./dkjson.lua')
 notify = lgi.require('Notify')
-utf8 = require ('lua-utf8') 
 notify.init ("Telegram updates")
 chats = {}
 day = 313456502
 -------------------------------------------------------
 function vardump(value)  
-print(serpent.block(value, {comment=false}))  
+print(serpent.block(value, {comment=false})) 
 end 
 local AutoSet = function()
 io.write("\27[31;47m\n◼¦ ارسل ايدي مطور الاساسي  SEND ID FOR SIDO \27[0;34;49m\n")  
@@ -784,9 +783,7 @@ vardump(data)
 end ,nil) 
 end
 -----------
-function CatchName(Name,Num) 
-ChekName = utf8.sub(Name,0,Num) Name = ChekName return Name..'' 
-end
+
 --------------
 --------------Local Renk-----------
 local renk_faeder = function(msg)
@@ -6691,8 +6688,7 @@ faederdx(msg.chat_id_, msg.id_, 1,'*🧼┇الحساب محذوف *\n', 1, 'md'
 return false  end
 if data.username_ == false then
 text = '💳✥ ايديه ⌯»{ `'..result.sender_user_id_..
-'` }\n🔭✥ اسمه ⌯» { {'..CatchName(data.first_name_,20)..
-' } }\n👨🏻‍✈️✥ رتبته بالكروب ⌯» { '..Renk..
+'` }\n👨🏻‍✈️✥ رتبته بالكروب ⌯» { '..Renk..
 ' }\n🧑‍🚒✥ رتبته بالبوت ⌯» { '..t..
 ' }\n'..photouser1..
 '\n🦠✥ نوع القيود ⌯» { '..Tkeed..
@@ -6702,7 +6698,6 @@ monsend(msg,msg.chat_id_,text,data.id_)
 else
 text = '🚿✥ ايديه ⌯»{ `'..result.sender_user_id_..
 '` }\n🔮✥ معرفه ⌯» { [@'..data.username_..']'..
-' }\n🔭✥ اسمه ⌯» {'..CatchName(data.first_name_,20)..
 ' } \n👨🏻‍✈️✥ رتبته بالكروب ⌯» { '..Renk..
 ' }\n🧑‍🚒✥ رتبته بالبوت ⌯» { '..t..
 ' }'..photouser1..
@@ -6808,7 +6803,6 @@ faederdx(msg.chat_id_, msg.id_, 1,'*🧼┇الحساب محذوف *\n', 1, 'md'
 return false  end
 text = '🚿✥ ايديه ⌯»{ `'..res.id_..
 '` }\n🔮✥ معرفه ⌯» { [@'..data.username_..']'..
-' }\n🔭✥ اسمه ⌯» {'..CatchName(data.first_name_,20)..
 ' } \n👨🏻‍✈️✥ رتبته بالكروب ⌯» { '..Renk..
 ' }\n🧑‍🚒✥ رتبته بالبوت ⌯» { '..t..
 ' }'..photouser1..
@@ -6905,25 +6899,23 @@ faederdx(msg.chat_id_, msg.id_, 1,'*🧼┇الحساب محذوف *\n', 1, 'md'
 return false  end
 if data.username_ == false then
 text = '💳✥ ايديه ⌯»{ `'..iduser..
-'` }\n🔭✥ اسمه ⌯» { {'..CatchName(data.first_name_,20)..
-' } }\n👨🏻‍✈️✥ رتبته بالكروب ⌯» { '..Renk..
+'` }\n👨🏻‍✈️✥ رتبته بالكروب ⌯» { '..Renk..
 ' }\n🧑‍🚒✥ رتبته بالبوت ⌯» { '..t..
 ' }\n'..photouser1..
 '\n🦠✥ نوع القيود ⌯» { '..Tkeed..
 ' }\n🌡✥ التواجد ⌯» { '..tt..
 ' }\n🧪✥ نوع حسابه ⌯» { '..noh..' }'
-monsend(msg,msg.chat_id_,text,iduser) 
+monsend(msg,msg.chat_id_,text,iduser)
 else
 text = '🚿✥ ايديه ⌯»{ `'..iduser..
 '` }\n🔮✥ معرفه ⌯» { [@'..data.username_..']'..
-' }\n🔭✥ اسمه ⌯» {'..CatchName(data.first_name_,20)..
-' } \n👨🏻‍✈️✥ رتبته بالكروب ⌯» { '..Renk..
+' }\n👨🏻‍✈️✥ رتبته بالكروب ⌯» { '..Renk..
 ' }\n🧑‍🚒✥ رتبته بالبوت ⌯» { '..t..
 ' }'..photouser1..
 '\n🦠✥ نوع القيود ⌯» { '..Tkeed..
 ' }\n🌡✥ التواجد ⌯» { '..tt..
 ' }\n🧪✥ نوع حسابه ⌯» { '..noh..' }'
-faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'md') 
+faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 end,nil)
 end,nil)
