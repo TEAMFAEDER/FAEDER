@@ -4407,7 +4407,7 @@ if text:match("^source$") or text:match("^اصدار$") or text:match("^الاص
 local inline = {
 {{text="- قناة السورس ،",url="t.me/Faeder_ch"},
 {text="- مبرمج السورس،",url="t.me/kkkkf"}},
-{{text="- اضغط هنا لتنصيب السورس ،",url="t.me/Faeder_ch"}},
+{{text="- اضغط هنا لتنصيب السورس ،",url="https://t.me/Faeder_Ch/365"}},
 {{text="- كروب المبرمجين ،",url="https://t.me/joinchat/TXKJWVCCy9FF6g6cjajRGA"},
 {text="- شروحات السورس ،",url="t.me/Learn_Faeder"}}
 }
