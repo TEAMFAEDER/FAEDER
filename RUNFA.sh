@@ -62,7 +62,6 @@ cd ..
 rm -rf luarocks*
 ./tg -s FAEDER.lua
 }
-fi
 if [ "$1" = "install" ]; then
 install
 else
