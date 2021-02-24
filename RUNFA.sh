@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 THIS_DIR=$(cd $(dirname $0); pwd)
-Version=lsb_release -rs | cut -f1 -d"."
 cd $THIS_DIR
 install() {
-
 echo -e "\e[38;5;77m    •{ Welcome to install source Faeder }•\e[0m"
 echo -e "\e[38;5;77m    •{ Setting up offices }•\e[0m"
 echo -e "\e[38;5;77m       •{ install source Faeder [0%]  }•\e[0m"
@@ -63,11 +61,6 @@ cd ..
 rm -rf luarocks*
 ./tg -s FAEDER.lua
 }
-if [ "$Version" == "18" ];then
-echo -e "\e[38;5;77m Installing depedencies for ubuntu 18  ... \e[0m"
-cd /lib/x86_64-linux-gnu/ && sudo ln -s libreadline.so.7.0 libreadline.so.6
-wget "ibotcorp.com/files/compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb" && sudo dpkg -i compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb
-rm compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb
 if [ "$1" = "install" ]; then
 install
 else
