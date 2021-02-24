@@ -59,14 +59,14 @@ echo -e "\e[38;5;77m       |_|/_/   \_\_|__/|___|_| \_\\e[0m"
 
 echo -e "\e[38;5;77m       •{ Faeder source has been installed }•\e[0m"
 echo -e "\e[38;5;77m       •{ Source developer : @KKKKF }•\e[0m"
-cd ..
-rm -rf luarocks*
-./tg -s FAEDER.lua
 if [ "$Version" == "18" ];then
 echo -e "\e[38;5;77m Installing depedencies for ubuntu 18  ... \e[0m"
 cd /lib/x86_64-linux-gnu/ && sudo ln -s libreadline.so.7.0 libreadline.so.6
 wget "ibotcorp.com/files/compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb" && sudo dpkg -i compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb
 rm compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb
+cd ..
+rm -rf luarocks*
+./tg -s FAEDER.lua
 }
 fi
 if [ "$1" = "install" ]; then
