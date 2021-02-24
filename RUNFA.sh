@@ -2,7 +2,7 @@
 THIS_DIR=$(cd $(dirname $0); pwd)
 cd $THIS_DIR
 install() {
-fi
+
 echo -e "\e[38;5;77m    •{ Welcome to install source Faeder }•\e[0m"
 echo -e "\e[38;5;77m    •{ Setting up offices }•\e[0m"
 echo -e "\e[38;5;77m       •{ install source Faeder [0%]  }•\e[0m"
