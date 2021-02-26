@@ -99,3 +99,4 @@ if [ ! -f ./tg ]; then
     exit 1
 fi
 ./tg -s FAEDER.lua
+fi
