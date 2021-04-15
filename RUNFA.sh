@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 THIS_DIR=$(cd $(dirname $0); pwd)
+Version=`lsb_release -rs | cut -f1 -d"."`
 cd $THIS_DIR
 install() {
 echo -e "\e[38;5;77m    •{ Welcome to install source Faeder }•\e[0m"
@@ -16,6 +17,13 @@ echo -e "\e[38;5;77m       •{ install source Faeder [20%]  }•\e[0m"
 sudo apt-get install screen
 sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev lua-socket lua-sec lua-expat libevent-dev make unzip git redis-server autoconf g++ libjansson-dev libpython-dev expat libexpat1-dev
 echo -e "\e[38;5;77m       •{ install source Faeder [30%]  }•\e[0m"
+if [ "$Version" == "18" ]; then
+echo -e "\033[0;31m\n~ Installing Depedencies For Ubuntu 18... \n\033[0m"
+cd /lib/x86_64-linux-gnu/ && sudo ln -s libreadline.so.7.0 libreadline.so.6
+wget "ibotcorp.com/files/compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb" && sudo dpkg -i compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb
+rm compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb
+fi
+echo -e "\033[0;31m\n~ Depedencies For Ubuntu 18 has been installed \n\033[0m"
 sudo apt-get update
 sudo apt-get install
 echo -e "\e[38;5;77m       •{ install source Faeder [40%]  }•\e[0m"
