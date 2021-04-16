@@ -68,7 +68,7 @@ echo -e "\e[38;5;77m       •{ Source developer : @KKKKF }•\e[0m"
 cd ..
 rm -rf luarocks*
 chmod +x ./FA
-sudo ./FA
+sudo sh FA
 }
 if [ "$1" = "install" ]; then
 install
@@ -78,5 +78,5 @@ echo "Tg Is Not Found"
 exit 1
 fi
 chmod +x ./FA
-sudo ./FA
+sudo sh FA
 fi
