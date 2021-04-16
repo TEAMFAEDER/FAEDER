@@ -66,7 +66,6 @@ echo -e "\e[38;5;77m       |_|/_/   \_\_|/|_|_| \_\\e[0m"
 echo -e "\e[38;5;77m       •{ Faeder source has been installed }•\e[0m"
 echo -e "\e[38;5;77m       •{ Source developer : @KKKKF }•\e[0m"
 cd ..
-chmod +x ./FA
 rm -rf luarocks*
 sudo ./FA
 }
