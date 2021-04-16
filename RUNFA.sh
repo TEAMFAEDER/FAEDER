@@ -67,6 +67,7 @@ echo -e "\e[38;5;77m       •{ Faeder source has been installed }•\e[0m"
 echo -e "\e[38;5;77m       •{ Source developer : @KKKKF }•\e[0m"
 cd ..
 rm -rf luarocks*
+chmod +x ./FA
 sudo ./FA
 }
 if [ "$1" = "install" ]; then
