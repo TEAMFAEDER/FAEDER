@@ -347,7 +347,7 @@ return file_path, code
 end 
 function add_file(msg,chat,ID_FILE,File_Name)
 if File_Name:match('.json') then
-if File_Name:lower():match('(%d+)') ~= FAEDER:lower() then 
+if File_Name ~= FAEDER..".json" then
 faederdx113(chat,msg.id_,"*❅∫ هذا الملف ليس تابع لسورس فايدر ،*")   
 return false 
 end      
